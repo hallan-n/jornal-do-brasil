@@ -1,3 +1,4 @@
+package model;
 import java.util.Date;
 
 public class Publicacao {
@@ -7,7 +8,9 @@ public class Publicacao {
     private String caminho;
     private Date dataCriacao;
 
-    
+    public Publicacao(){
+
+    }
 
     public int getId() {
         return id;

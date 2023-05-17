@@ -1,3 +1,6 @@
+package model;
+import model.Endereco;
+
 public class Usuario {
     private int id;
     private String nome;
@@ -7,9 +10,13 @@ public class Usuario {
     private String senha;
     private boolean aceitaTermos;
     private String fotoPerfil;
+    private Endereco endereco;
 
+    public Usuario(){
+        
+    }
     
-    public int getId() {
+    public int getId() {        
         return id;
     }
     public void setId(int id) {
@@ -70,5 +77,13 @@ public class Usuario {
     }
     public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
+    }
+
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
