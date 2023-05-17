@@ -1,4 +1,9 @@
 public class Configuracao {
+
+    public Configuracao(){
+
+    }
+
     private int id;
     private boolean notificacao;
     private boolean som;
@@ -62,7 +67,7 @@ public class Configuracao {
     public void setMostrarEmail(boolean mostrarEmail) {
         this.mostrarEmail = mostrarEmail;
     }
-    
+
 
     public String getTema() {
         return tema;
@@ -70,5 +75,4 @@ public class Configuracao {
     public void setTema(String tema) {
         this.tema = tema;
     }
-
 }

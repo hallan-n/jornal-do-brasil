@@ -64,12 +64,11 @@ public class Usuario {
         this.aceitaTermos = aceitaTermos;
     }
 
-    
+
     public String getFotoPerfil() {
         return fotoPerfil;
     }
     public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
-
 }
