@@ -1,30 +1,14 @@
 package model;
-
 public class Usuario {
     private int id;
     private String nome;
-    private String sobreNome;
+    private String sobrenome;
     private String email;
     private String telefone;
     private String senha;
     private boolean aceitaTermos;
     private String fotoPerfil;
     private Endereco endereco = new Endereco();
-    
-    public Usuario(){
-
-    }
-    public Usuario(int id, String nome, String sobreNome, String email, String telefone, String senha, boolean aceitaTermos, String fotoPerfil, Endereco endereco){
-        this.id = id;
-        this.nome = nome;
-        this.sobreNome = sobreNome;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-        this.aceitaTermos = aceitaTermos;
-        this.fotoPerfil = fotoPerfil;
-        this.endereco = endereco;
-    }
     
     public int getId() {        
         return id;
@@ -43,10 +27,10 @@ public class Usuario {
 
 
     public String getSobreNome() {
-        return sobreNome;
+        return sobrenome;
     }
-    public void setSobreNome(String sobreNome) {
-        this.sobreNome = sobreNome;
+    public void setSobreNome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
 
