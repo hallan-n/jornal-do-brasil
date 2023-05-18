@@ -1,10 +1,5 @@
 package model;
 public class Configuracao {
-
-    public Configuracao(){
-
-    }
-
     private int id;
     private boolean notificacao;
     private boolean som;
@@ -14,6 +9,11 @@ public class Configuracao {
     private boolean mostrarEmail;
     private String tema;
     
+    public Configuracao(){
+
+    }
+
+
     public int getId() {
         return id;
     }

@@ -1,5 +1,4 @@
 package model;
-import model.Endereco;
 
 public class Usuario {
     private int id;
@@ -10,10 +9,21 @@ public class Usuario {
     private String senha;
     private boolean aceitaTermos;
     private String fotoPerfil;
-    private Endereco endereco;
-
+    private Endereco endereco = new Endereco();
+    
     public Usuario(){
-        
+
+    }
+    public Usuario(int id, String nome, String sobreNome, String email, String telefone, String senha, boolean aceitaTermos, String fotoPerfil, Endereco endereco){
+        this.id = id;
+        this.nome = nome;
+        this.sobreNome = sobreNome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.aceitaTermos = aceitaTermos;
+        this.fotoPerfil = fotoPerfil;
+        this.endereco = endereco;
     }
     
     public int getId() {        
