@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class MyConnection {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/dbprojetoweb";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_jornal_do_brasil";
     private static final String USER = "root";
     private static final String PASS = "123456";
 
@@ -18,9 +18,9 @@ public class MyConnection {
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Erro ao tentar estabelecer conexão com o Banco de Dadods!" + e);
-        }    
+        }
     }
-    
+
     public static void closeConnection(Connection con) {
         if (con != null) {
             try {
@@ -30,28 +30,26 @@ public class MyConnection {
             }
         }
     }
-    
+
     public static void closeConnection(Connection con, PreparedStatement stmt) {
         if (stmt != null) {
             try {
                 stmt.close();
             } catch (SQLException e) {
                 System.out.println("Erro ao tentar fechar Statement!" + e);
-            }
-            finally {
+            } finally {
                 closeConnection(con);
             }
         }
     }
-    
+
     public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet result) {
         if (result != null) {
             try {
                 result.close();
             } catch (SQLException e) {
                 System.out.println("Erro ao tentar fechar ResultSet!" + e);
-            }
-            finally {
+            } finally {
                 closeConnection(con, stmt);
             }
         }

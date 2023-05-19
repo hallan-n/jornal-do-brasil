@@ -9,6 +9,7 @@ public class Usuario {
     private boolean aceitaTermos;
     private String fotoPerfil;
     private Endereco endereco = new Endereco();
+    private Configuracao configuracao = new Configuracao();
     
     public int getId() {        
         return id;
@@ -79,5 +80,13 @@ public class Usuario {
     }
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+
+    public Configuracao getConfiguracao() {
+        return configuracao;
+    }
+    public void setConfiguracao(Configuracao configuracao) {
+        this.configuracao = configuracao;
     }
 }
