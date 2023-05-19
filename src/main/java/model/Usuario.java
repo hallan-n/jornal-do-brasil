@@ -8,8 +8,8 @@ public class Usuario {
     private String senha;
     private boolean aceitaTermos;
     private String fotoPerfil;
-    private Endereco endereco = new Endereco();
-    private Configuracao configuracao = new Configuracao();
+    private Endereco endereco;
+    private Configuracao configuracao;
     
     public Usuario(String nome, String sobrenome, String email, String telefone, String senha, boolean aceitaTermos, String fotoPerfil, Endereco endereco, Configuracao configuracao){
         this.nome = nome;
