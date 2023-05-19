@@ -27,15 +27,15 @@ public class UsuarioController{
         connection = myConnection.getConnection();
         try {
             statement = connection.prepareStatement(inserirUsuario);
-            statement.setString(0, usuario.getNome());
-            statement.setString(0, usuario.getSobreNome());
-            statement.setString(0, usuario.getEmail());
-            statement.setString(0, usuario.getTelefone());
-            statement.setString(0, usuario.getSenha());
-            statement.setBoolean(0, usuario.isAceitaTermos());
-            statement.setString(0, usuario.getFotoPerfil());
-            statement.setObject(0, usuario.getEndereco());
-            statement.setObject(0, usuario.getConfiguracao());
+            statement.setString(1, usuario.getNome());
+            statement.setString(2, usuario.getSobreNome());
+            statement.setString(3, usuario.getEmail());
+            statement.setString(4, usuario.getTelefone());
+            statement.setString(5, usuario.getSenha());
+            statement.setBoolean(6, usuario.isAceitaTermos());
+            statement.setString(7, usuario.getFotoPerfil());
+            statement.setObject(8, usuario.getEndereco());
+            statement.setObject(9, usuario.getConfiguracao());
             statement.executeUpdate();
             resposta = true;
 
@@ -47,7 +47,7 @@ public class UsuarioController{
         return resposta;
     }
 
-    
+
     public List<Object> read() {
         return new ArrayList();
     }
