@@ -8,6 +8,14 @@ public class Publicacao {
     private String caminho;
     private Date dataCriacao;
 
+
+    public Publicacao(String titulo, String categoria, String caminho, Date dataCriacao){
+        this.titulo = titulo;
+        this.categoria = categoria;
+        this.caminho = caminho;
+        this.dataCriacao = dataCriacao;
+    }
+
     public Publicacao(){
 
     }

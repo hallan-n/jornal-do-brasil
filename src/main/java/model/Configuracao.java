@@ -9,6 +9,15 @@ public class Configuracao {
     private boolean mostrarEmail;
     private String tema;
     
+    public Configuracao(boolean notificacao, boolean som, boolean fotoPerfil, boolean menssagem, boolean mostrarNumero, boolean mostrarEmail, String tema){
+        this.notificacao = notificacao;
+        this.som = som;
+        this.fotoPerfil = fotoPerfil;
+        this.menssagem = menssagem;
+        this.mostrarNumero = mostrarNumero;
+        this.mostrarEmail = mostrarEmail;
+        this.tema = tema;
+    }
     public Configuracao(){
 
     }

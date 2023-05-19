@@ -1,4 +1,4 @@
-package controller.publicacao;
+package controller;
 
 public class PublicacaoController {
     public PublicacaoController(){

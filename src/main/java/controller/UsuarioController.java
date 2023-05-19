@@ -1,4 +1,4 @@
-package controller.usuario;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioCRUD {
+public class UsuarioController {
 
     MyConnection myConnection = new MyConnection();
     Connection connection;
@@ -36,7 +36,6 @@ public class UsuarioCRUD {
             statement.setObject(9, usuario.getConfiguracao());
             statement.executeUpdate();
             resposta = true;
-
         } catch (SQLException e) {
             System.out.println("Erro ao tentar inserir Usuário: " + e);
         } finally {
@@ -44,6 +43,10 @@ public class UsuarioCRUD {
         }
         return resposta;
     }
+
+
+
+
 
     public List<Object> read() {
         return new ArrayList();

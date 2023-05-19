@@ -11,6 +11,22 @@ public class Usuario {
     private Endereco endereco = new Endereco();
     private Configuracao configuracao = new Configuracao();
     
+    public Usuario(String nome, String sobrenome, String email, String telefone, String senha, boolean aceitaTermos, String fotoPerfil, Endereco endereco, Configuracao configuracao){
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.aceitaTermos = aceitaTermos;
+        this.fotoPerfil = fotoPerfil;
+        this.endereco = endereco;
+        this.configuracao = configuracao;
+    }
+    public Usuario(){
+    }
+
+
+
     public int getId() {        
         return id;
     }
