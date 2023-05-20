@@ -8,11 +8,11 @@ public class User {
     private String password;
     private boolean acceptTerms;
     private String description;
-    private Address address;
     private String profilePhoto;
-    private Configuration configuration;
+    private int address;
+    private int configuration;
 
-    public User(String name, String surname, String email, String phone, String password, boolean acceptTerms, String description, Address address, String profilePhoto, Configuration configuration){
+    public User(String name, String surname, String email, String phone, String password, boolean acceptTerms, String description,String profilePhoto, int address, int configuration){
         this.name =  name;
         this.surname =  surname;
         this.email =  email;
@@ -77,10 +77,10 @@ public class User {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Address getAddress() {
+    public int getAddress() {
         return address;
     }
-    public void setAddress(Address address) {
+    public void setAddress(int address) {
         this.address = address;
     }
     public String getProfilePhoto() {
@@ -89,10 +89,10 @@ public class User {
     public void setProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
-    public Configuration getConfiguration() {
+    public int getConfiguration() {
         return configuration;
     }
-    public void setConfiguration(Configuration configuration) {
+    public void setConfiguration(int configuration) {
         this.configuration = configuration;
     }
 

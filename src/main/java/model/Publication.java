@@ -6,10 +6,10 @@ public class Publication {
     private String title;
     private String category;
     private String path;
-    private User author;
+    private int author;
     private Date date;
 
-    public Publication(String title, String category, String path, User author, Date date){
+    public Publication(String title, String category, String path, int author, Date date){
         this.title = title;
         this.category = category;
         this.path = path;
@@ -46,10 +46,10 @@ public class Publication {
     public void setPath(String path) {
         this.path = path;
     }
-    public User getAuthor() {
+    public int getAuthor() {
         return author;
     }
-    public void setAuthor(User author) {
+    public void setAuthor(int author) {
         this.author = author;
     }
     public Date getDate() {
