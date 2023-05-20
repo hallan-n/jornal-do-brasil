@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Usuario;
+import model.User;
 
 
 public class UsuarioDAO {
@@ -17,7 +17,7 @@ public class UsuarioDAO {
     PreparedStatement statement;
     ResultSet resultSet;
 
-    public boolean create(Usuario usuario) {
+    public boolean create(User usuario) {
         boolean resposta = false;
         String inserirUsuario = "insert into usuario(nome, sobrenome, email, telefone, senha, aceitaTermos, fotoPerfil, endereco, configuracao) values(?,?,?,?,?,?,?,?,?)";
         connection = myConnection.getConnection();
@@ -50,7 +50,7 @@ public class UsuarioDAO {
         return new ArrayList<Object>();
     }
 
-    public boolean update(Usuario object) {
+    public boolean update(User object) {
         return true;
     }
 

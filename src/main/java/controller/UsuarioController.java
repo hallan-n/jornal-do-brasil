@@ -1,8 +1,8 @@
 package controller;
 
-import model.Usuario;
-import model.Endereco;
-import model.Configuracao;
+import model.User;
+import model.Address;
+import model.Configuration;
 
 import dao.UsuarioDAO;
 
@@ -16,7 +16,7 @@ public class UsuarioController {
 
         // Usuario usuario = new Usuario("Hállan","Neves","hallan@hallan.com","27988223839","123456", true,"./macaco.jpeg",endereco,configuracao);
         
-        Usuario usuario = new Usuario();
+        User usuario = new User();
         usuario.setNome("pixa");
         usuarioDAO.create(usuario);
 
