@@ -61,7 +61,7 @@ public class UserDAO {
                 user.setPassword(resultSet.getString("password"));
                 user.setAcceptTerms(resultSet.getBoolean("acceptTerms"));
                 user.setDescription(resultSet.getString("description"));
-                user.setProfilePhoto(resultSet.getString ("profilePhoto"));
+                user.setProfilePhoto(resultSet.getString("profilePhoto"));
                 user.setAddress(resultSet.getInt("address"));
                 user.setConfiguration(resultSet.getInt("configuration"));
                 users.add(user);
@@ -76,12 +76,54 @@ public class UserDAO {
         return users;
     }
 
-    // public boolean update(User object) {
-    // return true;
-    // }
+    public boolean update(User user) {
+        boolean reponse = false;
+        connection = MyConnection.getConnection();
+        String queryUpdateUser = "update user set name=?,surname=?,email=?,phone=?,password=?,acceptTerms=?,description=?,profilePhoto=?,address=?,configuration=? where idUser=?;";
 
-    // public boolean delete(int id) {
-    // return true;
-    // }
+        try {
+            statement = connection.prepareStatement(queryUpdateUser);
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPhone());
+            statement.setString(5, user.getPassword());
+            statement.setBoolean(6, user.isAcceptTerms());
+            statement.setString(7, user.getDescription());
+            statement.setString(8, user.getProfilePhoto());
+            statement.setInt(9, user.getAddress());
+            statement.setInt(10, user.getConfiguration());
+            statement.setInt(11, user.getIdUser());
+            statement.executeUpdate();
+            reponse = true;
+
+        } catch (SQLException e) {
+            System.out.println("Opss.. Erro ao atualizar Aluno" + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement);
+        }
+
+        return reponse;
+    }
+
+    public boolean deleteForId(int id) {
+        boolean response = false;
+        connection = MyConnection.getConnection();
+        String queryDeleteUser = "delete from user where idUser=?";
+
+        try {
+            statement = connection.prepareStatement(queryDeleteUser);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            response = true;
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao tentar excluir usuário" + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement);
+        }
+
+        return response;
+    }
 
 }
