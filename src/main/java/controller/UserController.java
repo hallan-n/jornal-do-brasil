@@ -17,11 +17,7 @@ public class UserController {
         User user = new User("Hállan","Neves","hallan@neves.com","27988223839","123456",true,"Teste teste","./macaco.jpeg",1,0);
 
         userDAO.create(user);
-        if(userDAO.create(user)){
-            System.out.println("Cadastrou");
-        }else{
-            System.out.println("N cadastrou");
-        }
+       
     }
 
 }
