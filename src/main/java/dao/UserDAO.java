@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     MyConnection myConnection = new MyConnection();
@@ -19,7 +21,7 @@ public class UserDAO {
 
         String queryInserctUser = "insert into user (name,surname,email,phone, password,acceptTerms,description,profilePhoto,address,configuration) values(?,?,?,?,?,?,?,?,?,?);";
         connection = MyConnection.getConnection();
-        try {            
+        try {
             statement = connection.prepareStatement(queryInserctUser);
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
@@ -41,16 +43,45 @@ public class UserDAO {
         return reponse;
     }
 
-    // public List<Object> read() {
-    //     return new ArrayList<Object>();
-    // }
+    public List<User> read() {
+        List users = new ArrayList();
+        connection = MyConnection.getConnection();
+        String querySelectUser = "select * from user";
+
+        try {
+            statement = connection.prepareStatement(querySelectUser);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setIdUser(resultSet.getInt("idUser"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setPassword(resultSet.getString("password"));
+                user.setAcceptTerms(resultSet.getBoolean("acceptTerms"));
+                user.setDescription(resultSet.getString("description"));
+                user.setProfilePhoto(resultSet.getString ("profilePhoto"));
+                user.setAddress(resultSet.getInt("address"));
+                user.setConfiguration(resultSet.getInt("configuration"));
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar Alunos!..." + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+
+        return users;
+    }
 
     // public boolean update(User object) {
-    //     return true;
+    // return true;
     // }
 
     // public boolean delete(int id) {
-    //     return true;
+    // return true;
     // }
 
 }
