@@ -5,6 +5,7 @@ import model.User;
 
 public class UserController {
     public static void main(String[] args) {
+
         UserDAO userDAO = new UserDAO();
         User user = new User();
 
@@ -16,11 +17,8 @@ public class UserController {
         user.setAcceptTerms(true);
         user.setDescription("Descrição...");
         user.setProfilePhoto("./macaco.jpeg");
-        user.setAddress(1);
         user.setConfiguration(1);
-
+        user.setAddress(1);
         userDAO.create(user);
-
     }
-
 }

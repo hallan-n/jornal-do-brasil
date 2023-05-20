@@ -17,7 +17,7 @@ public class UserDAO {
     public boolean create(User user) {
         boolean reponse = false;
 
-        String queryInserctUser = "insert user(name,surname,email,phone,password,acceptTerms,description,profilePhoto,address,configuration)values(?,?,?,?,?,?,?,?,?,?);";
+        String queryInserctUser = "insert into user (name,surname,email,phone, password,acceptTerms,description,profilePhoto,address,configuration) values(?,?,?,?,?,?,?,?,?,?);";
         connection = MyConnection.getConnection();
         try {            
             statement = connection.prepareStatement(queryInserctUser);
@@ -28,9 +28,9 @@ public class UserDAO {
             statement.setString(5, user.getPassword());
             statement.setBoolean(6, user.isAcceptTerms());
             statement.setString(7, user.getDescription());
-            statement.setString(9, user.getProfilePhoto());
-            statement.setInt(8, user.getAddress());
-            statement.setInt(9, user.getConfiguration());
+            statement.setString(8, user.getProfilePhoto());
+            statement.setInt(9, user.getAddress());
+            statement.setInt(10, user.getConfiguration());
             statement.executeUpdate();
             reponse = true;
         } catch (SQLException e) {
