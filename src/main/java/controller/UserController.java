@@ -5,6 +5,10 @@ import model.User;
 
 public class UserController {
     public static void main(String[] args) {
+
+    }
+
+    public void crud(){
         UserDAO userDAO = new UserDAO();
 
         // CREATE
@@ -31,7 +35,5 @@ public class UserController {
 
         // DELETE
         userDAO.deleteForId(2);
-
-
     }
 }
