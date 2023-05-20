@@ -20,8 +20,8 @@ public class User {
         this.password =  password;
         this.acceptTerms =  acceptTerms;
         this.description =  description;
-        this.address =  address;
         this.profilePhoto =  profilePhoto;
+        this.address =  address;
         this.configuration =  configuration;
     }
     public User(){

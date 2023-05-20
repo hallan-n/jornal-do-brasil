@@ -2,22 +2,25 @@ package controller;
 
 import dao.UserDAO;
 import model.User;
-import model.Address;
-import model.Configuration;
 
 public class UserController {
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
-        
-        Address address = new Address("330", "Casa", "Novo Horizonte", "Serra", "Espírito Santo", "29163340");
-        
-        Configuration configuration = new Configuration(true, true, true, true, true, true, "Dark");
+        User user = new User();
 
-
-        User user = new User("Hállan","Neves","hallan@neves.com","27988223839","123456",true,"Teste teste","./macaco.jpeg",1,0);
+        user.setName("Hállan");
+        user.setSurname("Neves");
+        user.setEmail("hallan@neves.com");
+        user.setPhone("98822-3839");
+        user.setPassword("123456");
+        user.setAcceptTerms(true);
+        user.setDescription("Descrição...");
+        user.setProfilePhoto("./macaco.jpeg");
+        user.setAddress(1);
+        user.setConfiguration(1);
 
         userDAO.create(user);
-       
+
     }
 
 }

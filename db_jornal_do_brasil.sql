@@ -13,7 +13,7 @@ CREATE TABLE address (
 );
 
 CREATE TABLE configuration (
-	idConfig INT PRIMARY KEY  NOT NULL,
+	idConfig INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
 	notification BOOL NOT NULL,
 	sound BOOL NOT NULL,
 	showProfilePhoto BOOL NOT NULL,
