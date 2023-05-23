@@ -4,15 +4,14 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
+	<%@include file="./shared/head.jsp"%>
 	<title>Home</title>
 </head>
 
 <body>
 	<h1>teste</h1>
-	<c:if test="${not empty param.name}">
-		<p>${param.name}</p>
-	</c:if>
+	<a href="views/login.jsp">adfadf</a>
+	
 </body>
 
 </html>
