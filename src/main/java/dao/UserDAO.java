@@ -1,5 +1,4 @@
 package dao;
-
 import model.User;
 import connection.MyConnection;
 
@@ -42,7 +41,6 @@ public class UserDAO {
         }
         return reponse;
     }
-
     public List<User> read() {
         List users = new ArrayList();
         connection = MyConnection.getConnection();
@@ -75,7 +73,6 @@ public class UserDAO {
 
         return users;
     }
-
     public boolean update(User user) {
         boolean reponse = false;
         connection = MyConnection.getConnection();
@@ -105,7 +102,6 @@ public class UserDAO {
 
         return reponse;
     }
-
     public boolean deleteForId(int id) {
         boolean response = false;
         connection = MyConnection.getConnection();
@@ -125,5 +121,4 @@ public class UserDAO {
 
         return response;
     }
-
 }

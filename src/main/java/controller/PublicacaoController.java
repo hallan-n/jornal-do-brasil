@@ -30,6 +30,7 @@ public class PublicacaoController {
     
         for (Publication i : publicacaoDAO.read()) {
             System.out.print(i.getIdPubli() + " | " + i.getTitle()+ " | " + i.getCategory()+ " | " +i.getPath()+ " | " +i.getAuthor()+ " | " +i.getDate()+ "\n");
+
         }
         
         

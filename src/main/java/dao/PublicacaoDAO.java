@@ -10,14 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
-
-
 public class PublicacaoDAO {
     MyConnection myConnection = new MyConnection();
     Connection connection;
     PreparedStatement statement;
     ResultSet resultSet;
-
 
     public boolean create(Publication publication) {
         boolean reponse = false;
@@ -41,7 +38,6 @@ public class PublicacaoDAO {
         }
         return reponse;
     }
-
     public List<Publication> read() {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
@@ -70,7 +66,6 @@ public class PublicacaoDAO {
 
         return publications;
     }
-
     public boolean update(Publication publication) {
         boolean reponse = false;
         connection = MyConnection.getConnection();
@@ -97,7 +92,6 @@ public class PublicacaoDAO {
 
         return reponse;
     }
-
     public boolean deleteForId(int id) {
         boolean response = false;
         connection = MyConnection.getConnection();
