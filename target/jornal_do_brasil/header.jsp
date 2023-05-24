@@ -73,7 +73,7 @@
                     <span class="material-symbols-outlined fs-1">menu</span>
                 </a>
 
-                <a href="../index.html" class="btn link-primary d-flex align-items-center">
+                <a href="index.jsp" class="btn link-primary d-flex align-items-center">
                     <span><img src="assets/images/logo_bostil.svg" alt="logo_bostil"></span>
                 </a>
             </div>
@@ -82,10 +82,10 @@
                 <button class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display" type="submit">
                     <span class="material-symbols-outlined fs-3">search</span>
                 </button>
-                <a href="../pages/configuracoes.html" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
+                <a href="settings.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">settings</span>
                 </a>
-                <a href="../pages/login.html" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
+                <a href="profile.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">person</span>
                 </a>
             </div>

@@ -13,7 +13,7 @@
                 <%@include file="header.jsp" %>
                     <hr class="my-4"/>
                     <div>
-                        <div class="max-width-container mx-auto" id="menubar-2">
+                        <div class="max-width-container mx-auto pb-2" id="menubar-2">
                             <div id="categoria-max">
                                 <ul class="nav nav-pills max-width-container justify-content-center form-cabecalho-1">
                                     <li class="nav-item">
