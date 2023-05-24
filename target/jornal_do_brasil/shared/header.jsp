@@ -1,4 +1,3 @@
-<%@include file="head.jsp"%>
 <div>
     <div>
         <div class="offcanvas offcanvas-start bg-dark text-light" id="offcanvasExample"
