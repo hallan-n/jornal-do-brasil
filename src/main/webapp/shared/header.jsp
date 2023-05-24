@@ -11,7 +11,7 @@
                 <div>
                     <div>
                         <div class="d-flex justify-content-center mb-2">
-                            <img class="rounded-circle" src="../assets/images/perfil.jpg" width="50%">
+                            <img class="rounded-circle" src="./assets/images/perfil.jpg" width="50%">
                         </div>
                         <div class="text-center">
                             <h5 class="m-0">Hállan Neves</h5>
