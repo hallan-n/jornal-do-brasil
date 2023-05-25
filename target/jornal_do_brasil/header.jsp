@@ -54,7 +54,7 @@
                     <hr class="my-5">
 
                     <div class="d-grid mt-4">
-                        <a class="btn btn-primary position-relative" href="../pages/criar-publicacao.html" role="button">
+                        <a class="btn btn-primary position-relative" href="create_publication.jsp" role="button">
                             <span
                                 class="material-symbols-outlined position-absolute fs-1 top-0 start-50 translate-middle">add_circle</span>
                             <p class="mt-3 mb-2">Criar uma nova publicação</p>

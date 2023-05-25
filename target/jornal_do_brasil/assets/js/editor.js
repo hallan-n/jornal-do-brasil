@@ -19,17 +19,6 @@ publicar.addEventListener('click', () => {
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
 const alert = (message, type) => {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
