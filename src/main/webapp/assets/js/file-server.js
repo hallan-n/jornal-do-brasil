@@ -1,18 +1,19 @@
 const fs = require('fs')
 
-function readFile(path) {
+
+const readFile = (path) => {
     fs.readFile(path, 'utf-8', (error, data) => {
         if (error) {
             console.log('erro de leitura: ' + error.message)
-        } else {
+        }
+        else {
             console.log(data)
         }
 
     })
 }
-
-function writeFile(path, texto) {
-    fs.writeFile(path, texto, (error) => {
+writeFile = (path, content) => {
+    fs.writeFile(path, content, (error) => {
         if (error) {
             console.error('erro de escrita' + error.message)
         } else {
@@ -21,4 +22,12 @@ function writeFile(path, texto) {
     })
 }
 
-writeFile("E:/jornal-do-brasil/src/main/java/storage/texto.txt", "texto")
+
+
+writeFile("E:/jornal-do-brasil/src/main/java/storage/texto.html", "aqsdfdafadfadf")
+
+
+// fileServer.readFile("E:/jornal-do-brasil/src/main/java/storage/texto.html")
+// fileServer.writeFile("E:/jornal-do-brasil/src/main/java/storage/texto.html", editor.innerHTML)
+
+

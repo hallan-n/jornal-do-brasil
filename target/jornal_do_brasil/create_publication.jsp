@@ -118,9 +118,17 @@
                 <input id="titulo-publicacao" class="form-control mb-3 p-2" type="text" />
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
+
+
+
+
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
                 </div>
+
+
+
+                
             </form>
 
 
@@ -157,6 +165,7 @@
         </div>
     </div>
     <script src="assets/js/editor.js"></script>
+    <script src="assets/js/file-server.js"></script>
 
 </body>
 

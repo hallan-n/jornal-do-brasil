@@ -1,3 +1,5 @@
+import { fileServer } from "./file-server"
+
 const editor = document.querySelector("#editor")
 const paleta = document.querySelector("#paleta")
 const fontColor = document.querySelector("#fontColor")
@@ -9,7 +11,7 @@ const publicar = document.getElementById('publicar');
 const tituloPublicacao = document.getElementById('titulo-publicacao');
 
 publicar.addEventListener('click', () => {
-
+    fileServer.writeFile("E:/jornal-do-brasil/src/main/java/storage/texto.html", editor.innerHTML)
     let valorTotal = editor.innerHTML.trim();
     console.log(valorTotal);
 
@@ -71,6 +73,29 @@ backColor.addEventListener("click", () => document.execCommand('backColor', fals
 const link = () => document.execCommand('createlink', false, prompt('Enter a URL:', 'http://'))
 const alterFont = size => document.execCommand("fontSize", false, parseInt(size))
 const applyCommand = comand => document.execCommand(comand)
+
+
+alertTrigger.addEventListener('click', ()=>{
+    console.log("asd");
+})
+// fileServer.readFile("E:/jornal-do-brasil/src/main/java/storage/texto.html")
+// fileServer.writeFile("E:/jornal-do-brasil/src/main/java/storage/texto.html", editor.innerHTML)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
