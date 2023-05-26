@@ -35,7 +35,7 @@ public class UserController extends HttpServlet {
 
         } else if (action.equals("editar")) {
             int idAluno = Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("aluno", action.findId(idAluno));
+            // request.setAttribute("aluno", action.findId(idAluno));
             abrir = editar;
         }
 
