@@ -28,41 +28,41 @@ public class UserController extends HttpServlet {
 
         action = request.getParameter("action");
         UserDAO userDAO = new UserDAO();
-        
+
         if (action.equals("listar")) {
             abrir = listar;
             request.setAttribute("alunos", userDAO.read());
-            
+
         } else if (action.equals("editar")) {
             int idAluno = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("aluno", action.findId(idAluno));
             abrir = editar;
         }
-        
+
         RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
-        
+
         visualizar.forward(request, response);
 
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        
+            throws ServletException, IOException {
+
         action = request.getParameter("action");
+        Boolean acceptTerms = false;
+        UserDAO userDAO = new UserDAO();
+
         if (action.equals("cadastrar")) {
-            Boolean acceptTerms = false;
             User user = new User();
             user.setName(request.getParameter("txtName"));
             user.setSurname(request.getParameter("txtSurname"));
             user.setEmail(request.getParameter("txtEmail"));
             user.setPhone(request.getParameter("txtPhone"));
             user.setPassword(request.getParameter("txtPassword"));
-            if(request.getParameter("txtAcceptTerms")=="on"){
-                acceptTerms=true;
+            if (request.getParameter("txtAcceptTerms") == "on") {
+                acceptTerms = true;
             }
             user.setAcceptTerms(acceptTerms);
-            UserDAO userDAO = new UserDAO();
-
 
             if (userDAO.create(user)) {
                 abrir = sucesso;
@@ -72,24 +72,19 @@ public class UserController extends HttpServlet {
                 request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
             }
         } else if (action.equals("editar")) {
+            User user = new User();
+            user.setName(request.getParameter("txtName"));
+            user.setSurname(request.getParameter("txtSurname"));
+            user.setEmail(request.getParameter("txtEmail"));
+            user.setPhone(request.getParameter("txtPhone"));
+            user.setPassword(request.getParameter("txtPassword"));
 
-            Aluno alu = new Aluno();
-
-            alu.setIdAluno(Integer.parseInt(request.getParameter("txtId")));
-            alu.setNome(request.getParameter("txtNome"));
-            alu.setEmail(request.getParameter("txtEmail"));
-            alu.setIdade(Integer.parseInt(request.getParameter("txtIdade")));
-            alu.setTelefone(request.getParameter("txtTelefone"));
-
-            AlunoDAO dao = new AlunoDAO();
-
-            if (dao.update(alu)) {
+            if (userDAO.update(user)) {
                 abrir = listar;
-                request.setAttribute("alunos", dao.read());
+                request.setAttribute("alunos", userDAO.read());
             } else {
                 abrir = erro;
                 request.setAttribute("msg", "Ops... Erro ao atualizar Aluno!");
-
             }
 
             RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
