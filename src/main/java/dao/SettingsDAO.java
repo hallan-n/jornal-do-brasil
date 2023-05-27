@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfiguracaoDAO {
+public class SettingsDAO {
     MyConnection myConnection = new MyConnection();
     Connection connection;
     PreparedStatement statement;

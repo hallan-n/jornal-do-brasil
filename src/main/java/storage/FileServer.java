@@ -14,6 +14,9 @@ public class FileServer {
         this.extension = extension;
         this.path = path;
     }
+    public FileServer() {
+
+    }
     public String getFileName() {
         return fileName;
     }
@@ -45,6 +48,3 @@ public class FileServer {
         }
     }
 }
-// "teste";
-// ".html";
-// "E:\\jornal-do-brasil\\src\\main\\java\\storage\\";

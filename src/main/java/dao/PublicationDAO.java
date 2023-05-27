@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
-public class PublicacaoDAO {
+public class PublicationDAO {
     MyConnection myConnection = new MyConnection();
     Connection connection;
     PreparedStatement statement;
