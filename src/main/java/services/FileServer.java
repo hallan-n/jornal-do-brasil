@@ -1,18 +1,21 @@
 package services;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 
 public class FileServer {
 
     private String fileName;
     private String extension;
     private String path;
+    private File file = new File("");
 
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
         this.extension = extension;
-        this.path = path;
+        this.path = file.getAbsolutePath() + path;
     }
     public FileServer() {
 
@@ -33,7 +36,7 @@ public class FileServer {
         return path;
     }
     public void setPath(String path) {
-        this.path = path;
+        this.path = file.getAbsolutePath() + path;
     } 
     
     public void writeFile(String data) {
