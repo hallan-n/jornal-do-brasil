@@ -5,7 +5,7 @@ import java.util.List;
 
 import dao.PublicationDAO;
 import model.Publication;
-import storage.FileServer;
+import services.FileServer;
 
 public class PublicationController {
 
