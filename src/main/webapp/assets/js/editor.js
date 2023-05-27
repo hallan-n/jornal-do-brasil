@@ -96,11 +96,6 @@ const applyCommand = comand => document.execCommand(comand)
 
 
 
-
-
-
-
-
 /**
  * jscolor - JavaScript Color Picker
  *
