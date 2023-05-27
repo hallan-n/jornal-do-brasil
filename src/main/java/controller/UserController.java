@@ -21,6 +21,7 @@ public class UserController extends HttpServlet {
     private final String listar = "listar_alunos.jsp";
     private final String sucesso = "sucesso.jsp";
     private final String erro = "erro.jsp";
+    private UserDAO userDAO = new UserDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,14 +35,14 @@ public class UserController extends HttpServlet {
     //         throws ServletException, IOException {
 
     //     acao = request.getParameter("acao");
-    //     UserDAO userDAO = new UserDAO();
+    //     AlunoDAO dao = new AlunoDAO();
 
     //     if (acao.equals("listar")) {
     //         abrir = listar;
-    //         request.setAttribute("alunos", userDAO.read());
+    //         request.setAttribute("alunos", dao.read());
     //     } else if (acao.equals("editar")) {
     //         int idAluno = Integer.parseInt(request.getParameter("id"));
-    //         request.setAttribute("aluno", userDAO.findId(idAluno));
+    //         request.setAttribute("aluno", dao.findId(idAluno));
     //         abrir = editar;
     //     }
     //     RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
@@ -51,67 +52,68 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean acceptTerms = false;
+        UserDAO userDAO = new UserDAO();
         acao = request.getParameter("acao");
+        
+        
         if (acao.equals("cadastrar")) {
-            User user = new User();
-            user.setName(request.getParameter("txtNome"));
-            user.setSurname(request.getParameter("txtNome"));
-            user.setEmail(request.getParameter("txtNome"));
-            user.setPhone(request.getParameter("txtNome"));
-            user.setPassword(request.getParameter("txtNome"));
-            if(request.getParameter("txtNome")=="on"){
-                acceptTerms = true;
-            }
-            user.setAcceptTerms(acceptTerms);
-            
-
-
-
-
-
-
-
-
-            aluno.setNome(request.getParameter("txtNome"));
-            aluno.setEmail(request.getParameter("txtEmail"));
-            aluno.setIdade(Integer.parseInt(request.getParameter("txtIdade")));
-            aluno.setTelefone(request.getParameter("txtTelefone"));
-
-            AlunoDAO userDAO = new AlunoDAO();
-
-            if (userDAO.create(aluno)) {
-                abrir = sucesso;
-                request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");
-            } else {
-                abrir = erro;
-                request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
-            }
+            registerUser(request, response);
         } else if (acao.equals("editar")) {
+            editUser(request, response);   
+        }
+       
+    }
 
-            Aluno alu = new Aluno();
 
-            alu.setIdAluno(Integer.parseInt(request.getParameter("txtId")));
-            alu.setNome(request.getParameter("txtNome"));
-            alu.setEmail(request.getParameter("txtEmail"));
-            alu.setIdade(Integer.parseInt(request.getParameter("txtIdade")));
-            alu.setTelefone(request.getParameter("txtTelefone"));
 
-            AlunoDAO userDAO = new AlunoDAO();
 
-            if (userDAO.update(alu)) {
-                abrir = listar;
-                request.setAttribute("alunos", userDAO.read());
-            } else {
-                abrir = erro;
-                request.setAttribute("msg", "Ops... Erro ao atualizar Aluno!");
 
-            }
-
-            RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
-            visualizar.forward(request, response);
-
+    private void registerUser(HttpServletRequest request, HttpServletResponse response) {
+        boolean acceptTerms = false;
+        User user = new User();
+        user.setName(request.getParameter("txtName"));
+        user.setSurname(request.getParameter("txtSurname"));
+        user.setEmail(request.getParameter("txtEmail"));
+        user.setPhone(request.getParameter("txtPhone"));
+        user.setPassword(request.getParameter("txtPassword"));
+        if (request.getParameter("txtAcceptTerms") == "on") {
+            acceptTerms = true;
+        }
+        user.setAcceptTerms(acceptTerms);
+        if (userDAO.create(user)) {
+            abrir = sucesso;
+            request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");
+        } else {
+            abrir = erro;
+            request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
         }
     }
+
+
+    private void editUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        boolean acceptTerms = false;
+        User user = new User();
+        user.setIdUser(Integer.parseInt(request.getParameter("txtIdUser")));
+        user.setName(request.getParameter("txtName"));
+        user.setSurname(request.getParameter("txtSurname"));
+        user.setEmail(request.getParameter("txtEmail"));
+        user.setPhone(request.getParameter("txtPhone"));
+        user.setPassword(request.getParameter("txtPassword"));
+        if (request.getParameter("txtAcceptTerms") == "on") {
+            acceptTerms = true;
+        }
+        user.setAcceptTerms(acceptTerms);
+        if (userDAO.update(user)) {
+            abrir = listar;
+            request.setAttribute("users", userDAO.read());
+        } else {
+            abrir = erro;
+            request.setAttribute("msg", "Ops... Erro ao atualizar Aluno!");
+
+        }
+        RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
+        visualizar.forward(request, response);
+    }
+
 
 }

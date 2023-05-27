@@ -9,6 +9,9 @@ const imageSize = document.getElementById('inputImageSize')
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const publicar = document.getElementById('publicar');
 const tituloPublicacao = document.getElementById('titulo-publicacao');
+const textarea = document.getElementById('txtTextArea');
+
+textarea.value = editor.innerHTML.trim();
 
 publicar.addEventListener('click', () => {
     let valorTotal = editor.innerHTML.trim();
@@ -33,6 +36,7 @@ const alert = (message, type) => {
 
 const alertTrigger = document.getElementById('liveAlertBtn')
 if (alertTrigger) {
+    console.log(textarea.innerHTML);
     alertTrigger.addEventListener('click', () => {
         alert('Publicação feita com sucesso', 'success')
     })

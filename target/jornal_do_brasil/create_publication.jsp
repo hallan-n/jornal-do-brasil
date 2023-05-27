@@ -121,7 +121,7 @@
 
 
 
-
+                <textarea name="txtTextArea" id="txtTextArea" hidden></textarea>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
                 </div>
@@ -166,7 +166,6 @@
     </div>
     <script src="assets/js/editor.js"></script>
     <script src="assets/js/file-server.js"></script>
-
 </body>
 
 </html>

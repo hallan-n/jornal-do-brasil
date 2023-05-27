@@ -1,5 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.debug.settings.onBuildFailureProceed": true,
-    "maven.view": "hierarchical"
+    "maven.view": "hierarchical",
+    "liveServer.settings.port": 5501
 }

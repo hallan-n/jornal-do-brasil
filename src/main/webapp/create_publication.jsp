@@ -114,14 +114,14 @@
 
 
             <form class="mt-3" role="search">
-                <label class="form-label m-0" for="titulo-publicacao">Título</label>
+                <label class="form-label m-0" for="titulo-publicacao" name="txtTitle">Título</label>
                 <input id="titulo-publicacao" class="form-control mb-3 p-2" type="text" />
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
 
 
-
+                <textarea name="txtTextArea" id="txtTextArea" hidden></textarea>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
                 </div>
@@ -166,7 +166,6 @@
     </div>
     <script src="assets/js/editor.js"></script>
     <script src="assets/js/file-server.js"></script>
-
 </body>
 
 </html>
