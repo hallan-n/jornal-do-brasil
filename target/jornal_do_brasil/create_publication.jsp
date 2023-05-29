@@ -114,7 +114,7 @@
 
 
             <form class="mt-3" role="search">
-                <label class="form-label m-0" for="titulo-publicacao">Título</label>
+                <label class="form-label m-0" for="titulo-publicacao" name="txtTitle">Título</label>
                 <input id="titulo-publicacao" class="form-control mb-3 p-2" type="text" />
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>

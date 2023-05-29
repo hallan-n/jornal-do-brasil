@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="col-md-6 p-4 ps-md-0">
-                        <form action="user" method="post">
+                        <form action="./user" method="post">
                             <input type="text" name="txtRegister" hidden>
                             <div class="d-flex flex-column">
                                 <input type="hidden" value="register" name="action">

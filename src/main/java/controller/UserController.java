@@ -13,15 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAO;
 import model.User;
 
+@WebServlet("/user")
 public class UserController extends HttpServlet {
     // Variaveis globais
+    // acao cadastrar editar abrir erro sucesso listar
+    
     private String action;
     private String openPage;
     private final String cadastrar = "cadastrar_aluno.jsp";
     private final String editar = "editar_aluno.jsp";
-    private final String listar = "listar_alunos.jsp";
-    private final String sucesso = "sucesso.jsp";
-    private final String erro = "erro.jsp";
+    private final String list = "listar_alunos.jsp";
+    private final String success = "sucesso.jsp";
+    private final String error = "erro.jsp";
     private UserDAO userDAO = new UserDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -37,10 +40,6 @@ public class UserController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         action = request.getParameter("action");
 
-        // acao
-        // cadastrar
-        // editar
-        // abrir
 
         if (action.equals("register")) {
             registerUser(request, response);
@@ -63,10 +62,10 @@ public class UserController extends HttpServlet {
         user.setAcceptTerms(acceptTerms);
 
         if (userDAO.create(user)) {
-            openPage = sucesso;
+            openPage = success;
             request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");
         } else {
-            openPage = erro;
+            openPage = error;
             request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
         }
     }
@@ -85,11 +84,12 @@ public class UserController extends HttpServlet {
             acceptTerms = true;
         }
         user.setAcceptTerms(acceptTerms);
+        
         if (userDAO.update(user)) {
-            openPage = listar;
+            openPage = list;
             request.setAttribute("users", userDAO.read());
         } else {
-            openPage = erro;
+            openPage = error;
             request.setAttribute("msg", "Ops... Erro ao atualizar Aluno!");
         }
         RequestDispatcher visualizar = request.getRequestDispatcher(openPage);

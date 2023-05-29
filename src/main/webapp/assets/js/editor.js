@@ -9,9 +9,10 @@ const imageSize = document.getElementById('inputImageSize')
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const publicar = document.getElementById('publicar');
 const tituloPublicacao = document.getElementById('titulo-publicacao');
-const textarea = document.getElementById('txtTextArea');
 
+const textarea = document.getElementById('txtTextArea');
 textarea.value = editor.innerHTML.trim();
+
 
 publicar.addEventListener('click', () => {
     let valorTotal = editor.innerHTML.trim();

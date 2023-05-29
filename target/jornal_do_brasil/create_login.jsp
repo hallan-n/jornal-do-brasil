@@ -25,16 +25,16 @@
                     </div>
 
                     <div class="col-md-6 p-4 ps-md-0">
-                        <form action="user" method="post">
+                        <form action="./user" method="post">
                             <input type="text" name="txtRegister" hidden>
                             <div class="d-flex flex-column">
+                                <input type="hidden" value="register" name="action">
                                 <input type="text" class="form-control  p-2 mt-2 shadow-sm border border-1" placeholder="Nome" name="txtName">
                                 <input type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome" name="txtSurname">
                                 <input type="email" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Email" name="txtEmail">
                                 <input type="tel" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Telefone" name="txtPhone">
                                 <input type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha" name="txtPassword">
                                 <input type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha" name="rp_password">
-                                <input type="hidden" value="cadastrar" name="acao">
                                 <button type="submit" class="btn btn-primary px-4 mt-2">Registrar</button>
                                 <div class="d-flex justify-content-between mt-4 flex-wrap">
                                     <div class="d-flex mb-2">
