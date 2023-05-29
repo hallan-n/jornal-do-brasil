@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAO;
 import model.User;
 
+
 public class PublicationController extends HttpServlet {
     // Variaveis globais
     private String acao, abrir;
@@ -117,6 +118,4 @@ public class PublicationController extends HttpServlet {
         RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
         visualizar.forward(request, response);
     }
-
-
 }

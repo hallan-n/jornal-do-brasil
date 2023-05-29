@@ -15,7 +15,8 @@ import model.User;
 
 public class UserController extends HttpServlet {
     // Variaveis globais
-    private String acao, abrir;
+    private String action;
+    private String openPage;
     private final String cadastrar = "cadastrar_aluno.jsp";
     private final String editar = "editar_aluno.jsp";
     private final String listar = "listar_alunos.jsp";
@@ -30,43 +31,23 @@ public class UserController extends HttpServlet {
         }
     }
 
-    // @Override
-    // protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    //         throws ServletException, IOException {
-
-    //     acao = request.getParameter("acao");
-    //     AlunoDAO dao = new AlunoDAO();
-
-    //     if (acao.equals("listar")) {
-    //         abrir = listar;
-    //         request.setAttribute("alunos", dao.read());
-    //     } else if (acao.equals("editar")) {
-    //         int idAluno = Integer.parseInt(request.getParameter("id"));
-    //         request.setAttribute("aluno", dao.findId(idAluno));
-    //         abrir = editar;
-    //     }
-    //     RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
-    //     visualizar.forward(request, response);
-    // }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
-        acao = request.getParameter("acao");
-        
-        
-        if (acao.equals("cadastrar")) {
+        action = request.getParameter("action");
+
+        // acao
+        // cadastrar
+        // editar
+        // abrir
+
+        if (action.equals("register")) {
             registerUser(request, response);
-        } else if (acao.equals("editar")) {
+        } else if (action.equals("edit")) {
             editUser(request, response);   
         }
-       
     }
-
-
-
-
 
     private void registerUser(HttpServletRequest request, HttpServletResponse response) {
         boolean acceptTerms = false;
@@ -80,11 +61,12 @@ public class UserController extends HttpServlet {
             acceptTerms = true;
         }
         user.setAcceptTerms(acceptTerms);
+
         if (userDAO.create(user)) {
-            abrir = sucesso;
+            openPage = sucesso;
             request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");
         } else {
-            abrir = erro;
+            openPage = erro;
             request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
         }
     }
@@ -104,16 +86,13 @@ public class UserController extends HttpServlet {
         }
         user.setAcceptTerms(acceptTerms);
         if (userDAO.update(user)) {
-            abrir = listar;
+            openPage = listar;
             request.setAttribute("users", userDAO.read());
         } else {
-            abrir = erro;
+            openPage = erro;
             request.setAttribute("msg", "Ops... Erro ao atualizar Aluno!");
-
         }
-        RequestDispatcher visualizar = request.getRequestDispatcher(abrir);
+        RequestDispatcher visualizar = request.getRequestDispatcher(openPage);
         visualizar.forward(request, response);
     }
-
-
 }
