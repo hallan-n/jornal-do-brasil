@@ -13,14 +13,13 @@ import model.Configuration;
 
 @WebServlet("/settings")
 public class SettingsController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("Hello from Servletgfgfgfgfgfgfg");
-		out.println("Hello fsd");
-		out.println("Hello asdasdfasfasdfadffsd");
+		out.println("Settings");
+		
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
