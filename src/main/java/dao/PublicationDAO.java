@@ -1,6 +1,4 @@
 package dao;
-import model.Publication;
-import connection.MyConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+
+import model.Publication;
+import connection.MyConnection;
 
 public class PublicationDAO {
     MyConnection myConnection = new MyConnection();
