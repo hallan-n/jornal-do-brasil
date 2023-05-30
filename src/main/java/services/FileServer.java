@@ -10,12 +10,12 @@ public class FileServer {
     private String fileName;
     private String extension;
     private String path;
-    private File file = new File("");
+    File file = new File("");
 
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
-        this.extension = extension;
-        this.path = file.getAbsolutePath() + path;
+        this.extension = "." + extension;
+        this.path = file.getAbsolutePath()+ "\\src\\main\\java\\" + path + "\\";
     }
     public FileServer() {
 
@@ -30,13 +30,13 @@ public class FileServer {
         return extension;
     }
     public void setExtension(String extension) {
-        this.extension = extension;
+        this.extension = "." + extension;
     }
     public String getPath() {
         return path;
     }
     public void setPath(String path) {
-        this.path = file.getAbsolutePath() + path;
+        this.path = file.getAbsolutePath()+ "\\src\\main\\java\\" + path + "\\";
     } 
     
     public void writeFile(String data) {

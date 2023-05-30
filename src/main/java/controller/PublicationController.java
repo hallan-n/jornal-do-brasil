@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.FileServer;
 import model.Publication;
 import dao.PublicationDAO;
 
@@ -47,7 +48,6 @@ public class PublicationController extends HttpServlet {
 	}
 
 	private void createPublication(HttpServletRequest request, HttpServletResponse response) {
-
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(request.getParameter("txtNome"));
@@ -55,7 +55,8 @@ public class PublicationController extends HttpServlet {
 		publication.setAuthor(Integer.parseInt(request.getParameter("txtIdade")));
 		Date d = new Date();
 		publication.setDate(d);
-
+		
+		
 		if (publicationDAO.create(publication)) {
 			open = success;
 			request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");

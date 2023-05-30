@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "controller.Test",
+            "projectName": "jornal_do_brasil"
+        },
+        {
+            "type": "java",
             "name": "PublicationController",
             "request": "launch",
             "mainClass": "controller.PublicationController",
