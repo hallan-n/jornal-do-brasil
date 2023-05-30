@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAO;
 import model.User;
 
-
+@WebServlet("/publication")
 public class PublicationController extends HttpServlet {
     // Variaveis globais
     private String acao, abrir;

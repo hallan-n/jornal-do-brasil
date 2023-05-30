@@ -11,14 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.SettingsDAO;
 import model.Configuration;
 
-@WebServlet("/teste2")
+@WebServlet("/settings")
 public class SettingsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("Hello from Servlet");
+		out.println("Hello from Servletgfgfgfgfgfgfg");
+		out.println("Hello fsd");
+		out.println("Hello asdasdfasfasdfadffsd");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

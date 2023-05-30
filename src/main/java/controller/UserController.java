@@ -15,8 +15,6 @@ import model.User;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
-    // Variaveis globais
-    // acao cadastrar editar abrir erro sucesso listar
     
     private String action;
     private String openPage;
