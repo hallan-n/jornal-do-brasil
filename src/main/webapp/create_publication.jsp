@@ -113,7 +113,7 @@
 
 
 
-            <form class="mt-3" role="search">
+            <form  action="publication" method="post" class="mt-3" role="search">
                 <label class="form-label m-0" for="titulo-publicacao" name="txtTitle">Título</label>
                 <input id="titulo-publicacao" class="form-control mb-3 p-2" type="text" />
 
@@ -121,14 +121,11 @@
 
 
 
+                <input type="hidden" value="edit" name="action">
                 <textarea name="txtTextArea" id="txtTextArea" hidden></textarea>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
-                </div>
-
-
-
-                
+                </div>                
             </form>
 
 

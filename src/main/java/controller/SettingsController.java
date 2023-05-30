@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.SettingsDAO;
-import model.Configuration;
-
 @WebServlet("/settings")
 public class SettingsController extends HttpServlet {
 	
@@ -18,10 +15,7 @@ public class SettingsController extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println("Settings");
-		
-	
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
