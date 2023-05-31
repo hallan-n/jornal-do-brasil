@@ -5,14 +5,14 @@
 
 <head>
     <%@include file="head.jsp" %>
-        <title>Home</title>
+    <title>Home</title>
 </head>
 
 
 <body>
     <div class="bg-dark p-4 pb-0">
         <%@include file="header.jsp" %>
-        <hr class="my-4" />
+            <hr class="my-4" />
     </div>
 
 
@@ -113,9 +113,27 @@
 
 
 
-            <form class="mt-3" role="search">
-                <label class="form-label m-0" for="titulo-publicacao" name="txtTitle">Título</label>
-                <input id="titulo-publicacao" class="form-control mb-3 p-2" type="text" />
+            <form action="publication" method="POST" class="mt-3">
+                <div class="d-grid d-flex align-items-center justify-content-between">
+                    <div class="col-8 pe-5">
+                        <label class="form-label m-0" for="titulo-publicacao">Título</label>
+                        <input name="txtTitle" id="titulo-publicacao" class="form-control mb-3 p-2 w-100" type="text" />
+                    </div>
+
+                    <select name="txtCategory" class="form-select form-select-lg">
+                        <option selected disabled>Selecione uma categoria</option>
+                        <option value="Política">Política</option>
+                        <option value="Business">Business</option>
+                        <option value="Internacional">Internacional</option>
+                        <option value="Esportes">Esportes</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                        <option value="Entretenimento">Entretenimento</option>
+                        <option value="Estilo">Estilo</option>
+                        <option value="Gastronomia">Gastronomia</option>
+                    </select>
+                    <input type="hidden" value="create" name="action">
+                </div>
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
@@ -125,10 +143,6 @@
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
                 </div>
-
-
-
-                
             </form>
 
 
@@ -165,7 +179,6 @@
         </div>
     </div>
     <script src="assets/js/editor.js"></script>
-    <script src="assets/js/file-server.js"></script>
 </body>
 
 </html>

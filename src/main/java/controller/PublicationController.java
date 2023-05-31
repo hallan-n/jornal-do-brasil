@@ -18,26 +18,19 @@ import dao.PublicationDAO;
 
 @WebServlet("/publication")
 public class PublicationController extends HttpServlet {
-	private String open;
 	private String action;
-	private final String create = "cadastrar_aluno.jsp";
-	private final String edit = "editar_aluno.jsp";
-	private final String list = "listar_alunos.jsp";
-	private final String success = "sucesso.jsp";
-	private final String error = "erro.jsp";
 	private PublicationDAO publicationDAO = new PublicationDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("Publciation");
+		out.println("Publication");
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("teste");
 		action = request.getParameter("action");
 		if (action.equals("create")) {
 			createPublication(request, response);
@@ -50,29 +43,24 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		FileServer fileServer = new FileServer();
-		fileServer.setExtension("html");
-		fileServer.setPath("storage/publications/");
-		fileServer.setFileName("teste");
-
-		Date datePublication = new Date();
-
-		Publication publication = new Publication();
-		publication.setTitle(request.getParameter("txtTitle"));
-		publication.setCategory(request.getParameter("txtCategory"));
-		publication.setPath("storage/publications/" + fileServer.getFileName() + "/" + datePublication.getTime());
-		publication.setAuthor(1);
-		publication.setDate(datePublication);
-
+				FileServer fileServer = new FileServer();
+				fileServer.setPath("storage/publications");
+				fileServer.setExtension("html");
+				
+				Date datePublication = new Date();
+				Publication publication = new Publication();
+				publication.setTitle(request.getParameter("txtTitle"));
+				publication.setCategory(request.getParameter("txtCategory"));
+				publication.setPath(fileServer.getPath() + datePublication.getTime() + publication.getTitle());
+				publication.setAuthor(1);
+				publication.setDate(datePublication);
+				fileServer.setFileName(datePublication.getTime() + publication.getTitle());
+				
+		
 		if (publicationDAO.create(publication)) {
-			open = success;
-			request.setAttribute("msg", "Uhull... Aluno cadastrado com sucesso!");
-		} else {
-			open = error;
-			request.setAttribute("msg", "Ops... Erro ao cadastrar Aluno!");
+			fileServer.writeFile(request.getParameter("txtTextArea"));
+			System.out.println("teste");
 		}
-		RequestDispatcher visualizar = request.getRequestDispatcher(open);
-		visualizar.forward(request, response);
 	}
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response) {
