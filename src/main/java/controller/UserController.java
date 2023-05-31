@@ -26,9 +26,4 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	public static void main(String[] args) {
-        FileServer fileServer = new FileServer("storage","teste","html");
-
-        fileServer.writeFile("teste");
-    }
 }
