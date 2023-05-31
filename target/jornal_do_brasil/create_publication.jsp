@@ -143,41 +143,40 @@
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>Hello World!</p>
                 </div>
+                
+                <!-- modal -->
+                <div class="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border">
+                            <div class="modal-header">
+                                <h3>Deseja publicar este conteúdo?</h3>
+                            </div>
+                            <!-- <div class="modal-body">
+                                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. At vitae
+                                    perspiciatis amet deleniti quae reiciendis iusto</p>
+                            </div> -->
+                            <div class="modal-footer d-flex justify-content-end mt-4">
+                                <button type="submit" class="btn btn-primary px-5" data-bs-dismiss="modal" id="liveAlertBtn">Sim</button>
+                                <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+
             </form>
 
 
             <input type="file" id="upload" hidden />
             <div class="d-flex justify-content-end mt-4">
-                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
+                <button type="submit" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
                     Publicar
                 </button>
             </div>
         </div>
     </div>
 
-
-
-
-    <!-- Modal -->
-
-
-    <div class="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border">
-                <div class="modal-header">
-                    <h3>Deseja publicar este conteúdo?</h3>
-                </div>
-                <div class="modal-body">
-                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. At vitae
-                        perspiciatis amet deleniti quae reiciendis iusto</p>
-                </div>
-                <div class="modal-footer d-flex justify-content-end mt-4">
-                    <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal" id="liveAlertBtn">Sim</button>
-                    <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <script src="assets/js/editor.js"></script>
 </body>
 

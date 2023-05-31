@@ -33,7 +33,7 @@ public class PublicationDAO {
             statement.executeUpdate();
             reponse = true;
         } catch (SQLException e) {
-            System.out.println("Erro ao tentar inserir Usuário: " + e);
+            System.out.println("Erro ao tentar criar publicação: " + e);
         } finally {
             MyConnection.closeConnection(connection, statement);
         }

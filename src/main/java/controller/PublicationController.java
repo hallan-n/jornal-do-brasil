@@ -43,22 +43,19 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-				FileServer fileServer = new FileServer();
-				fileServer.setPath("storage/publications");
-				fileServer.setExtension("html");
-				
 				Date datePublication = new Date();
+			
+				
 				Publication publication = new Publication();
 				publication.setTitle(request.getParameter("txtTitle"));
 				publication.setCategory(request.getParameter("txtCategory"));
-				publication.setPath(fileServer.getPath() + datePublication.getTime() + publication.getTitle());
+				publication.setPath("Teste");
 				publication.setAuthor(1);
 				publication.setDate(datePublication);
-				fileServer.setFileName(datePublication.getTime() + publication.getTitle());
 				
 		
 		if (publicationDAO.create(publication)) {
-			fileServer.writeFile(request.getParameter("txtTextArea"));
+			// fileServer.writeFile(request.getParameter("txtTextArea"));
 			System.out.println("teste");
 		}
 	}
