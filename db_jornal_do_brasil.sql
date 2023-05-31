@@ -1,7 +1,6 @@
 create database db_jornal_do_brasil;
 use db_jornal_do_brasil;
 
-
 CREATE TABLE address (
 	idAddress INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	number VARCHAR(9999) NOT NULL,
