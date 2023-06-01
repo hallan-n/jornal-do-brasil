@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.log.Log;
+
 import model.Publication;
 import services.FileServer;
 import dao.PublicationDAO;
@@ -43,23 +45,39 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-				Date datePublication = new Date();
-			
 				
+				
+				
+				FileServer fileServer = new FileServer();
+				fileServer.setExtension("html");
+				fileServer.setFileName("teste");
+				fileServer.setPath("storage\\publications");
+				System.out.println(fileServer.getPath());
+				
+
+
 				Publication publication = new Publication();
 				publication.setTitle(request.getParameter("txtTitle"));
 				publication.setCategory(request.getParameter("txtCategory"));
-				publication.setPath("Teste");
+				publication.setPath(fileServer.getPath()+fileServer.getFileName());
 				publication.setAuthor(1);
+				
+				
+
+				Date datePublication = new Date();
 				publication.setDate(datePublication);
 				
 		
 		if (publicationDAO.create(publication)) {
-			// fileServer.writeFile(request.getParameter("txtTextArea"));
-			System.out.println("teste");
+			fileServer.writeFile(request.getParameter("txtTextArea"));
+			System.out.println("Criado");
 		}
 	}
 
+	public static void main(String[] args) {
+		
+				// fileServer.writeFile("teste");
+	}
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response) {
 	}
 

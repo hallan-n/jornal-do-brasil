@@ -15,7 +15,7 @@ public class FileServer {
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
         this.extension = "." + extension;
-        this.path = file.getAbsolutePath()+ "\\src\\main\\java\\" + path + "\\";
+        this.path = file.getAbsolutePath()+ "/src/main/java/" + path + "/";
     }
     public FileServer() {
 
