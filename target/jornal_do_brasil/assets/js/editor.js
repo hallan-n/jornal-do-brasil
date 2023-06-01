@@ -10,38 +10,30 @@ const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const publicar = document.getElementById('publicar');
 const tituloPublicacao = document.getElementById('titulo-publicacao');
 
-const textarea = document.getElementById('txtTextArea');
-textarea.value = editor.innerHTML.trim();
-
+const txtTextArea = document.getElementById('txtTextArea');
 
 publicar.addEventListener('click', () => {
-    let valorTotal = editor.innerHTML.trim();
-    console.log(valorTotal);
-
-    let listaHTML = editor.children
-    for (let iterator of listaHTML) {
-        let src = iterator.getAttribute('src')
-    }
+    txtTextArea.value = editor.innerHTML.trim();
 })
 
-const alert = (message, type) => {
-    const wrapper = document.createElement('div')
-    wrapper.innerHTML = [
-        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-        `<div>${message}</div>`,
-        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        '</div>'
-    ].join('');
-    alertPlaceholder.append(wrapper)
-}
+// const alert = (message, type) => {
+//     const wrapper = document.createElement('div')
+//     wrapper.innerHTML = [
+//         `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+//         `<div>${message}</div>`,
+//         '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+//         '</div>'
+//     ].join('');
+//     alertPlaceholder.append(wrapper)
+// }
 
-const alertTrigger = document.getElementById('liveAlertBtn')
-if (alertTrigger) {
-    console.log(textarea.innerHTML);
-    alertTrigger.addEventListener('click', () => {
-        alert('Publicação feita com sucesso', 'success')
-    })
-}
+// const alertTrigger = document.getElementById('liveAlertBtn')
+// if (alertTrigger) {
+//     console.log(textarea.innerHTML);
+//     alertTrigger.addEventListener('click', () => {
+//         alert('Publicação feita com sucesso', 'success')
+//     })
+// }
 
 let valor;
 imageSize.addEventListener("change", e => {

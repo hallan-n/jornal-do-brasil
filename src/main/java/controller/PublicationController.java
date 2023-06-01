@@ -1,9 +1,10 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.Properties;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.log.Log;
-
+import config.Env;
 import model.Publication;
 import services.FileServer;
 import dao.PublicationDAO;
@@ -31,7 +31,8 @@ public class PublicationController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("teste");
 		action = request.getParameter("action");
 		if (action.equals("create")) {
@@ -45,39 +46,49 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-				
-				
-				
-				FileServer fileServer = new FileServer();
-				fileServer.setExtension("html");
-				fileServer.setFileName("teste");
-				fileServer.setPath("storage\\publications");
-				System.out.println(fileServer.getPath());
-				
+		String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
+				"Entretenimento", "Estilo", "Gastronomia" };
+		FileServer fileServer = new FileServer();
 
+		Env env = new Env();
+		fileServer.setFileName(env.uuid);
+		fileServer.setExtension("html");
+		fileServer.setPath("storage\\publications");
 
-				Publication publication = new Publication();
-				publication.setTitle(request.getParameter("txtTitle"));
-				publication.setCategory(request.getParameter("txtCategory"));
-				publication.setPath(fileServer.getPath()+fileServer.getFileName());
-				publication.setAuthor(1);
-				
-				
+		Publication publication = new Publication();
+		publication.setTitle(request.getParameter("txtTitle"));
+		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
 
-				Date datePublication = new Date();
-				publication.setDate(datePublication);
-				
-		
+		publication.setPath(fileServer.getPathWithFileName());
+		publication.setAuthor(1);
+
+		Date datePublication = new Date();
+		publication.setDate(datePublication);
+
 		if (publicationDAO.create(publication)) {
-			fileServer.writeFile(request.getParameter("txtTextArea"));
 			System.out.println("Criado");
+			request.setAttribute("msg", "Uhull... Publicaçãocriada com sucesso!");
+			fileServer.writeFile(request.getParameter("txtTextArea"));
 		}
+		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
+		visualizar.forward(request, response);
 	}
 
 	public static void main(String[] args) {
-		
-				// fileServer.writeFile("teste");
+		// Env env = new Env();
+		// FileServer fileServer = new FileServer();
+
+		// fileServer.setExtension("html");
+		// fileServer.setFileName(env.uuid);
+		// fileServer.setPath("storage\\publications");
+		// // fileServer.writeFile("asd");
+		// System.out.println(fileServer.getPathWithFileName());
+		// String[] categories = new
+		// String[]{"Política","Business","Internacional","Esportes","Saúde","Tecnologia","Entretenimento","Estilo","Gastronomia"};
+		// System.out.println(categories[0]);
+
 	}
+
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response) {
 	}
 

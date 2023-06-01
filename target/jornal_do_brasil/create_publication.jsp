@@ -122,26 +122,24 @@
 
                     <select name="txtCategory" class="form-select form-select-lg">
                         <option selected disabled>Selecione uma categoria</option>
-                        <option value="Política">Política</option>
-                        <option value="Business">Business</option>
-                        <option value="Internacional">Internacional</option>
-                        <option value="Esportes">Esportes</option>
-                        <option value="Saúde">Saúde</option>
-                        <option value="Tecnologia">Tecnologia</option>
-                        <option value="Entretenimento">Entretenimento</option>
-                        <option value="Estilo">Estilo</option>
-                        <option value="Gastronomia">Gastronomia</option>
+                        <option value="0">Política</option>
+                        <option value="1">Business</option>
+                        <option value="2">Internacional</option>
+                        <option value="3">Esportes</option>
+                        <option value="4">Saúde</option>
+                        <option value="5">Tecnologia</option>
+                        <option value="6">Entretenimento</option>
+                        <option value="7">Estilo</option>
+                        <option value="8">Gastronomia</option>
                     </select>
                     <input type="hidden" value="create" name="action">
                 </div>
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
-
-
-                <textarea name="txtTextArea" id="txtTextArea" hidden></textarea>
+                <input type="text" name="txtTextArea" id="txtTextArea" value=" " hidden></input>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
-                    <p>Hello World!</p>
+                    <p>&nbsp;</p>
                 </div>
                 
                 <!-- modal -->
@@ -169,14 +167,13 @@
 
             <input type="file" id="upload" hidden />
             <div class="d-flex justify-content-end mt-4">
-                <button type="submit" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
+                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
                     Publicar
                 </button>
             </div>
         </div>
     </div>
 
-    
     <script src="assets/js/editor.js"></script>
 </body>
 

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "FileServer",
+            "request": "launch",
+            "mainClass": "services.FileServer",
+            "projectName": "jornal_do_brasil"
+        },
+        {
+            "type": "java",
             "name": "Test",
             "request": "launch",
             "mainClass": "controller.Test",

@@ -1,44 +1,54 @@
 package services;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import config.Env;
 
 public class FileServer {
-
+    Env env = new Env();
     private String fileName;
     private String extension;
     private String path;
-    File file = new File("");
 
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
         this.extension = "." + extension;
-        this.path = file.getAbsolutePath()+ "/src/main/java/" + path + "/";
+        this.path = env.pathBase + "\\src\\main\\java\\" + path + "\\";
     }
+
     public FileServer() {
 
     }
+
+    public String getPathWithFileName() {
+        return path + fileName + extension;
+    }
+
     public String getFileName() {
         return fileName;
     }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
     public String getExtension() {
         return extension;
     }
+
     public void setExtension(String extension) {
         this.extension = "." + extension;
     }
+
     public String getPath() {
         return path;
     }
+
     public void setPath(String path) {
-        this.path = file.getAbsolutePath()+ "\\src\\main\\java\\" + path + "\\";
-    } 
-    
+        this.path = env.pathBase + "\\src\\main\\java\\" + path + "\\";
+    }
+
     public void writeFile(String data) {
         try {
             FileWriter writerFile = new FileWriter(path + fileName + extension);
