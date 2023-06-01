@@ -1,10 +1,9 @@
 package controller;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -72,21 +71,6 @@ public class PublicationController extends HttpServlet {
 		}
 		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
 		visualizar.forward(request, response);
-	}
-
-	public static void main(String[] args) {
-		// Env env = new Env();
-		// FileServer fileServer = new FileServer();
-
-		// fileServer.setExtension("html");
-		// fileServer.setFileName(env.uuid);
-		// fileServer.setPath("storage\\publications");
-		// // fileServer.writeFile("asd");
-		// System.out.println(fileServer.getPathWithFileName());
-		// String[] categories = new
-		// String[]{"Política","Business","Internacional","Esportes","Saúde","Tecnologia","Entretenimento","Estilo","Gastronomia"};
-		// System.out.println(categories[0]);
-
 	}
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response) {

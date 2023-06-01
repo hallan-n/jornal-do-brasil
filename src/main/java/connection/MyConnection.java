@@ -5,18 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import config.Env;
 
 public class MyConnection {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/db_jornal_do_brasil";
-    private static final String USER = "root";
-    private static final String PASS = "123456";
 
     public static Connection getConnection() {
+        Env env = new Env();
         try {
-            Class.forName(DRIVER);
-            return DriverManager.getConnection(URL, USER, PASS);
+            Class.forName(env.db_DRIVER);
+            return DriverManager.getConnection(env.db_URL, env.db_USER, env.db_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Erro ao tentar estabelecer conexão com o Banco de Dados!" + e);
         }
