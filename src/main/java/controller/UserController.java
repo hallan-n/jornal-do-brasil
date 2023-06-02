@@ -15,34 +15,28 @@ import model.User;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
-	
+
 	private UserDAO userDAO = new UserDAO();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException {
+			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println("user");
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException {
-		
-		
+			throws ServletException, IOException {
+
 		System.out.println("teste");
 		String action = request.getParameter("action");
 		if (action.equals("create")) {
 			createUser(request, response);
-		} else if (action.equals("edit")) {
-			updateUser(request, response);
-		} else if (action.equals("delete")) {
-			deleteUser(request, response);
-		} else if (action.equals("listAll")) {
-			listAllUser(request, response);
-		} else if (action.equals("listForId")) {
-			listUserForId(request, response);
 		}
+		// else if (action.equals("edit")) {
+		// updateUser(request, response);
+		// }
 	}
 
 	public void createUser(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +52,6 @@ public class UserController extends HttpServlet {
 			acceptTerms = true;
 		}
 		user.setAcceptTerms(acceptTerms);
-
 		if (userDAO.create(user)) {
 			System.out.println("User Criado");
 		}
@@ -67,19 +60,15 @@ public class UserController extends HttpServlet {
 
 	}
 
-	public void updateUser(HttpServletRequest request, HttpServletResponse response) {
+	// public void updateUser(HttpServletRequest request, HttpServletResponse
+	// response) {}
 
-	}
+	// public void deleteUser(HttpServletRequest request, HttpServletResponse
+	// response) {}
 
-	public void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+	// public void listAllUser(HttpServletRequest request, HttpServletResponse
+	// response) {}
 
-	}
-
-	public void listAllUser(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	public void listUserForId(HttpServletRequest request, HttpServletResponse response) {
-
-	}
+	// public void listUserForId(HttpServletRequest request, HttpServletResponse
+	// response) {}
 }

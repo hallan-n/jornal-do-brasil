@@ -10,7 +10,7 @@
   <artifactId>jornal_do_brasil</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>jornal_do_brasil Web App</name>
+  <name>jornal_do_brasil</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

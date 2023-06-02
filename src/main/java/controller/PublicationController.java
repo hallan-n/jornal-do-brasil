@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -19,7 +18,6 @@ import dao.PublicationDAO;
 
 @WebServlet("/publication")
 public class PublicationController extends HttpServlet {
-	private String action;
 	private PublicationDAO publicationDAO = new PublicationDAO();
 
 	@Override
@@ -32,8 +30,9 @@ public class PublicationController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		System.out.println("teste");
-		action = request.getParameter("action");
+		String action = request.getParameter("action");
 		if (action.equals("create")) {
 			createPublication(request, response);
 		} else if (action.equals("edit")) {
@@ -73,16 +72,16 @@ public class PublicationController extends HttpServlet {
 		visualizar.forward(request, response);
 	}
 
-	private void deletePublication(HttpServletRequest request, HttpServletResponse response) {
+	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {
 	}
 
-	private void updatePublication(HttpServletRequest request, HttpServletResponse response) {
+	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {
 	}
 
-	private void listAllPublication(HttpServletRequest request, HttpServletResponse response) {
+	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {
 
 	}
 
-	private void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {
+	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {
 	}
 }

@@ -24,7 +24,9 @@
                             <div id="img" class="col">
                                 <img src="assets/images/ilustração-formulario.jpg" width="100%" alt="ilustração-formulario.jpg">
                             </div>
-                            <form class="col" action="user" method="post">
+
+                            
+                            <form action="user" method="POST" class="col">
                                 <input type="hidden" value="register" name="action">
                                 <input type="text" name="txtRegister" hidden>
                                 <div class="col">
@@ -39,10 +41,10 @@
 
                                         <div class="d-flex justify-content-between mt-4 flex-wrap">
                                             <div class="d-flex mb-2">
-                                                <input name="txtAcceptTerms" required class="form-check-input p-2 me-2 shadow-lg" type="checkbox">
+                                                <input name="txtAcceptTerms" class="form-check-input p-2 me-2 shadow-lg" type="checkbox">
                                                 <p class="m-0 me-5">Concordo com os termos</p>
                                             </div>
-                                            <a href="login.jsp" class="text-decoration-none mb-2"><strong>Ja sou cadastrado</strong></a>
+                                            <a href="index.jsp" class="text-decoration-none mb-2"><strong>Ja sou cadastrado</strong></a>
                                         </div>
                                         <button type="submit" class="btn btn-primary px-4 mt-4">Registrar</button>
                                     </div>
