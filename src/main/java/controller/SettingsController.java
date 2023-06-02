@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/settings")
 public class SettingsController extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

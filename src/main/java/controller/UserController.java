@@ -15,22 +15,23 @@ import model.User;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
-	private String action;
+	
 	private UserDAO userDAO = new UserDAO();
-
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println("user");
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	throws ServletException, IOException {
+		
+		
 		System.out.println("teste");
-		action = request.getParameter("action");
+		String action = request.getParameter("action");
 		if (action.equals("create")) {
 			createUser(request, response);
 		} else if (action.equals("edit")) {
@@ -47,13 +48,13 @@ public class UserController extends HttpServlet {
 	public void createUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User user = new User();
-		user.setName(request.getParameter(""));
-		user.setSurname(request.getParameter(""));
-		user.setEmail(request.getParameter(""));
-		user.setPhone(request.getParameter(""));
-		user.setPassword(request.getParameter(""));
+		user.setName(request.getParameter("txtName"));
+		user.setSurname(request.getParameter("txtSurname"));
+		user.setEmail(request.getParameter("txtEmail"));
+		user.setPhone(request.getParameter("txtPhone"));
+		user.setPassword(request.getParameter("txtPassword"));
 		boolean acceptTerms = false;
-		if (request.getParameter("") == "on") {
+		if (request.getParameter("txtAcceptTerms") == "on") {
 			acceptTerms = true;
 		}
 		user.setAcceptTerms(acceptTerms);

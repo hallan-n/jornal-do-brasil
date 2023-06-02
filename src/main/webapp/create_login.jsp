@@ -39,7 +39,7 @@
 
                                         <div class="d-flex justify-content-between mt-4 flex-wrap">
                                             <div class="d-flex mb-2">
-                                                <input required class="form-check-input p-2 me-2 shadow-lg" type="checkbox" name="txtAcceptTerms">
+                                                <input name="txtAcceptTerms" required class="form-check-input p-2 me-2 shadow-lg" type="checkbox">
                                                 <p class="m-0 me-5">Concordo com os termos</p>
                                             </div>
                                             <a href="login.jsp" class="text-decoration-none mb-2"><strong>Ja sou cadastrado</strong></a>
