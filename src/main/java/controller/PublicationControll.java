@@ -18,13 +18,19 @@ import dao.PublicationDAO;
 
 @WebServlet(urlPatterns = { "/publication" })
 public class PublicationControll extends HttpServlet {
+	private FileServer fileServer = new FileServer();
 	private PublicationDAO publicationDAO = new PublicationDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("Publication");
+		out.println("Publication teste");
+		// if (request.getParameter("action").equals("list")) {
+        //     request.setAttribute("publications", publicationDAO.read());
+        // }
+		// RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
+		// visualizar.forward(request, response);
 	}
 
 	@Override
@@ -47,11 +53,8 @@ public class PublicationControll extends HttpServlet {
 
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
 				"Entretenimento", "Estilo", "Gastronomia" };
-		FileServer fileServer = new FileServer();
-
 		Env env = new Env();
 		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
@@ -65,12 +68,12 @@ public class PublicationControll extends HttpServlet {
 		publication.setDate(datePublication);
 		if (publicationDAO.create(publication)) {
 			System.out.println("Criado");
-			request.setAttribute("msg", "Uhull... Publicaçãocriada com sucesso!");
 			fileServer.writeFile(request.getParameter("txtTextArea"));
 		}
 		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
 		visualizar.forward(request, response);
 	}
+
 
 	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {
 	}

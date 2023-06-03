@@ -1,5 +1,6 @@
 package services;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -58,6 +59,15 @@ public class FileServer {
         } catch (IOException e) {
             System.out.println("Error writing the file.");
             e.printStackTrace();
+        }
+    }
+
+    public void deleteFile(String pathWithFileName){
+        File file = new File(pathWithFileName);
+        if (file.delete()) {
+            System.out.println("Deleted the file: " + file.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
         }
     }
 }

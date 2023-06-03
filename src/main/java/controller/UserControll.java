@@ -22,6 +22,17 @@ public class UserControll extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         out.println("user");
+
+        // if (request.getParameter("action").equals("list")) {
+        //     request.setAttribute("publications", userDAO.read());
+        // }
+        //  else if (request.getParameter("action").equals("listForId")) {
+        //     int idAluno = Integer.parseInt(request.getParameter("id"));
+        //     request.setAttribute("aluno", userDAO.read(idAluno));
+        //     abrir = editar;
+        // }
+        // RequestDispatcher visualizar = request.getRequestDispatcher();
+        // visualizar.forward(request, response);
     }
 
     @Override
