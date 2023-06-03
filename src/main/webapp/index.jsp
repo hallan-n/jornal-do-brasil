@@ -5,13 +5,10 @@
 
 <head>
     <%@include file="head.jsp" %>
-        <title>Home</title>
-        <style>
-            hr{
-                border: solid white 1px;
-                margin: 0; 
-            }
-        </style>
+    <title>Home</title>
+    <style>
+        hr{ border: solid white 1px; margin: 0;}
+    </style>
 </head>
 
 <body>

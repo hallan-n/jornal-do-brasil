@@ -16,7 +16,7 @@ import model.Publication;
 import services.FileServer;
 import dao.PublicationDAO;
 
-@WebServlet("/publication")
+@WebServlet(urlPatterns = {"/publication"})
 public class PublicationController extends HttpServlet {
 	private PublicationDAO publicationDAO = new PublicationDAO();
 

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/settings")
+@WebServlet(urlPatterns = {"/settings"})
 public class SettingsController extends HttpServlet {
 	
 	@Override
