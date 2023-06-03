@@ -21,68 +21,56 @@ public class UserControll extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        out.println("user controll 2");
+        out.println("user");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        if (request.getParameter("action").equals("create")) {
+            createUser(request, response);
+        } else if (request.getParameter("action").equals("update")) {
+            updateUser(request, response);
+        } else if (request.getParameter("action").equals("listAll")) {
+            listAllUser(request, response);
+        } else if (request.getParameter("action").equals("listForId")) {
+            listUserForId(request, response);
+        } else if (request.getParameter("action").equals("delete")) {
+            deleteUser(request, response);
+        }
+
+    }
+
+    private void createUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         User user = new User();
         user.setName(request.getParameter("txtName"));
         user.setSurname(request.getParameter("txtSurname"));
         user.setEmail(request.getParameter("txtEmail"));
         user.setPhone(request.getParameter("txtPhone"));
         user.setPassword(request.getParameter("txtPassword"));
-        boolean acceptTerms = false;
-        if (request.getParameter("txtAcceptTerms").equals("on")) {
-            acceptTerms = true;
+        user.setAcceptTerms(request.getParameter("txtAcceptTerms").equals("on"));
+        if (userDAO.create(user)) {
+            System.out.println("Usuário criado");
         }
-        user.setAcceptTerms(acceptTerms);
-        UserDAO userDAO = new UserDAO();
-        userDAO.create(user);
-
         RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
         visualizar.forward(request, response);
-        // String action = request.getParameter("action");
-        // if (action.equals("create")) {
-        // createUser(request, response);
-        // }
-        // else if (action.equals("edit")) {
-        // updateUser(request, response);
-        // }
     }
 
-    public static void main(String[] args) {
-
-        // user.setName("asd");
-        // user.setSurname("asd");
-        // user.setEmail("asd");
-        // user.setPhone("asd");
-        // user.setPassword("asd");
-        // user.setAcceptTerms(true);
-        // user.setDescription("asd");
-        // user.setProfilePhoto("asd");
-        // user.setAddress(0);
-        // user.setConfiguration(0);
-
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
     }
 
-    // private void createUser(HttpServletRequest request, HttpServletResponse
-    // response) throws ServletException, IOException {
-    // User user = new User();
-    // user.setName(request.getParameter("txtName"));
-    // user.setSurname(request.getParameter("txtSurname"));
-    // user.setEmail(request.getParameter("txtEmail"));
-    // user.setPhone(request.getParameter("txtPhone"));
-    // user.setPassword(request.getParameter("txtPassword"));
-    // boolean acceptTerms = false;
-    // if (request.getParameter("txtAcceptTerms") == "on") {
-    // acceptTerms = true;
-    // }
-    // user.setAcceptTerms(acceptTerms);
-    // if (userDAO.create(user)) {
-    // System.out.println("User Criado");
-    // }
-    // }
+    private void listAllUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    private void listUserForId(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
 }

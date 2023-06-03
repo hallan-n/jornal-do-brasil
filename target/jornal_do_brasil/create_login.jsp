@@ -25,7 +25,7 @@
                         <img src="assets/images/ilustração-formulario.jpg" width="100%" alt="ilustração-formulario.jpg">
                     </div>    
                     <form action="user" method="POST" class="col">
-                        <input type="hidden" value="register" name="action">
+                        <input type="hidden" value="create" name="action">
                         <input type="text" name="txtRegister" hidden>
                         <div class="col">
                             <h5>Criar login</h5>
@@ -38,7 +38,7 @@
                                 <input type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha" name="rp_password">
                                 <div class="d-flex justify-content-between mt-4 flex-wrap">
                                     <div class="d-flex mb-2">
-                                        <input name="txtAcceptTerms" class="form-check-input p-2 me-2 shadow-lg" type="checkbox">
+                                        <input required name="txtAcceptTerms" class="form-check-input p-2 me-2 shadow-lg" type="checkbox">
                                         <p class="m-0 me-5">Concordo com os termos</p>
                                     </div>
                                     <a href="index.jsp" class="text-decoration-none mb-2"><strong>Ja sou cadastrado</strong></a>
