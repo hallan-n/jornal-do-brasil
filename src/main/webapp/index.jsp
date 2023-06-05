@@ -23,36 +23,16 @@
                 <div class="max-width-container mx-auto pb-2" id="menubar-2">
                     <div id="categoria-max">
                         <ul class="nav nav-pills max-width-container justify-content-center form-cabecalho-1">
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light active" data-bs-toggle="pill" type="bFutton" role="button"> <a href="publication?action=list">Inicio</a></button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Política</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Business</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Internacional</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Esportes</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Saúde</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Tecnologia</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Entretenimento</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Estilo</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="btn nav-link text-light" data-bs-toggle="pill" type="button" role="button">Gastronomia</button>
-                            </li>
+                            <li><a href="publication?action=listAll" class="btn nav-link text-light active nav-item">Inicio</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Política</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Business</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Internacional</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Esportes</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Saúde</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Tecnologia</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Entretenimento</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Estilo</a></li>
+                            <li><a href="publication?action=list" class="btn nav-link text-light nav-item">Gastronomia</a></li>
                         </ul>
                     </div>
                     <div class="form-cabecalho-display">
