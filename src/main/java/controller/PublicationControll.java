@@ -28,13 +28,13 @@ public class PublicationControll extends HttpServlet {
 	throws ServletException, IOException {
 		// PrintWriter out = response.getWriter();
 		// out.println("Publication teste");
-		int category = Integer.parseInt(request.getParameter("category"));
+		String category = request.getParameter("category");
 		String action = request.getParameter("action");
-		if (action.equals("list")) {
+		if (action.equals("list") && category == null) {
             request.setAttribute("publications", publicationDAO.listAll());
 			
-        }else if (action.equals("list")) {
-            request.setAttribute("publications", publicationDAO.listForCategory(categories[category]));
+        }else if (action.equals("list") && category != null) {
+            request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 			
 		}else if (request.getParameter("action").equals("list")) {
 			deletePublication(request, response);
