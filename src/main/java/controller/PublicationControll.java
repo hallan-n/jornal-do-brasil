@@ -24,13 +24,14 @@ public class PublicationControll extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		out.println("Publication teste");
-		// if (request.getParameter("action").equals("list")) {
-        //     request.setAttribute("publications", publicationDAO.read());
-        // }
-		// RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
-		// visualizar.forward(request, response);
+		// PrintWriter out = response.getWriter();
+		// out.println("Publication teste");
+		
+		if (request.getParameter("action").equals("list")) {
+            request.setAttribute("publications", publicationDAO.read());
+        }
+		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
+		visualizar.forward(request, response);
 	}
 
 	@Override

@@ -138,11 +138,17 @@
 
 
                 <c:forEach items="${publications}" var="pub">
-                    <p>${pub.title}</p>
-                    <p>${pub.category}</p>
-                    <p>${pub.title}</p>
-                    <p>${pub.path}</p>
-                    <p>${pub.date}</p>
+
+                <div class="col p-0 me-3">
+                    <div class="card">
+                        <img src="assets/images/imagem-1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${pub.title}</h5>
+                            <p class="card-text">${pub.path}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
                 </c:forEach>
 
                     <%-- <a href="aluno?acao=editar&id=${alu.idAluno}" class="btn btn-warning">Editar</a>
