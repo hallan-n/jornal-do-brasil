@@ -39,10 +39,38 @@ public class PublicationDAO {
         }
         return reponse;
     }
-    public List<Publication> read() {
+    public List<Publication> listAll() {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
         String querySelectPublication = "select * from publication";
+
+        try {
+            statement = connection.prepareStatement(querySelectPublication);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Publication publication = new Publication();
+                publication.setIdPubli(resultSet.getInt("idPubli"));
+                publication.setTitle(resultSet.getString("title"));
+                publication.setCategory(resultSet.getString("category"));
+                publication.setPath(resultSet.getString("path"));
+                publication.setAuthor(resultSet.getInt("author"));
+                publication.setDate(resultSet.getDate("date"));
+
+                publications.add(publication);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar Alunos!..." + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+
+        return publications;
+    }
+    public List<Publication> listForCategory(String category) {
+        List publications = new ArrayList();
+        connection = MyConnection.getConnection();
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication WHERE category = '" + category + "';";
 
         try {
             statement = connection.prepareStatement(querySelectPublication);

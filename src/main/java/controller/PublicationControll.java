@@ -20,42 +20,49 @@ import dao.PublicationDAO;
 public class PublicationControll extends HttpServlet {
 	private FileServer fileServer = new FileServer();
 	private PublicationDAO publicationDAO = new PublicationDAO();
-
+	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
+				"Entretenimento", "Estilo", "Gastronomia"};
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	throws ServletException, IOException {
 		// PrintWriter out = response.getWriter();
 		// out.println("Publication teste");
+		int category = Integer.parseInt(request.getParameter("category"));
+		String action = request.getParameter("action");
+		if (action.equals("list")) {
+            request.setAttribute("publications", publicationDAO.listAll());
+			
+        }else if (action.equals("list")) {
+            request.setAttribute("publications", publicationDAO.listForCategory(categories[category]));
+			
+		}else if (request.getParameter("action").equals("list")) {
+			deletePublication(request, response);
+		} 
+
+
+
+		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
+		visualizar.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	throws ServletException, IOException {
 		
-		if (request.getParameter("action").equals("list")) {
-            request.setAttribute("publications", publicationDAO.read());
-        }
+		if (request.getParameter("action").equals("create")) {
+			createPublication(request, response);
+		} else if (request.getParameter("action").equals("update")) {
+			updatePublication(request, response);
+		} 
 		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
 		visualizar.forward(request, response);
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		if (request.getParameter("action").equals("create")) {
-			createPublication(request, response);
-		} else if (request.getParameter("action").equals("delete")) {
-			deletePublication(request, response);
-		} else if (request.getParameter("action").equals("update")) {
-			updatePublication(request, response);
-		} else if (request.getParameter("action").equals("listAll")) {
-			listAllPublication(request, response);
-		} else if (request.getParameter("action").equals("listForCategory")) {
-			listPublicationForCategory(request, response);
-		}
-
-	}
-
+	// POST
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
-				"Entretenimento", "Estilo", "Gastronomia" };
+	
 		Env env = new Env();
 		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
@@ -74,18 +81,13 @@ public class PublicationControll extends HttpServlet {
 		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
 		visualizar.forward(request, response);
 	}
+	
+	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {}
 
+	// GET
+	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {}
 
-	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {
-	}
+	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {}
 
-	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {
-	}
-
-	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {
-	}
+	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {}
 }
