@@ -73,7 +73,7 @@
                     <span class="material-symbols-outlined fs-1">menu</span>
                 </a>
 
-                <a href="index.jsp" class="btn link-primary d-flex align-items-center">
+                <a href="publication?action=list" class="btn link-primary d-flex align-items-center">
                     <span><img src="assets/images/logo_bostil.svg" alt="logo_bostil"></span>
                 </a>
             </div>

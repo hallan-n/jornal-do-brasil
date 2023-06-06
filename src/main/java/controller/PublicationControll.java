@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -26,8 +25,6 @@ public class PublicationControll extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
-		// PrintWriter out = response.getWriter();
-		// out.println("Publication teste");
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 		if (action.equals("list") && category == null) {
@@ -42,8 +39,8 @@ public class PublicationControll extends HttpServlet {
 
 
 
-		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
-		visualizar.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		view.forward(request, response);
 	}
 	
 	@Override
@@ -55,8 +52,6 @@ public class PublicationControll extends HttpServlet {
 		} else if (request.getParameter("action").equals("update")) {
 			updatePublication(request, response);
 		} 
-		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
-		visualizar.forward(request, response);
 	}
 
 	// POST
@@ -78,8 +73,8 @@ public class PublicationControll extends HttpServlet {
 			System.out.println("Criado");
 			fileServer.writeFile(request.getParameter("txtTextArea"));
 		}
-		RequestDispatcher visualizar = request.getRequestDispatcher("index.jsp");
-		visualizar.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		view.forward(request, response);
 	}
 	
 	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {}

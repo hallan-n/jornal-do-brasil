@@ -45,16 +45,16 @@
                                 </button>
                             </form>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li class="dropdown-item btn py-2"><a>Inicio</a></li>
-                                <li class="dropdown-item btn py-2"><a>Política</a></li>
-                                <li class="dropdown-item btn py-2"><a>Business</a></li>
-                                <li class="dropdown-item btn py-2"><a>Internacional</a></li>
-                                <li class="dropdown-item btn py-2"><a>Esportes</a></li>
-                                <li class="dropdown-item btn py-2"><a>Saúde</a></li>
-                                <li class="dropdown-item btn py-2"><a>Tecnologia</a></li>
-                                <li class="dropdown-item btn py-2"><a>Entretenimento</a></li>
-                                <li class="dropdown-item btn py-2"><a>Estilo</a></li>
-                                <li class="dropdown-item btn py-2"><a>Gastronomia</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list">Inicio</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=0">Política</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=1">Business</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=2">Internacional</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=3">Esportes</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=4">Saúde</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=5">Tecnologia</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=6">Entretenimento</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=7">Estilo</a></li>
+                                <li class="dropdown-item btn py-2"><a href="publication?action=list&category=8">Gastronomia</a></li>
                             </ul>
                         </div>
                     </div>
@@ -78,21 +78,21 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
 
-                                        <img src="assets/images/imagem-1.jpg" class="d-block w-100 img-fluid" alt="...">
+                                        <img src="assets/images/teste.png" class="d-block w-100 img-fluid" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>First slide label</h5>
                                             <p>Some representative placeholder content for the first slide.</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/images/imagem-1.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/images/teste.png" class="d-block w-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>Second slide label</h5>
                                             <p>Some representative placeholder content for the second slide.</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/images/imagem-1.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/images/teste.png" class="d-block w-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>Third slide label</h5>
                                             <p>Some representative placeholder content for the third slide.</p>
@@ -121,11 +121,11 @@
 
                 <div class="col p-0 me-3">
                     <div class="card">
-                        <img src="assets/images/imagem-1.jpg" class="card-img-top" alt="...">
+                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${pub.title}</h5>
                             <p class="card-text">${pub.path}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="${pub.path}" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     <a href="aluno?acao=apagar&id=${alu.idAluno}" class="btn btn-danger">Apagar</a> --%>
                 <div class="col p-0 me-3">
                     <div class="card">
-                        <img src="assets/images/imagem-1.jpg" class="card-img-top" alt="...">
+                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -148,7 +148,7 @@
 
                 <div class="col p-0 me-3">
                     <div class="card">
-                        <img src="assets/images/imagem-1.jpg" class="card-img-top" alt="...">
+                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col p-0 ">
                     <div class="card">
-                        <img src="assets/images/imagem-1.jpg" class="card-img-top" alt="...">
+                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk

@@ -42,7 +42,7 @@ public class PublicationDAO {
     public List<Publication> listAll() {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
-        String querySelectPublication = "select * from publication";
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication ORDER BY idPubli DESC;";
 
         try {
             statement = connection.prepareStatement(querySelectPublication);
@@ -64,13 +64,13 @@ public class PublicationDAO {
         } finally {
             MyConnection.closeConnection(connection, statement, resultSet);
         }
-
+        
         return publications;
     }
     public List<Publication> listForCategory(String category) {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
-        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication WHERE category = '" + category + "';";
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication WHERE category = '" + category + "' ORDER BY idPubli DESC;";
 
         try {
             statement = connection.prepareStatement(querySelectPublication);

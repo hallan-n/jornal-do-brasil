@@ -8,13 +8,10 @@ import java.sql.SQLException;
 import config.Env;
 
 public class MyConnection {
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
-
     public static Connection getConnection() {
-        Env env = new Env();
         try {
-            Class.forName(env.db_DRIVER);
-            return DriverManager.getConnection(env.db_URL, env.db_USER, env.db_PASSWORD);
+            Class.forName(Env.db_DRIVER);
+            return DriverManager.getConnection(Env.db_URL, Env.db_USER, Env.db_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Erro ao tentar estabelecer conexão com o Banco de Dados!" + e);
         }
