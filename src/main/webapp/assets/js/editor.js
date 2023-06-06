@@ -1,5 +1,3 @@
-
-
 const editor = document.querySelector("#editor")
 const paleta = document.querySelector("#paleta")
 const fontColor = document.querySelector("#fontColor")
@@ -8,7 +6,6 @@ const upload = document.querySelector("#upload")
 const imageSize = document.getElementById('inputImageSize')
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const publicar = document.getElementById('publicar');
-const tituloPublicacao = document.getElementById('titulo-publicacao');
 
 const txtTextArea = document.getElementById('txtTextArea');
 
@@ -16,24 +13,6 @@ publicar.addEventListener('click', () => {
     txtTextArea.value = editor.innerHTML.trim();
 })
 
-// const alert = (message, type) => {
-//     const wrapper = document.createElement('div')
-//     wrapper.innerHTML = [
-//         `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-//         `<div>${message}</div>`,
-//         '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-//         '</div>'
-//     ].join('');
-//     alertPlaceholder.append(wrapper)
-// }
-
-// const alertTrigger = document.getElementById('liveAlertBtn')
-// if (alertTrigger) {
-//     console.log(textarea.innerHTML);
-//     alertTrigger.addEventListener('click', () => {
-//         alert('Publicação feita com sucesso', 'success')
-//     })
-// }
 
 let valor;
 imageSize.addEventListener("change", e => {
@@ -65,7 +44,6 @@ backColor.addEventListener("click", () => document.execCommand('backColor', fals
 const link = () => document.execCommand('createlink', false, prompt('Enter a URL:', 'http://'))
 const alterFont = size => document.execCommand("fontSize", false, parseInt(size))
 const applyCommand = comand => document.execCommand(comand)
-
 
 
 

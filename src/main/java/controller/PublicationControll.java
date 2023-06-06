@@ -65,6 +65,7 @@ public class PublicationControll extends HttpServlet {
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
+		publication.setDescription(request.getParameter("txtDescription"));
 		publication.setPath(fileServer.getPathWithFileName());
 		publication.setAuthor(1);
 		Date datePublication = new Date();

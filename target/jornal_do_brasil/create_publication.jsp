@@ -9,6 +9,8 @@
 </head>
 
 
+
+
 <body>
     <div class="bg-dark p-4 pb-0">
         <%@include file="header.jsp" %>
@@ -114,24 +116,30 @@
 
 
             <form action="publication" method="POST" class="mt-3">
-                <div class="d-grid d-flex align-items-center justify-content-between">
-                    <div class="col-8 pe-5">
-                        <label class="form-label m-0" for="titulo-publicacao">Título</label>
-                        <input name="txtTitle" id="titulo-publicacao" class="form-control mb-3 p-2 w-100" type="text" />
+                <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
+                    <div class="col">
+                        <label class="form-label m-0" for="txtTitle">Título</label>
+                        <input name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
                     </div>
-
-                    <select name="txtCategory" class="form-select form-select-lg">
-                        <option selected disabled>Selecione uma categoria</option>
-                        <option value="0">Política</option>
-                        <option value="1">Business</option>
-                        <option value="2">Internacional</option>
-                        <option value="3">Esportes</option>
-                        <option value="4">Saúde</option>
-                        <option value="5">Tecnologia</option>
-                        <option value="6">Entretenimento</option>
-                        <option value="7">Estilo</option>
-                        <option value="8">Gastronomia</option>
-                    </select>
+                    <div class="col">
+                        <label class="form-label m-0" for="txtDescription">Descrição</label>
+                        <input name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100"/>
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label m-0" for="txtCategory">Categoria</label>
+                        <select name="txtCategory" id="txtCategory" class="form-select form-select-md">
+                            <option selected disabled>Selecione uma categoria</option>
+                            <option value="0">Política</option>
+                            <option value="1">Business</option>
+                            <option value="2">Internacional</option>
+                            <option value="3">Esportes</option>
+                            <option value="4">Saúde</option>
+                            <option value="5">Tecnologia</option>
+                            <option value="6">Entretenimento</option>
+                            <option value="7">Estilo</option>
+                            <option value="8">Gastronomia</option>
+                        </select>
+                    </div>
                     <input type="hidden" value="create" name="action">
                 </div>
 
@@ -149,10 +157,9 @@
                             <div class="modal-header">
                                 <h3>Deseja publicar este conteúdo?</h3>
                             </div>
-                            <!-- <div class="modal-body">
-                                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. At vitae
-                                    perspiciatis amet deleniti quae reiciendis iusto</p>
-                            </div> -->
+                            <div class="modal-body">
+                                <h5 class="text-justify">Certifique-se que sua publicação esteja de acordo com a LGPD</h5>
+                            </div>
                             <div class="modal-footer d-flex justify-content-end mt-4">
                                 <button type="submit" class="btn btn-primary px-5" data-bs-dismiss="modal" id="liveAlertBtn">Sim</button>
                                 <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Cancelar</button>

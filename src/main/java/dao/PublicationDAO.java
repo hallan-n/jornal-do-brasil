@@ -20,16 +20,17 @@ public class PublicationDAO {
     public boolean create(Publication publication) {
         boolean reponse = false;
 
-        String queryInserctPublication = "insert into publication (title,category,path,author, date) values(?,?,?,?,?);";
+        String queryInserctPublication = "insert into publication (title,category,description,path,author, date) values(?,?,?,?,?,?);";
         connection = MyConnection.getConnection();
         try {
             statement = connection.prepareStatement(queryInserctPublication);
             statement.setString(1, publication.getTitle());
             statement.setString(2, publication.getCategory());
-            statement.setString(3, publication.getPath());
-            statement.setInt(4, publication.getAuthor());
+            statement.setString(3, publication.getDescription());
+            statement.setString(4, publication.getPath());
+            statement.setInt(5, publication.getAuthor());
             Date d = new Date(publication.getDate().getTime());
-            statement.setDate(5, d);
+            statement.setDate(6, d);
             statement.executeUpdate();
             reponse = true;
         } catch (SQLException e) {
@@ -52,6 +53,7 @@ public class PublicationDAO {
                 publication.setIdPubli(resultSet.getInt("idPubli"));
                 publication.setTitle(resultSet.getString("title"));
                 publication.setCategory(resultSet.getString("category"));
+                publication.setDescription(resultSet.getString("description"));
                 publication.setPath(resultSet.getString("path"));
                 publication.setAuthor(resultSet.getInt("author"));
                 publication.setDate(resultSet.getDate("date"));
@@ -80,6 +82,7 @@ public class PublicationDAO {
                 publication.setIdPubli(resultSet.getInt("idPubli"));
                 publication.setTitle(resultSet.getString("title"));
                 publication.setCategory(resultSet.getString("category"));
+                publication.setDescription(resultSet.getString("description"));
                 publication.setPath(resultSet.getString("path"));
                 publication.setAuthor(resultSet.getInt("author"));
                 publication.setDate(resultSet.getDate("date"));
@@ -98,18 +101,19 @@ public class PublicationDAO {
     public boolean update(Publication publication) {
         boolean reponse = false;
         connection = MyConnection.getConnection();
-        String queryUpdatePublication = "update publication set title=?, category=?, path=?, author=?, date=? where idPubli=?;";
+        String queryUpdatePublication = "update publication set title=?, category=?, description=?, path=?, author=?, date=? where idPubli=?;";
 
         try {
             statement = connection.prepareStatement(queryUpdatePublication);
 
             statement.setString(1, publication.getTitle());
             statement.setString(2, publication.getCategory());
-            statement.setString(3, publication.getPath());
-            statement.setInt(4, publication.getAuthor());
+            statement.setString(3, publication.getDescription());
+            statement.setString(4, publication.getPath());
+            statement.setInt(5, publication.getAuthor());
             Date d = new Date(publication.getDate().getTime());
-            statement.setDate(5, d);
-            statement.setInt(6, publication.getIdPubli());
+            statement.setDate(6, d);
+            statement.setInt(7, publication.getIdPubli());
             statement.executeUpdate();
             reponse = true;
 
@@ -140,5 +144,4 @@ public class PublicationDAO {
 
         return response;
     }
-
 }

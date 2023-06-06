@@ -124,7 +124,7 @@
                         <img src="assets/images/teste.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${pub.title}</h5>
-                            <p class="card-text">${pub.path}</p>
+                            <p class="card-text">${pub.description}</p>
                             <a href="${pub.path}" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>

@@ -5,13 +5,15 @@ public class Publication {
     private int idPubli;
     private String title;
     private String category;
+    private String description;
     private String path;
     private int author;
     private Date date;
 
-    public Publication(String title, String category, String path, int author, Date date){
+    public Publication(String title, String category,String description, String path, int author, Date date){
         this.title = title;
         this.category = category;
+        this.description = description;
         this.path = path;
         this.author = author;
         this.date = date;
@@ -57,6 +59,12 @@ public class Publication {
     }
     public void setDate(Date date) {
         this.date = date;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }
