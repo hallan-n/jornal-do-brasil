@@ -44,6 +44,7 @@ CREATE TABLE publication(
 	idPubli INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	title VARCHAR(45) NOT NULL,
 	category ENUM("Política","Business","Internacional","Esportes","Saúde","Tecnologia","Entretenimento","Estilo","Gastronomia") NOT NULL,
+	description VARCHAR(100),
 	path VARCHAR(45) NOT NULL,
 	author INT NOT NULL,
 	date DATE NOT NULL,

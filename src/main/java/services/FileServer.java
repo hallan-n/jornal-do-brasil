@@ -46,6 +46,10 @@ public class FileServer {
         return path;
     }
 
+    public String getPathRelative() {
+        return path.replace("E:\\jornal-do-brasil\\src\\main\\java\\", "") + fileName + extension;   
+    }
+
     public void setPath(String path) {
         this.path = env.pathBase + "\\src\\main\\java\\" + path + "\\";
     }

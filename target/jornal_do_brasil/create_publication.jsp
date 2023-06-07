@@ -119,16 +119,16 @@
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
                         <label class="form-label m-0" for="txtTitle">Título</label>
-                        <input name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
+                        <input required name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
                     </div>
                     <div class="col">
                         <label class="form-label m-0" for="txtDescription">Descrição</label>
-                        <input name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100"/>
+                        <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100"/>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <label class="form-label m-0" for="txtCategory">Categoria</label>
-                        <select name="txtCategory" id="txtCategory" class="form-select form-select-md">
-                            <option selected disabled>Selecione uma categoria</option>
+                        <select required name="txtCategory" id="txtCategory" class="form-select form-select-md">
+                            <option selected disabled>Selecione...</option>
                             <option value="0">Política</option>
                             <option value="1">Business</option>
                             <option value="2">Internacional</option>
@@ -140,6 +140,15 @@
                             <option value="8">Gastronomia</option>
                         </select>
                     </div>
+
+                    <div class="col-1 d-flex flex-column ">
+                        <label class="form-label m-0" for="txtCategory">Thumb</label>
+                        <label for="thumb" class="btn bg-body-secondary p-0">
+                            <span class=" material-symbols-outlined fs-1">burst_mode</span>
+                        </label>
+                        <input type="file" name="thumb" id="thumb" hidden>
+                    </div>
+                    
                     <input type="hidden" value="create" name="action">
                 </div>
 
