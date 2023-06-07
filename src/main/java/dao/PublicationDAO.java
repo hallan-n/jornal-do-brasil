@@ -20,17 +20,19 @@ public class PublicationDAO {
     public boolean create(Publication publication) {
         boolean reponse = false;
 
-        String queryInserctPublication = "insert into publication (title,category,description,path,author, date) values(?,?,?,?,?,?);";
+        String queryInserctPublication = "insert into publication (title,category,description,fileName,extension,path,author, date) values(?,?,?,?,?,?,?,?);";
         connection = MyConnection.getConnection();
         try {
             statement = connection.prepareStatement(queryInserctPublication);
             statement.setString(1, publication.getTitle());
             statement.setString(2, publication.getCategory());
             statement.setString(3, publication.getDescription());
-            statement.setString(4, publication.getPath());
-            statement.setInt(5, publication.getAuthor());
+            statement.setString(4, publication.getFileName());
+            statement.setString(5, publication.getExtension());
+            statement.setString(6, publication.getPath());
+            statement.setInt(7, publication.getAuthor());
             Date d = new Date(publication.getDate().getTime());
-            statement.setDate(6, d);
+            statement.setDate(8, d);
             statement.executeUpdate();
             reponse = true;
         } catch (SQLException e) {

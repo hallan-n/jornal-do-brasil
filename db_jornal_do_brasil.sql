@@ -40,15 +40,15 @@ CREATE TABLE user (
 	FOREIGN KEY (address) REFERENCES address(idAddress)
 );
 
-CREATE TABLE publication(
+ CREATE TABLE publication(
 	idPubli INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	title VARCHAR(45) NOT NULL,
 	category ENUM("Política","Business","Internacional","Esportes","Saúde","Tecnologia","Entretenimento","Estilo","Gastronomia") NOT NULL,
-	description VARCHAR(100),
-	path VARCHAR(45) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    fileName VARCHAR(45) NOT NULL,
+    extension VARCHAR(5) NOT NULL,
+	path VARCHAR(100) NOT NULL,
 	author INT NOT NULL,
-	date DATE NOT NULL,
-
+	date DATE NOT NULL
 	FOREIGN KEY (author) REFERENCES user(idUser)
 );
- 

@@ -116,6 +116,7 @@
 
 
             <form action="publication" method="POST" class="mt-3">
+                <input type="hidden" value="create" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
                         <label class="form-label m-0" for="txtTitle">Título</label>
@@ -149,7 +150,6 @@
                         <input type="file" name="thumb" id="thumb" hidden>
                     </div>
                     
-                    <input type="hidden" value="create" name="action">
                 </div>
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>

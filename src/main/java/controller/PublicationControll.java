@@ -17,7 +17,7 @@ import dao.PublicationDAO;
 
 @WebServlet(urlPatterns = { "/publication" })
 public class PublicationControll extends HttpServlet {
-	private FileServer fileServer = new FileServer();
+
 	private PublicationDAO publicationDAO = new PublicationDAO();
 	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
 				"Entretenimento", "Estilo", "Gastronomia"};
@@ -33,12 +33,9 @@ public class PublicationControll extends HttpServlet {
         }else if (action.equals("list") && category != null) {
             request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 			
-		}else if (request.getParameter("action").equals("list")) {
+		}else if (request.getParameter("action").equals("delete")) {
 			deletePublication(request, response);
 		} 
-
-
-
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
@@ -59,13 +56,17 @@ public class PublicationControll extends HttpServlet {
 			throws ServletException, IOException {
 	
 		Env env = new Env();
+		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
+		
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
 		publication.setDescription(request.getParameter("txtDescription"));
+		publication.setFileName(fileServer.getFileName());
+		publication.setExtension(fileServer.getExtension());
 		publication.setPath(fileServer.getPathRelative());
 		publication.setAuthor(1);
 		Date datePublication = new Date();
@@ -78,12 +79,28 @@ public class PublicationControll extends HttpServlet {
 		view.forward(request, response);
 	}
 	
-	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {}
+	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {
 
+		String id = request.getParameter("id");
+
+
+		FileServer fileServer = new FileServer();
+		Publication publication = new Publication();
+
+		publication.setTitle(request.getParameter("txtTitle"));
+		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
+		publication.setDescription(request.getParameter("txtDescription"));
+		publication.setFileName(fileServer.getFileName());
+		publication.setExtension(fileServer.getExtension());
+		publication.setPath(fileServer.getPathRelative());
+		publication.setAuthor(1);
+	}
+	
+	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {}
+	
 	// GET
 	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {}
 
-	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {}
 
 	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {}
 }

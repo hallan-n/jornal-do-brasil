@@ -6,17 +6,21 @@ public class Publication {
     private String title;
     private String category;
     private String description;
+    private String fileName;
+    private String extension;
     private String path;
     private int author;
     private Date date;
 
-    public Publication(String title, String category,String description, String path, int author, Date date){
+    public Publication(String title, String category,String description,String fileName,String extension, String path, int author, Date date){
         this.title = title;
         this.category = category;
         this.description = description;
+        this.fileName = fileName;
         this.path = path;
         this.author = author;
         this.date = date;
+        this.extension = extension;
     }
     public Publication(){
 
@@ -65,6 +69,18 @@ public class Publication {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+    public String getFileName() {
+        return fileName;
+    }
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+    public String getExtension() {
+        return extension;
+    }
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
 }

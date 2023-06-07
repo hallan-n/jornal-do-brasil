@@ -7,7 +7,6 @@ import java.io.IOException;
 import config.Env;
 
 public class FileServer {
-    Env env = new Env();
     private String fileName;
     private String extension;
     private String path;
@@ -15,7 +14,7 @@ public class FileServer {
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
         this.extension = "." + extension;
-        this.path = env.pathBase + "\\src\\main\\java\\" + path + "\\";
+        this.path = Env.PATH_BASE + "\\src\\main\\java\\" + path + "\\";
     }
 
     public FileServer() {
@@ -51,7 +50,7 @@ public class FileServer {
     }
 
     public void setPath(String path) {
-        this.path = env.pathBase + "\\src\\main\\java\\" + path + "\\";
+        this.path = Env.PATH_BASE + "\\src\\main\\java\\" + path + "\\";
     }
 
     public void writeFile(String data) {
