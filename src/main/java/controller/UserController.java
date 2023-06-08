@@ -14,7 +14,7 @@ import dao.UserDAO;
 import model.User;
 
 @WebServlet(urlPatterns = { "/user" })
-public class UserControll extends HttpServlet {
+public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
 
     @Override

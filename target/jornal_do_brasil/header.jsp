@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div>
     <div>
         <div class="offcanvas offcanvas-start bg-dark text-light" id="offcanvasExample"

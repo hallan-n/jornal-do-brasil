@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +17,7 @@ import services.FileServer;
 import dao.PublicationDAO;
 
 @WebServlet(urlPatterns = { "/publication" })
-public class PublicationControll extends HttpServlet {
+public class PublicationController extends HttpServlet {
 
 	private PublicationDAO publicationDAO = new PublicationDAO();
 	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
@@ -25,6 +26,8 @@ public class PublicationControll extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.println("tO TESTANDODODODS");
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");	
 		
