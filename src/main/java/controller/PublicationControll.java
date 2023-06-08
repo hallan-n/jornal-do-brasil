@@ -26,16 +26,18 @@ public class PublicationControll extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 		String category = request.getParameter("category");
-		String action = request.getParameter("action");
+		String action = request.getParameter("action");	
+		
 		if (action.equals("list") && category == null) {
             request.setAttribute("publications", publicationDAO.listAll());
 			
         }else if (action.equals("list") && category != null) {
-            request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
-			request.setAttribute("publication", action);
+			request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 			
-		}else if (request.getParameter("action").equals("delete") && category == null) {
+		}else if (action.equals("delete")) {
 			deletePublication(request, response);
+		}else if (action.equals("update")) {
+			updatePublication(request, response);
 		} 
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
@@ -44,12 +46,15 @@ public class PublicationControll extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
+		String action = request.getParameter("action");
 		
-		if (request.getParameter("action").equals("create")) {
+		if (action.equals("create")) {
 			createPublication(request, response);
-		} else if (request.getParameter("action").equals("update")) {
+		} else if (action.equals("update")) {
 			updatePublication(request, response);
 		} 
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		view.forward(request, response);
 	}
 
 	// POST
@@ -80,9 +85,8 @@ public class PublicationControll extends HttpServlet {
 		view.forward(request, response);
 	}
 	
-	public void updatePublication(HttpServletRequest request, HttpServletResponse response) {
+	private void updatePublication(HttpServletRequest request, HttpServletResponse response) {
 
-		String id = request.getParameter("id");
 
 
 		FileServer fileServer = new FileServer();
@@ -97,7 +101,8 @@ public class PublicationControll extends HttpServlet {
 		publication.setAuthor(1);
 	}
 	
-	public void deletePublication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// GET
+	private void deletePublication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(request.getParameter("filename"));
 		fileServer.setExtension("html");
@@ -112,22 +117,4 @@ public class PublicationControll extends HttpServlet {
 	}
 	
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// GET
-	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {}
-
-	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {}
 }
