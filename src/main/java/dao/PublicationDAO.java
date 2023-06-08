@@ -127,14 +127,14 @@ public class PublicationDAO {
 
         return reponse;
     }
-    public boolean deleteForId(int id) {
+    public boolean deleteForFileName(String fileName) {
         boolean response = false;
         connection = MyConnection.getConnection();
-        String queryDeletePublication = "delete from publication where idPubli=?";
+        String queryDeletePublication = "delete from publication where fileName=?";
 
         try {
             statement = connection.prepareStatement(queryDeletePublication);
-            statement.setInt(1, id);
+            statement.setString(1, fileName);
             statement.executeUpdate();
             response = true;
 

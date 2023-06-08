@@ -32,8 +32,9 @@ public class PublicationControll extends HttpServlet {
 			
         }else if (action.equals("list") && category != null) {
             request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+			request.setAttribute("publication", action);
 			
-		}else if (request.getParameter("action").equals("delete")) {
+		}else if (request.getParameter("action").equals("delete") && category == null) {
 			deletePublication(request, response);
 		} 
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
@@ -96,11 +97,37 @@ public class PublicationControll extends HttpServlet {
 		publication.setAuthor(1);
 	}
 	
-	public void deletePublication(HttpServletRequest request, HttpServletResponse response) {}
+	public void deletePublication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FileServer fileServer = new FileServer();
+		fileServer.setFileName(request.getParameter("filename"));
+		fileServer.setExtension("html");
+		fileServer.setPath("storage\\publications");
+
+		if (publicationDAO.deleteForFileName(fileServer.getFileName())) {
+			System.out.println("Excluido");
+			fileServer.deleteFile(fileServer.getPathWithFileName());
+		}
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		view.forward(request, response);
+	}
 	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// GET
 	public void listPublicationForCategory(HttpServletRequest request, HttpServletResponse response) {}
-
 
 	public void listAllPublication(HttpServletRequest request, HttpServletResponse response) {}
 }

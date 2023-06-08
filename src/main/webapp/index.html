@@ -145,7 +145,7 @@
                             <div>
                                 <a href="publication?action=open&path=${pub.path}" class="btn btn-primary">Abrir</a>
                                 <a href="publication?action=edit&filename=${pub.fileName}" class="btn btn-warning">Editar</a>
-                                <a href="publication?action=delete&id=${pub.idPubli}" class="btn btn-danger">Apagar</a>
+                                <a href="publication?action=delete&id=${pub.fileName}" class="btn btn-danger">Apagar</a>
                             
                             </div>
                         </div>
@@ -153,46 +153,8 @@
                 </div>
                 </c:forEach>
 
-                <div class="col p-0 me-3">
-                    <div class="card">
-                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col p-0 me-3">
-                    <div class="card">
-                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-0 ">
-                    <div class="card">
-                        <img src="assets/images/teste.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <nav aria-label="Page navigation example ">
+                
+                <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center mt-5 mb-0">
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
