@@ -55,6 +55,7 @@ public class PublicationDAO {
                 publication.setIdPubli(resultSet.getInt("idPubli"));
                 publication.setTitle(resultSet.getString("title"));
                 publication.setCategory(resultSet.getString("category"));
+                publication.setFileName(resultSet.getString("fileName"));
                 publication.setDescription(resultSet.getString("description"));
                 publication.setPath(resultSet.getString("path"));
                 publication.setAuthor(resultSet.getInt("author"));
@@ -84,6 +85,7 @@ public class PublicationDAO {
                 publication.setIdPubli(resultSet.getInt("idPubli"));
                 publication.setTitle(resultSet.getString("title"));
                 publication.setCategory(resultSet.getString("category"));
+                publication.setFileName(resultSet.getString("fileName"));
                 publication.setDescription(resultSet.getString("description"));
                 publication.setPath(resultSet.getString("path"));
                 publication.setAuthor(resultSet.getInt("author"));
