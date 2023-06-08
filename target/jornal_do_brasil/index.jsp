@@ -153,7 +153,8 @@
                                 <div class="modal-content border">
                                     <div>
 
-                                    <%@include file="asd.html" %>
+                                    <%@include file="${pub.path}" %>
+                                    
                                     </div>
 
                                     <div class="modal-footer d-flex justify-content-end mt-4">

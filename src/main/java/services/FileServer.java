@@ -16,7 +16,7 @@ public class FileServer {
     public FileServer(String path, String fileName, String extension) {
         this.fileName = fileName;
         this.extension = "." + extension;
-        this.path = Env.PATH_BASE + "\\src\\main\\java\\" + path + "\\";
+        this.path = Env.PATH_BASE + "\\src\\main\\webapp\\" + path + "\\";
     }
 
     public FileServer() {
@@ -48,11 +48,11 @@ public class FileServer {
     }
 
     public String getPathRelative() {
-        return path.replace("E:\\jornal-do-brasil\\src\\main\\java\\", "") + fileName + extension;
+        return path.replace("E:\\jornal-do-brasil\\src\\main\\webapp\\", "") + fileName + extension;
     }
 
     public void setPath(String path) {
-        this.path = Env.PATH_BASE + "\\src\\main\\java\\" + path + "\\";
+        this.path = Env.PATH_BASE + "\\src\\main\\webapp\\" + path + "\\";
     }
 
     public String readFile(String pathWithFileName) {
