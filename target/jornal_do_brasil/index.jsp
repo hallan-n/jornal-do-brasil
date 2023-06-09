@@ -5,6 +5,24 @@
 
 <head>
     <%@include file="head.jsp" %>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+    
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+    
+    
+
+
     <title>Home</title>
     <style>hr {border: solid white 1px;margin: 0;}</style>
 </head>
@@ -120,8 +138,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">${pub.title}</h5>
                                 <p class="card-text">${pub.description}</p>
+                                
                                 <div>
-                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary">Abrir</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary" onclick="handleSetHtml()">Abrir</a>
                                     <a href="publication?action=edit&filename=${pub.fileName}" class="btn btn-warning">Editar</a>
                                     <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Apagar</a>
                                 </div>
@@ -146,15 +165,15 @@
                                 </div>
                             </div>
                         </div>
+                        <p id="fileName" hidden>storage/publications/${pub.fileName}.html</p>
 
 
+                </c:forEach>
                         <div class="modal modal-xl fade " id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content border">
-                                    <div>
+                                    <div id="shared">
 
-                                    <%@include file="${pub.path}" %>
-                                    
                                     </div>
 
                                     <div class="modal-footer d-flex justify-content-end mt-4">
@@ -164,10 +183,16 @@
                             </div>
                         </div>
                     </div>
-                </c:forEach>
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+    function handleSetHtml() {
+        console.log(fileName.innerHTML);
+        $("#shared").load(document.getElementById("fileName").innerHTML);        
+    }
+    </script>
 </body>
 
 </html>
