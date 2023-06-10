@@ -20,40 +20,43 @@ import dao.PublicationDAO;
 public class PublicationController extends HttpServlet {
 
 	private PublicationDAO publicationDAO = new PublicationDAO();
-	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde", "Tecnologia",
-				"Entretenimento", "Estilo", "Gastronomia"};
-	
+	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde",
+			"Tecnologia",
+			"Entretenimento", "Estilo", "Gastronomia" };
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException {
+			throws ServletException, IOException {
 		String category = request.getParameter("category");
-		String action = request.getParameter("action");	
-		
+		String action = request.getParameter("action");
+
 		if (action.equals("list") && category == null) {
-            request.setAttribute("publications", publicationDAO.listAll());
-			
-        }else if (action.equals("list") && category != null) {
-			request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
-			
-		}else if (action.equals("delete")) {
+			request.setAttribute("publications", publicationDAO.listAll());
+
+		} else if (action.equals("list") && category != null) {
+			request.setAttribute("publications",
+					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+		} else if (action.equals("delete")) {
 			deletePublication(request, response);
-		}else if (action.equals("update")) {
+		} else if (action.equals("update")) {
 			updatePublication(request, response);
-		} 
+		}else if (action.equals("open")) {
+			openPublication(request, response);
+		}
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException {
+			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		
+
 		if (action.equals("create")) {
 			createPublication(request, response);
 		} else if (action.equals("update")) {
 			updatePublication(request, response);
-		} 
+		}
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
@@ -61,13 +64,13 @@ public class PublicationController extends HttpServlet {
 	// POST
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+
 		Env env = new Env();
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
-		fileServer.setExtension("html");
+		fileServer.setExtension("jsp");
 		fileServer.setPath("storage\\publications");
-		
+
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
@@ -85,10 +88,8 @@ public class PublicationController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
-	
+
 	private void updatePublication(HttpServletRequest request, HttpServletResponse response) {
-
-
 
 		FileServer fileServer = new FileServer();
 		Publication publication = new Publication();
@@ -101,9 +102,10 @@ public class PublicationController extends HttpServlet {
 		publication.setPath(fileServer.getPathRelative());
 		publication.setAuthor(1);
 	}
-	
+
 	// GET
-	private void deletePublication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(request.getParameter("filename"));
 		fileServer.setExtension("html");
@@ -116,6 +118,12 @@ public class PublicationController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
-	
-	
+
+	private void openPublication(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String open = "storage/publications/" + request.getParameter("id") + ".jsp";
+		RequestDispatcher view = request.getRequestDispatcher(open);
+		view.forward(request, response);
+	}
+
 }

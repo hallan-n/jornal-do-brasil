@@ -5,26 +5,33 @@
 
 <head>
     <%@include file="head.jsp" %>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
-    
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    
-    
-    
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+
+        <link rel="stylesheet" href="assets/css/global.css">
+        <link rel="stylesheet" href="assets/css/header.css">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
 
 
-    <title>Home</title>
-    <style>hr {border: solid white 1px;margin: 0;}</style>
+
+
+
+        <title>Home</title>
+        <style>
+            hr {
+                border: solid white 1px;
+                margin: 0;
+            }
+        </style>
 </head>
 
 <body>
@@ -136,62 +143,46 @@
                         <div class="card">
                             <img src="assets/images/teste.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">${pub.title}</h5>
+                                <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
-                                
+
                                 <div>
-                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary" onclick="handleSetHtml()">Abrir</a>
+
+                                    <button value="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary"
+                                        onclick="handleSetHtml(this.value)">Abrir</button>
+                                    <a href="publication?action=open&id=${pub.fileName}" class="btn btn-warning">Abrir</a>
                                     <a href="publication?action=edit&filename=${pub.fileName}" class="btn btn-warning">Editar</a>
-                                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Apagar</a>
-                                </div>
-                            </div>
-
-
-
-                            <div class="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content border">
-                                        <div class="modal-header">
-                                            <h3>Deseja apagar esta publicação?</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5 class="text-justify">ATENÇÃO! Esta publicação será apagada de maneira permanente!</h5>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-end mt-4">
-                                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-primary px-5">Sim</a>
-                                            <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="fileName" hidden>storage/publications/${pub.fileName}.html</p>
-
-
-                </c:forEach>
-                        <div class="modal modal-xl fade " id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content border">
-                                    <div id="shared">
-
-                                    </div>
-
-                                    <div class="modal-footer d-flex justify-content-end mt-4">
-                                        <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Fechar</button>
-                                    </div>
+                                    <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                </c:forEach>
+                <div class="modal modal-xl fade " id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border">
+                            <div id="shared">
+
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-end mt-4">
+                                <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-    function handleSetHtml() {
-        console.log(fileName.innerHTML);
-        $("#shared").load(document.getElementById("fileName").innerHTML);        
-    }
+        function handleSetHtml(id) {
+            console.log("storage/publications/" + id + ".html");
+            $("#shared").load("storage/publications/" + id + ".html");
+        }
     </script>
 </body>
 
