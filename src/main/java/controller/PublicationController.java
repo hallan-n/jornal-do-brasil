@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -40,7 +39,7 @@ public class PublicationController extends HttpServlet {
 			deletePublication(request, response);
 		} else if (action.equals("update")) {
 			updatePublication(request, response);
-		}else if (action.equals("open")) {
+		} else if (action.equals("open")) {
 			openPublication(request, response);
 		}
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
@@ -68,7 +67,7 @@ public class PublicationController extends HttpServlet {
 		Env env = new Env();
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
-		fileServer.setExtension("jsp");
+		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
 
 		Publication publication = new Publication();
@@ -121,9 +120,22 @@ public class PublicationController extends HttpServlet {
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String open = "storage/publications/" + request.getParameter("id") + ".jsp";
-		RequestDispatcher view = request.getRequestDispatcher(open);
-		view.forward(request, response);
+		FileServer fileServer = new FileServer();
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("html");
+		fileServer.setFileName(request.getParameter("id"));
+		String open = fileServer.readFile(fileServer.getPathWithFileName());
+		request.setAttribute("openPubli", open);
+		main(null, request, response);
+	}
+	public static void main(String[] args,HttpServletRequest request, HttpServletResponse response) {
+		FileServer fileServer = new FileServer();
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("html");
+		fileServer.setFileName(request.getParameter("id"));
+		String open = fileServer.readFile(fileServer.getPathWithFileName());
+		System.out.println(open);
+		// request.setAttribute("openPubli", open);
 	}
 
 }

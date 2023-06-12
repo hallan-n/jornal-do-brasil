@@ -48,7 +48,7 @@ public class FileServer {
     }
 
     public String getPathRelative() {
-        return path.replace("E:\\jornal-do-brasil\\src\\main\\webapp\\", "") + fileName + extension;
+        return path.replace(Env.PATH_BASE + "\\src\\main\\webapp\\", "") + fileName + extension;
     }
 
     public void setPath(String path) {
@@ -69,7 +69,7 @@ public class FileServer {
             e.printStackTrace();
         } finally {
             return data;
-        }        
+        }
     }
 
     public void writeFile(String data) {

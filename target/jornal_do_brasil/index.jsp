@@ -136,7 +136,7 @@
             </div>
             <div class="row mt-3">
 
-
+                <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
 
                     <div class="col p-0 me-3">
@@ -147,26 +147,23 @@
                                 <p class="card-text">${pub.description}</p>
 
                                 <div>
-
-                                    <button value="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary"
-                                        onclick="handleSetHtml(this.value)">Abrir</button>
-                                    <a href="publication?action=open&id=${pub.fileName}" class="btn btn-warning">Abrir</a>
+                                    <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
+                                    <%-- <a href="publication?action=open&id=${pub.fileName}" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary">Abrir</a> --%>
                                     <a href="publication?action=edit&filename=${pub.fileName}" class="btn btn-warning">Editar</a>
                                     <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </c:forEach>
+
+                
+
                 <div class="modal modal-xl fade " id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content border">
-                            <div id="shared">
-
-                            </div>
-
+                            <div id="shared"></div>
+        
                             <div class="modal-footer d-flex justify-content-end mt-4">
                                 <button type="button" class="ms-2 btn btn-secondary px-5" data-bs-dismiss="modal">Fechar</button>
                             </div>
@@ -179,9 +176,9 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        function handleSetHtml(id) {
-            console.log("storage/publications/" + id + ".html");
-            $("#shared").load("storage/publications/" + id + ".html");
+        function handleSetHtml(content) {
+            const shared = document.getElementById('shared');
+            shared.innerHTML = content;
         }
     </script>
 </body>
