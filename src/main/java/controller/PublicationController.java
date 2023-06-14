@@ -37,10 +37,10 @@ public class PublicationController extends HttpServlet {
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 		} else if (action.equals("delete")) {
 			deletePublication(request, response);
-		} else if (action.equals("update")) {
-			updatePublication(request, response);
 		} else if (action.equals("open")) {
 			openPublication(request, response);
+		} else if (action.equals("edit")) {
+			editPublication(request, response);
 		}
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
@@ -54,7 +54,7 @@ public class PublicationController extends HttpServlet {
 		if (action.equals("create")) {
 			createPublication(request, response);
 		} else if (action.equals("update")) {
-			updatePublication(request, response);
+			editPublication(request, response);
 		}
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
@@ -88,10 +88,14 @@ public class PublicationController extends HttpServlet {
 		view.forward(request, response);
 	}
 
-	private void updatePublication(HttpServletRequest request, HttpServletResponse response) {
+	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
 
 		FileServer fileServer = new FileServer();
 		Publication publication = new Publication();
+
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("html");
+		fileServer.setFileName(request.getParameter("id"));
 
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
@@ -126,16 +130,10 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("id"));
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
-		main(null, request, response);
 	}
-	public static void main(String[] args,HttpServletRequest request, HttpServletResponse response) {
-		FileServer fileServer = new FileServer();
-		fileServer.setPath("storage\\publications");
-		fileServer.setExtension("html");
-		fileServer.setFileName(request.getParameter("id"));
-		String open = fileServer.readFile(fileServer.getPathWithFileName());
-		System.out.println(open);
-		// request.setAttribute("openPubli", open);
+
+	public static void main(String[] args) {
+
 	}
 
 }
