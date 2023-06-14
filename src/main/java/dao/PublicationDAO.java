@@ -106,16 +106,17 @@ public class PublicationDAO {
 
         return publications;
     }
-    public List<Publication> listForName(String fileName) {
-        List publications = new ArrayList();
+    
+    public Publication listForName(String fileName) {
+
         connection = MyConnection.getConnection();
         String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '"+ fileName+ "';";
 
+        Publication publication = new Publication();
         try {
             statement = connection.prepareStatement(querySelectPublication);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Publication publication = new Publication();
                 publication.setIdPubli(resultSet.getInt("idPubli"));
                 publication.setTitle(resultSet.getString("title"));
                 publication.setCategory(resultSet.getString("category"));
@@ -124,8 +125,6 @@ public class PublicationDAO {
                 publication.setPath(resultSet.getString("path"));
                 publication.setAuthor(resultSet.getInt("author"));
                 publication.setDate(resultSet.getDate("date"));
-
-                publications.add(publication);
             }
 
         } catch (SQLException e) {
@@ -133,10 +132,8 @@ public class PublicationDAO {
         } finally {
             MyConnection.closeConnection(connection, statement, resultSet);
         }
-
-        return publications;
+        return publication;
     }
-
 
     public boolean update(Publication publication) {
         boolean reponse = false;

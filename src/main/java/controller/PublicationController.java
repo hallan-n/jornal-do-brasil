@@ -128,9 +128,7 @@ public class PublicationController extends HttpServlet {
 
 	public static void main(String[] args) {
 		PublicationDAO publicationDAO = new PublicationDAO();
-		publicationDAO.listForName("8cf1977d-086f-4f03-b2e8-d4548ce20c3f").forEach(e -> {
-			System.out.println(e.getFileName());
-		});;
+		System.out.println(publicationDAO.listForName("8cf1977d-086f-4f03-b2e8-d4548ce20c3f").getFileName()); 
 	}
 
 }
