@@ -43,6 +43,7 @@ public class PublicationDAO {
         }
         return reponse;
     }
+
     public List<Publication> listAll() {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
@@ -70,13 +71,15 @@ public class PublicationDAO {
         } finally {
             MyConnection.closeConnection(connection, statement, resultSet);
         }
-        
+
         return publications;
     }
+
     public List<Publication> listForCategory(String category) {
         List publications = new ArrayList();
         connection = MyConnection.getConnection();
-        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication WHERE category = '" + category + "' ORDER BY idPubli DESC;";
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication WHERE category = '" + category
+                + "' ORDER BY idPubli DESC;";
 
         try {
             statement = connection.prepareStatement(querySelectPublication);
@@ -103,6 +106,38 @@ public class PublicationDAO {
 
         return publications;
     }
+    public List<Publication> listForName(String fileName) {
+        List publications = new ArrayList();
+        connection = MyConnection.getConnection();
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '"+ fileName+ "';";
+
+        try {
+            statement = connection.prepareStatement(querySelectPublication);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Publication publication = new Publication();
+                publication.setIdPubli(resultSet.getInt("idPubli"));
+                publication.setTitle(resultSet.getString("title"));
+                publication.setCategory(resultSet.getString("category"));
+                publication.setFileName(resultSet.getString("fileName"));
+                publication.setDescription(resultSet.getString("description"));
+                publication.setPath(resultSet.getString("path"));
+                publication.setAuthor(resultSet.getInt("author"));
+                publication.setDate(resultSet.getDate("date"));
+
+                publications.add(publication);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar Alunos!..." + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+
+        return publications;
+    }
+
+
     public boolean update(Publication publication) {
         boolean reponse = false;
         connection = MyConnection.getConnection();
@@ -130,6 +165,7 @@ public class PublicationDAO {
 
         return reponse;
     }
+
     public boolean deleteForFileName(String fileName) {
         boolean response = false;
         connection = MyConnection.getConnection();

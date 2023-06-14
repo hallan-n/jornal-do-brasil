@@ -120,7 +120,7 @@
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
                         <label class="form-label m-0" for="txtTitle">Título</label>
-                        <input required name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
+                        <input required value="${titlePubli}" name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
                     </div>
                     <div class="col">
                         <label class="form-label m-0" for="txtDescription">Descrição</label>
@@ -156,7 +156,7 @@
 
                 <input type="text" name="txtTextArea" id="txtTextArea" value=" " hidden></input>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
-                    <p>&nbsp;</p>
+                    ${contentPubli}
                 </div>
                 
                 <!-- modal -->

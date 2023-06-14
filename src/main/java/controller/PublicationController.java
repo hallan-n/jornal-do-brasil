@@ -90,20 +90,14 @@ public class PublicationController extends HttpServlet {
 
 	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
 
-		FileServer fileServer = new FileServer();
 		Publication publication = new Publication();
 
+		FileServer fileServer = new FileServer();
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
+		request.setAttribute("publication", publicationDAO.listForName(request.getParameter("id")));
 
-		publication.setTitle(request.getParameter("txtTitle"));
-		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
-		publication.setDescription(request.getParameter("txtDescription"));
-		publication.setFileName(fileServer.getFileName());
-		publication.setExtension(fileServer.getExtension());
-		publication.setPath(fileServer.getPathRelative());
-		publication.setAuthor(1);
 	}
 
 	// GET
@@ -133,7 +127,10 @@ public class PublicationController extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-
+		PublicationDAO publicationDAO = new PublicationDAO();
+		publicationDAO.listForName("8cf1977d-086f-4f03-b2e8-d4548ce20c3f").forEach(e -> {
+			System.out.println(e.getFileName());
+		});;
 	}
 
 }

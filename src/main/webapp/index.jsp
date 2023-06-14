@@ -148,8 +148,7 @@
 
                                 <div>
                                     <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
-                                    <%-- <a href="publication?action=open&id=${pub.fileName}" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary">Abrir</a> --%>
-                                    <a href="publication?action=edit&filename=${pub.fileName}" class="btn btn-warning">Editar</a>
+                                    <a href="publication?action=edit&id=${pub.fileName}" class="btn btn-warning">Editar</a>
                                     <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
                                 </div>
                             </div>
