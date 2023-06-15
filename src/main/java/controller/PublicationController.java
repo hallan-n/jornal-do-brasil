@@ -17,7 +17,7 @@ import dao.PublicationDAO;
 
 @WebServlet(urlPatterns = { "/publication" })
 public class PublicationController extends HttpServlet {
-
+	private String openView = "index.jsp";
 	private PublicationDAO publicationDAO = new PublicationDAO();
 	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde",
 			"Tecnologia",
@@ -42,7 +42,7 @@ public class PublicationController extends HttpServlet {
 		} else if (action.equals("edit")) {
 			editPublication(request, response);
 		}
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(openView);
 		view.forward(request, response);
 	}
 
@@ -56,7 +56,7 @@ public class PublicationController extends HttpServlet {
 		} else if (action.equals("update")) {
 			editPublication(request, response);
 		}
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(openView);
 		view.forward(request, response);
 	}
 
@@ -84,20 +84,15 @@ public class PublicationController extends HttpServlet {
 			System.out.println("Criado");
 			fileServer.writeFile(request.getParameter("txtTextArea"));
 		}
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);
 	}
 
 	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
-
-		Publication publication = new Publication();
-
 		FileServer fileServer = new FileServer();
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
 		request.setAttribute("publication", publicationDAO.listForName(request.getParameter("id")));
-
+		openView = "edit_publication.jsp";
 	}
 
 	// GET
@@ -107,13 +102,10 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("filename"));
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
-
 		if (publicationDAO.deleteForFileName(fileServer.getFileName())) {
 			System.out.println("Excluido");
 			fileServer.deleteFile(fileServer.getPathWithFileName());
 		}
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);
 	}
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
