@@ -24,10 +24,7 @@ public class Publication {
     }
     public Publication(){
 
-    }   
-
-
-  
+    }     
     public int getIdPubli() {
         return idPubli;
     }
@@ -82,5 +79,4 @@ public class Publication {
     public void setExtension(String extension) {
         this.extension = extension;
     }
-
 }

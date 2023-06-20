@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -17,29 +18,28 @@ import dao.PublicationDAO;
 
 @WebServlet(urlPatterns = { "/publication" })
 public class PublicationController extends HttpServlet {
-	private String openView = "index.jsp";
+	private String openView, action;
 	private PublicationDAO publicationDAO = new PublicationDAO();
 	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde",
-			"Tecnologia",
-			"Entretenimento", "Estilo", "Gastronomia" };
+			"Tecnologia", "Entretenimento", "Estilo", "Gastronomia" };
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String category = request.getParameter("category");
-		String action = request.getParameter("action");
+		action = request.getParameter("action");
 
-		if (action.equals("list") && category == null) {
-			request.setAttribute("publications", publicationDAO.listAll());
-
-		} else if (action.equals("list") && category != null) {
-			request.setAttribute("publications",
-					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+		if (action.equals("list") && category != null) {
+			request.setAttribute("publications", publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+		} else if (action.equals("list")) {
+			System.out.println("a");
+			// request.setAttribute("publications", publicationDAO.listAll());
 		} else if (action.equals("delete")) {
 			deletePublication(request, response);
 		} else if (action.equals("open")) {
 			openPublication(request, response);
 		} else if (action.equals("edit")) {
+
 			editPublication(request, response);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(openView);
@@ -52,9 +52,8 @@ public class PublicationController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equals("create")) {
+			openView = "edit_publication.jsp";
 			createPublication(request, response);
-		} else if (action.equals("update")) {
-			editPublication(request, response);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(openView);
 		view.forward(request, response);
@@ -63,7 +62,6 @@ public class PublicationController extends HttpServlet {
 	// POST
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		Env env = new Env();
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
@@ -81,17 +79,27 @@ public class PublicationController extends HttpServlet {
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
 		if (publicationDAO.create(publication)) {
-			System.out.println("Criado");
 			fileServer.writeFile(request.getParameter("txtTextArea"));
+
+			fileServer.setFileName("testee");
+			fileServer.writeFile("teste");
 		}
+
 	}
 
 	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
+
+		// FileServer fileServer = new FileServer();
+		// fileServer.setPath("storage\\publications");
+		// fileServer.setExtension("html");
+		// fileServer.setFileName(request.getParameter("id"));
+		// request.setAttribute("publicationEdit",
+		// publicationDAO.listForName(request.getParameter("id")));
 		FileServer fileServer = new FileServer();
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
-		fileServer.setFileName(request.getParameter("id"));
-		request.setAttribute("publication", publicationDAO.listForName(request.getParameter("id")));
+		fileServer.setFileName("teste");
+		fileServer.writeFile("teste");
 		openView = "edit_publication.jsp";
 	}
 
@@ -120,7 +128,13 @@ public class PublicationController extends HttpServlet {
 
 	public static void main(String[] args) {
 		PublicationDAO publicationDAO = new PublicationDAO();
-		System.out.println(publicationDAO.listForName("8cf1977d-086f-4f03-b2e8-d4548ce20c3f").getFileName()); 
+		System.out.println(publicationDAO.listForName("8cf1977d-086f-4f03-b2e8-d4548ce20c3f").getFileName());
+
+		FileServer fileServer = new FileServer();
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("html");
+		fileServer.setFileName("teste");
+		fileServer.writeFile("teste");
 	}
 
 }
