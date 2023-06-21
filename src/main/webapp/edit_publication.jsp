@@ -119,16 +119,17 @@
                 <input type="hidden" value="edit" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
-                        <label class="form-label m-0" for="txtTitle">Título</label>
-                        <input required value="${publicationEdit}" name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
+                        <label class="form-label m-0" for="txtTitleT">Título</label>
+                        <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" />
+                        <input type="hidden" value="${uuid}" name="uuidTitle" id="teste">
                     </div>
                     <div class="col">
-                        <label class="form-label m-0" for="txtDescription">Descrição</label>
-                        <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100"/>
+                        <label class="form-label m-0" for="txtDescriptionT">Descrição</label>
+                        <input required value="${publicationEdit.description}" name="txtDescriptionT" id="txtDescriptionT" class="form-control w-100" type="text" maxlength="100"/>
                     </div>
                     <div class="col-2">
-                        <label class="form-label m-0" for="txtCategory">Categoria</label>
-                        <select required name="txtCategory" id="txtCategory" class="form-select form-select-md">
+                        <label class="form-label m-0" for="txtCategoryT">Categoria</label>
+                        <select required name="txtCategoryT" id="txtCategoryT" class="form-select form-select-md">
                             <option selected disabled>Selecione...</option>
                             <option value="0">Política</option>
                             <option value="1">Business</option>
@@ -143,7 +144,7 @@
                     </div>
 
                     <div class="col-1 d-flex flex-column ">
-                        <label class="form-label m-0" for="txtCategory">Thumb</label>
+                        <label class="form-label m-0" for="txt">Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
@@ -154,7 +155,7 @@
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
-                <input type="text" name="txtTextArea" id="txtTextArea" value=" " hidden></input>
+                <input type="text" name="txtTextArea" id="txtTextAreaT" value=" " hidden></input>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
                 </div>
