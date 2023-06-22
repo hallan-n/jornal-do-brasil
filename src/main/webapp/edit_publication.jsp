@@ -155,7 +155,7 @@
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
-                <input type="text" name="txtTextArea" id="txtTextAreaT" value=" " hidden></input>
+                <input type="text" name="txtTextAreaT" id="txtTextAreaT" value=" " hidden></input>
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
                 </div>
@@ -184,14 +184,14 @@
 
             <input type="file" id="upload" hidden />
             <div class="d-flex justify-content-end mt-4">
-                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
+                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicarT">
                     Publicar
                 </button>
             </div>
         </div>
     </div>
 
-    <script src="assets/js/editor.js"></script>
+    <script src="assets/js/edit.js"></script>
 </body>
 
 </html>

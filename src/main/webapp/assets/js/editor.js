@@ -4,14 +4,15 @@ const fontColor = document.querySelector("#fontColor")
 const backColor = document.querySelector("#backColor")
 const upload = document.querySelector("#upload")
 const imageSize = document.getElementById('inputImageSize')
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const publicar = document.getElementById('publicar');
 
 const txtTextArea = document.getElementById('txtTextArea');
 
 publicar.addEventListener('click', () => {
     txtTextArea.value = editor.innerHTML.trim();
+    console.log(txtTextArea.value);
 })
+
 
 
 let valor;
