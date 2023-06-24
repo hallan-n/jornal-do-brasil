@@ -156,6 +156,7 @@
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
                 <input type="text" name="txtTextAreaT" id="txtTextAreaT" value=" " hidden></input>
+                <input type="text" name="txtID" id="txtID" value="${publicationEdit.idPubli}" hidden></input>
                 <div id="editorT" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
                 </div>
@@ -197,7 +198,6 @@
         const editorT = document.getElementById("editorT")
 
         publicarT.addEventListener('click', () => {
-            console.log("asdasdasdasd");
             txtTextAreaT.value = editorT.innerHTML.trim();
             console.log(txtTextAreaT.value);
         })

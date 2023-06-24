@@ -30,13 +30,13 @@ public class PublicationController extends HttpServlet {
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 
-		if (action.equals("list") && category != null) {
+		if (action.equals("list") && category == null) {
+			openView = "index.jsp";
+			request.setAttribute("publications", publicationDAO.listAll());
+		} else if (action.equals("list") && category != null) {
 			openView = "index.jsp";
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
-		} else if (action.equals("list")) {
-			openView = "index.jsp";
-			request.setAttribute("publications", publicationDAO.listAll());
 		} else if (action.equals("delete")) {
 			deletePublication(request, response);
 		} else if (action.equals("open")) {
@@ -96,21 +96,21 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("uuidTitle"));
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
-		fileServer.writeFile(request.getParameter("txtTextAreaT"));
 
-		// Publication publication = new Publication();
-		// publication.setTitle(request.getParameter("txtTitleT"));
-		// publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategoryT"))]);
-		// publication.setDescription(request.getParameter("txtDescriptionT"));
-		// publication.setFileName(fileServer.getFileName());
-		// publication.setExtension(fileServer.getExtension());
-		// publication.setPath(fileServer.getPathRelative());
-		// publication.setAuthor(1);
-		// Date datePublication = new Date();
-		// publication.setDate(datePublication);
-		// if (publicationDAO.create(publication)) {
-		// fileServer.writeFile(request.getParameter("txtTextAreaT"));
-		// }
+		Publication publication = new Publication();
+		publication.setTitle(request.getParameter("txtTitleT"));
+		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategoryT"))]);
+		publication.setDescription(request.getParameter("txtDescriptionT"));
+		publication.setFileName(fileServer.getFileName());
+		publication.setExtension(fileServer.getExtension());
+		publication.setPath(fileServer.getPathRelative());
+		publication.setAuthor(1);
+		publication.setIdPubli(Integer.parseInt(request.getParameter("txtID")));
+		Date d = new Date();
+		publication.setDate(d);
+		if (publicationDAO.update(publication)) {
+			fileServer.writeFile(request.getParameter("txtTextAreaT"));
+		}
 	}
 
 	// GET
