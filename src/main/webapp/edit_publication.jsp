@@ -156,7 +156,7 @@
                 <label class="form-label m-0" for="editor">Conteúdo</label>
 
                 <input type="text" name="txtTextAreaT" id="txtTextAreaT" value=" " hidden></input>
-                <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
+                <div id="editorT" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
                 </div>
                 
@@ -190,8 +190,18 @@
             </div>
         </div>
     </div>
-
     <script src="assets/js/edit.js"></script>
+    <script>
+        const txtTextAreaT = document.getElementById('txtTextAreaT');
+        const publicarT = document.getElementById('publicarT');
+        const editorT = document.getElementById("editorT")
+
+        publicarT.addEventListener('click', () => {
+            console.log("asdasdasdasd");
+            txtTextAreaT.value = editorT.innerHTML.trim();
+            console.log(txtTextAreaT.value);
+        })
+    </script>
 </body>
 
 </html>
