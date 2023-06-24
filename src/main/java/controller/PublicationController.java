@@ -29,10 +29,6 @@ public class PublicationController extends HttpServlet {
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 
-		
-		FileServer fs = new FileServer();
-		String thumb = fs.readFile("");
-
 		if (action.equals("list") && category == null) {
 			openView = "index.jsp";
 			request.setAttribute("publications", publicationDAO.listAll());
@@ -70,13 +66,18 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		openView = "index.jsp";
+
+		// env
 		Env env = new Env();
 		Env env2 = new Env();
+
+		// file server
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
 
+		// publication
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
@@ -87,9 +88,11 @@ public class PublicationController extends HttpServlet {
 		publication.setAuthor(1);
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
+
 		if (publicationDAO.create(publication)) {
 			fileServer.writeFile(request.getParameter("txtTextArea"));
 
+			// thumb
 			fileServer.setFileName(env2.uuid);
 			fileServer.setPath("storage\\thumb");
 			fileServer.writeFile(request.getParameter("thumbValue"));
