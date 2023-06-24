@@ -26,9 +26,12 @@ public class PublicationController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
+
+		
+		FileServer fs = new FileServer();
+		String thumb = fs.readFile("");
 
 		if (action.equals("list") && category == null) {
 			openView = "index.jsp";
@@ -68,6 +71,7 @@ public class PublicationController extends HttpServlet {
 			throws ServletException, IOException {
 		openView = "index.jsp";
 		Env env = new Env();
+		Env env2 = new Env();
 		FileServer fileServer = new FileServer();
 		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
@@ -85,6 +89,10 @@ public class PublicationController extends HttpServlet {
 		publication.setDate(datePublication);
 		if (publicationDAO.create(publication)) {
 			fileServer.writeFile(request.getParameter("txtTextArea"));
+
+			fileServer.setFileName(env2.uuid);
+			fileServer.setPath("storage\\thumb");
+			fileServer.writeFile(request.getParameter("thumbValue"));
 		}
 
 	}

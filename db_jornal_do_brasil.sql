@@ -47,7 +47,11 @@ CREATE TABLE user (
     description VARCHAR(100) NOT NULL,
     fileName VARCHAR(45) NOT NULL,
     extension VARCHAR(5) NOT NULL,
-	path VARCHAR(100) NOT NULL,
+	pathFileName VARCHAR(100) NOT NULL,
+
+	thumb VARCHAR(45) NOT NULL,
+	pathThumb VARCHAR(100) NOT NULL,
+
 	author INT NOT NULL,
 	date DATE NOT NULL
 	FOREIGN KEY (author) REFERENCES user(idUser)

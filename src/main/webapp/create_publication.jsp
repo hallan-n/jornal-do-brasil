@@ -143,11 +143,16 @@
                     </div>
 
                     <div class="col-1 d-flex flex-column ">
-                        <label class="form-label m-0" for="txtCategory">Thumb</label>
+                        <label class="form-label m-0" for="thumb">Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
+
+                        <!-- Thumb -->
                         <input type="file" name="thumb" id="thumb" hidden>
+                        <textarea name="thumbValue" id="thumbValue" hidden></textarea>
+
+
                     </div>
                     
                 </div>
@@ -189,8 +194,8 @@
             </div>
         </div>
     </div>
-
     <script src="assets/js/editor.js"></script>
+    <script src="assets/js/thumb.js"></script>
 </body>
 
 </html>
