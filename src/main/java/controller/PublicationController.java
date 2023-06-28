@@ -84,7 +84,9 @@ public class PublicationController extends HttpServlet {
 		publication.setDescription(request.getParameter("txtDescription"));
 		publication.setFileName(fileServer.getFileName());
 		publication.setExtension(fileServer.getExtension());
-		publication.setPath(fileServer.getPathRelative());
+		publication.setPathFileName(fileServer.getExtension());
+		publication.setThumb(fileServer.getExtension());
+		publication.setPathThumb(fileServer.getExtension());
 		publication.setAuthor(1);
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
