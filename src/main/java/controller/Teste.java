@@ -4,9 +4,11 @@ import java.util.Date;
 
 import dao.PublicationDAO;
 import model.Publication;
+import services.FileServer;
 
 public class Teste {
     public static void main(String[] args) {
+        // PublicationDAO dao = new PublicationDAO();
         // Publication p = new Publication();
         // p.setTitle("titulo");
         // p.setCategory("Internacional");
@@ -19,24 +21,14 @@ public class Teste {
         // p.setAuthor(0);
         // Date date = new Date();
         // p.setDate(date);
-        // d.create(p);
 
+        // dao.create(p);
+        FileServer fileServer = new FileServer();
+        fileServer.setFileName("teste");
+        fileServer.setExtension("html");
+        fileServer.setPath("storage\\publications");
+        fileServer.writeFile("teste");
 
-        // PublicationDAO d = new PublicationDAO();
-        // for (Publication t : d.listAll()) {
-        //     System.out.println(t.getIdPubli());
-        //     System.out.println(t.getTitle());
-        //     System.out.println(t.getCategory());
-        //     System.out.println(t.getFileName());
-        //     System.out.println(t.getExtension());
-        //     System.out.println(t.getPathFileName());
-        //     System.out.println(t.getThumb());
-        //     System.out.println(t.getPathThumb());
-        //     System.out.println(t.getAuthor());
-        //     System.out.println(t.getDate());
-        // }
-        
-        
     }
-    
+
 }
