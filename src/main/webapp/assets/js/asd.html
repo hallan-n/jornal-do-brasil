@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="20b7d310-29f4-46f6-91f7-27d979759918" onclick="renderThumb(this.getAttribute('id'))">20b7d310-29f4-46f6-91f7-27d979759918</div>
+    <input type="file" id="thumb">
+    <textarea id="thumbValue"></textarea>
+
+    <script src="thumb.js"></script>
+    <script>
+        function renderThumb(fileName) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = () => {
+                document.getElementById(fileName).innerHTML = xhttp.responseText;
+            };
+            xhttp.open("GET", `../../storage/thumb/${fileName}.html`, true);
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>

@@ -2,7 +2,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,10 +30,20 @@ public class PublicationController extends HttpServlet {
 			throws ServletException, IOException {
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
-
+		
 		if (action.equals("list") && category == null) {
 			openView = "index.jsp";
 			request.setAttribute("publications", publicationDAO.listAll());
+			
+			FileServer fileServer = new FileServer();
+			List thumbs = new ArrayList();
+			String open = fileServer.readFile(fileServer.getPathWithFileName());
+
+
+
+
+
+
 		} else if (action.equals("list") && category != null) {
 			openView = "index.jsp";
 			request.setAttribute("publications",
@@ -69,7 +81,6 @@ public class PublicationController extends HttpServlet {
 
 		// env
 		Env env = new Env();
-		Env env2 = new Env();
 
 		// file server publication
 		FileServer fileServer = new FileServer();
@@ -89,13 +100,14 @@ public class PublicationController extends HttpServlet {
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
 		publication.setAuthor(1);
-
+		
 		// file server thumb
-		fileServer.setFileName(env2.uuid);
+		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\thumb");
 		fileServer.writeFile(request.getParameter("thumbValue"));
-
+		
+		// publication
 		publication.setThumb(fileServer.getFileName());
 		publication.setPathThumb(fileServer.getPathRelative());
 		publicationDAO.create(publication);
@@ -157,7 +169,16 @@ public class PublicationController extends HttpServlet {
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
+
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
+	}
+	public static void main(String[] args) {
+		FileServer fileServer = new FileServer();
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("png");
+		fileServer.setFileName("aas");
+		fileServer.writeFile("tsds");
+		
 	}
 }
