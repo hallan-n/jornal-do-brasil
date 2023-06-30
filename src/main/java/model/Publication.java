@@ -7,7 +7,7 @@ public class Publication {
     private String category;
     private String description;
     private String fileName;
-    private String extension;
+    private String extension;   
     private String pathFileName;
     private String thumb;
     private String pathThumb;
