@@ -94,73 +94,23 @@ public class PublicationController extends HttpServlet {
 		publication.setTitle(request.getParameter("txtTitle"));
 		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategory"))]);
 		publication.setDescription(request.getParameter("txtDescription"));
-
 		publication.setFileName(fileServer.getFileName());
 		publication.setExtension(fileServer.getExtension());
-		publication.setPath(fileServer.getPathRelative());
-		publication.setAuthor(1);
+		publication.setPathFileName(fileServer.getPathRelative());
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
-
-		if (publicationDAO.create(publication)) {
-			fileServer.writeFile(request.getParameter("txtTextArea"));
-
-			// thumb
-			fileServer.setFileName(env2.uuid);
-			fileServer.setPath("storage\\thumb");
-			fileServer.writeFile(request.getParameter("thumbValue"));
-		}
-
-	}
-
-	private void editPublicationPost(HttpServletRequest request, HttpServletResponse response) {
-		openView = "index.jsp";
-
-		FileServer fileServer = new FileServer();
-		fileServer.setFileName(request.getParameter("uuidTitle"));
-		fileServer.setExtension("html");
-		fileServer.setPath("storage\\publications");
-
-		Publication publication = new Publication();
-		publication.setTitle(request.getParameter("txtTitleT"));
-		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategoryT"))]);
-		publication.setDescription(request.getParameter("txtDescriptionT"));
-		publication.setFileName(fileServer.getFileName());
-		publication.setExtension(fileServer.getExtension());
-		publication.setPath(fileServer.getPathRelative());
 		publication.setAuthor(1);
-		publication.setIdPubli(Integer.parseInt(request.getParameter("txtID")));
-		Date d = new Date();
-		publication.setDate(d);
-		if (publicationDAO.update(publication)) {
-			fileServer.writeFile(request.getParameter("txtTextAreaT"));
-		}
-	}
-
-	// GET
-	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
-
-		openView = "edit_publication.jsp";
-		FileServer fileServer = new FileServer();
-		fileServer.setPath("storage\\publications");
+		
+		// file server thumb
+		fileServer.setFileName(env.uuid);
 		fileServer.setExtension("html");
-		fileServer.setFileName(request.getParameter("id"));
-		request.setAttribute("publicationEdit",
-				publicationDAO.listForName(request.getParameter("id")));
-		request.setAttribute("contentPubli", fileServer.readFile(fileServer.getPathWithFileName()));
-		request.setAttribute("uuid", request.getParameter("id"));
-	}
-
-	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		FileServer fileServer = new FileServer();
-		fileServer.setFileName(request.getParameter("filename"));
-		fileServer.setExtension("html");
-		fileServer.setPath("storage\\publications");
-		if (publicationDAO.deleteForFileName(fileServer.getFileName())) {
-			System.out.println("Excluido");
-			fileServer.deleteFile(fileServer.getPathWithFileName());
-		}
+		fileServer.setPath("storage\\thumb");
+		fileServer.writeFile(request.getParameter("thumbValue"));
+		
+		// publication
+		publication.setThumb(fileServer.getFileName());
+		publication.setPathThumb(fileServer.getPathRelative());
+		publicationDAO.create(publication);
 	}
 
 	// private void editPublicationPost(HttpServletRequest request, HttpServletResponse response) {
