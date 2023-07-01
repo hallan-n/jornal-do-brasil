@@ -172,24 +172,24 @@ public class PublicationDAO {
     //     return reponse;
     // }
 
-    // public boolean deleteForFileName(String fileName) {
-    //     boolean response = false;
-    //     connection = MyConnection.getConnection();
-    //     String queryDeletePublication = "delete from publication where fileName=?";
+    public boolean deleteForFileName(String fileName) {
+        boolean response = false;
+        connection = MyConnection.getConnection();
+        String queryDeletePublication = "delete from publication where fileName=?";
 
-    //     try {
-    //         statement = connection.prepareStatement(queryDeletePublication);
-    //         statement.setString(1, fileName);
-    //         statement.executeUpdate();
-    //         response = true;
+        try {
+            statement = connection.prepareStatement(queryDeletePublication);
+            statement.setString(1, fileName);
+            statement.executeUpdate();
+            response = true;
 
-    //     } catch (SQLException e) {
-    //         System.out.println("Opss... Erro ao tentar excluir usuário" + e);
-    //     } finally {
-    //         MyConnection.closeConnection(connection, statement);
-    //     }
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao tentar excluir usuário" + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement);
+        }
 
-    //     return response;
-    // }
+        return response;
+    }
 
 }

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <%@include file="head.jsp" %>
-    <title>Home</title>
+        <title>Home</title>
 </head>
 
 
@@ -124,7 +124,7 @@
                     </div>
                     <div class="col">
                         <label class="form-label m-0" for="txtDescription">Descrição</label>
-                        <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100"/>
+                        <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100" />
                     </div>
                     <div class="col-2">
                         <label class="form-label m-0" for="txtCategory">Categoria</label>
@@ -154,7 +154,7 @@
 
 
                     </div>
-                    
+
                 </div>
 
                 <label class="form-label m-0" for="editor">Conteúdo</label>
@@ -163,7 +163,7 @@
                 <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;">
                     <p>&nbsp;</p>
                 </div>
-                
+
                 <!-- modal -->
                 <div class="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">

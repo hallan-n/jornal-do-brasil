@@ -8,18 +8,16 @@
 </head>
 
 <body>
-    <div id="20b7d310-29f4-46f6-91f7-27d979759918" onclick="renderThumb(this.getAttribute('id'))">20b7d310-29f4-46f6-91f7-27d979759918</div>
-    <input type="file" id="thumb">
-    <textarea id="thumbValue"></textarea>
-
-    <script src="thumb.js"></script>
+    <embed type="text/html" src="../../storage/thumb/b0f464ad-c526-42e9-9654-ea1332330c51.html">
     <script>
-        function renderThumb(fileName) {
+        function renderThumb(fileName){
+            
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = () => {
                 document.getElementById(fileName).innerHTML = xhttp.responseText;
             };
-            xhttp.open("GET", `../../storage/thumb/${fileName}.html`, true);
+            console.log("storage/thumb/"+fileName+".html");
+            xhttp.open("GET", "../../storage/thumb/"+fileName+".html", true);
             xhttp.send();
         }
     </script>

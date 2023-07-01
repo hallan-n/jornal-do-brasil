@@ -137,7 +137,7 @@
 
                     <div class="col p-0 me-3">
                         <div class="card">
-                        <div id="${pub.fileName}" onclick="renderThumb(this.getAttribute('id'))">teste</div>
+                            <embed type="text/html" src="storage/thumb/${pub.fileName}.html">
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
@@ -155,6 +155,11 @@
             </div>
         </div>
     </div>
+    <script>   
+        function render(fileName) {
+            console.log(fileName);         
+        }                   
+    </script>
 </body>
 
 </html>

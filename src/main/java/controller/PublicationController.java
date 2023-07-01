@@ -34,22 +34,12 @@ public class PublicationController extends HttpServlet {
 		if (action.equals("list") && category == null) {
 			openView = "index.jsp";
 			request.setAttribute("publications", publicationDAO.listAll());
-			
-			FileServer fileServer = new FileServer();
-			List thumbs = new ArrayList();
-			String open = fileServer.readFile(fileServer.getPathWithFileName());
-
-
-
-
-
-
 		} else if (action.equals("list") && category != null) {
 			openView = "index.jsp";
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 		} else if (action.equals("delete")) {
-			// deletePublication(request, response);
+			deletePublication(request, response);
 		} else if (action.equals("open")) {
 			openPublication(request, response);
 		} else if (action.equals("edit")) {
@@ -151,17 +141,18 @@ public class PublicationController extends HttpServlet {
 	// 	request.setAttribute("uuid", request.getParameter("id"));
 	// }
 
-	// private void deletePublication(HttpServletRequest request, HttpServletResponse response)
-	// 		throws ServletException, IOException {
-	// 	FileServer fileServer = new FileServer();
-	// 	fileServer.setFileName(request.getParameter("filename"));
-	// 	fileServer.setExtension("html");
-	// 	fileServer.setPath("storage\\publications");
-	// 	if (publicationDAO.deleteForFileName(fileServer.getFileName())) {
-	// 		System.out.println("Excluido");
-	// 		fileServer.deleteFile(fileServer.getPathWithFileName());
-	// 	}
-	// }
+	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		FileServer fileServer = new FileServer();
+		fileServer.setFileName(request.getParameter("filename"));
+		fileServer.setExtension("html");
+		fileServer.setPath("storage\\publications");
+		fileServer.deleteFile(fileServer.getPathWithFileName());
+		fileServer.setPath("storage\\thumb");
+		fileServer.deleteFile(fileServer.getPathWithFileName());
+		publicationDAO.deleteForFileName(fileServer.getFileName());
+	}
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -169,16 +160,10 @@ public class PublicationController extends HttpServlet {
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
-
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
 	}
 	public static void main(String[] args) {
-		FileServer fileServer = new FileServer();
-		fileServer.setPath("storage\\publications");
-		fileServer.setExtension("png");
-		fileServer.setFileName("aas");
-		fileServer.writeFile("tsds");
 		
 	}
 }
