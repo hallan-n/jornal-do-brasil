@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JpegConverter",
+            "request": "launch",
+            "mainClass": "services.JpegConverter",
+            "projectName": "jornal_do_brasil"
+        },
+        {
+            "type": "java",
             "name": "Teste",
             "request": "launch",
             "mainClass": "controller.Teste",
