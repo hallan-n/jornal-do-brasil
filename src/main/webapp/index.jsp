@@ -137,7 +137,8 @@
 
                     <div class="col p-0 me-3">
                         <div class="card">
-                            <embed type="text/html" src="storage/thumb/${pub.fileName}.html">
+                        <img class="card-img-top" src="${pub.pathThumb}" alt="Card image cap">
+
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>

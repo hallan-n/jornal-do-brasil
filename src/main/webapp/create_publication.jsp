@@ -79,6 +79,7 @@
                     <span class="material-symbols-outlined pt-1">redo</span>
                 </button>
                 <div class="d-flex border rounded my-1">
+                    <input type="file" id="upload" hidden />
                     <label for="upload" class="btn">
                         <span class=" material-symbols-outlined pt-1">image</span>
                     </label>
@@ -115,7 +116,7 @@
 
 
 
-            <form action="publication" method="POST" class="mt-3">
+            <form action="publication" method="POST" enctype="multipart/form-data" class="mt-3">
                 <input type="hidden" value="create" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
@@ -150,7 +151,7 @@
 
                         <!-- Thumb -->
                         <input type="file" name="thumb" id="thumb" hidden>
-                        <textarea name="thumbValue" id="thumbValue" hidden></textarea>
+                        <%-- <textarea name="thumbValue" id="thumbValue" hidden></textarea> --%>
 
 
                     </div>
@@ -186,7 +187,6 @@
             </form>
 
 
-            <input type="file" id="upload" hidden />
             <div class="d-flex justify-content-end mt-4">
                 <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
                     Publicar

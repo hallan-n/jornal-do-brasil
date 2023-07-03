@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.File;
 
 import javax.servlet.ServletException;
@@ -65,12 +67,8 @@ public class PublicationController extends HttpServlet {
 
 		if (action.equals("create")) {
 			createPublication(request, response);
-		}
-		else if (action.equals("form")) {
-			saveImage(request, response);
-		}
-		else if (action.equals("edit")) {
-		// editPublicationPost(request, response);
+		}else if (action.equals("edit")) {
+			// editPublicationPost(request, response);
 		}
 
 		RequestDispatcher view = request.getRequestDispatcher(openView);
@@ -78,55 +76,7 @@ public class PublicationController extends HttpServlet {
 	}
 
 	// POST
-	private void saveImage(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		String UPLOAD_DIR = "C:\\Source"; // Diretório onde as imagens serão salvas
-
-		// Verifica se a requisição contém um arquivo
-		if (request.getParts().isEmpty()) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Nenhum arquivo enviado");
-			return;
-		}
-
-		// Obtém o arquivo do formulário
-		Part filePart = request.getPart("file");
-
-		// Extrai o nome do arquivo do cabeçalho do conteúdo
-		String fileName = getFileName(filePart);
-
-		// Cria o diretório de destino, se ainda não existir
-		File uploadDir = new File(UPLOAD_DIR);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdirs();
-		}
-
-		// Cria o caminho completo do arquivo no diretório de destino
-		String filePath = UPLOAD_DIR + File.separator + fileName;
-
-		// Grava o arquivo no servidor
-		try (InputStream inputStream = filePart.getInputStream();
-				OutputStream outputStream = new FileOutputStream(filePath)) {
-			int bytesRead;
-			final byte[] buffer = new byte[1024];
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-				outputStream.write(buffer, 0, bytesRead);
-			}
-		}
-
-		// Envie uma resposta de sucesso ao cliente
-		response.getWriter().println("Arquivo '" + fileName + "' enviado com sucesso!");
-	}
-
-	private String getFileName(Part part) {
-		String contentDisposition = part.getHeader("content-disposition");
-		String[] elements = contentDisposition.split(";");
-		for (String element : elements) {
-			if (element.trim().startsWith("filename")) {
-				return element.substring(element.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
-	}
+	
 
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -141,7 +91,7 @@ public class PublicationController extends HttpServlet {
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
 		fileServer.writeFile(request.getParameter("txtTextArea"));
-
+		
 		// publication
 		Publication publication = new Publication();
 		publication.setTitle(request.getParameter("txtTitle"));
@@ -153,16 +103,18 @@ public class PublicationController extends HttpServlet {
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
 		publication.setAuthor(1);
-
+		
 		// file server thumb
-		fileServer.setFileName(env.uuid);
-		fileServer.setExtension("html");
-		fileServer.setPath("storage\\thumb");
-		fileServer.writeFile(request.getParameter("thumbValue"));
+		JpegConverter jpegConverter = new JpegConverter();
+		jpegConverter.saveImage(request, response, env.uuid, "thumb");
 
-		// publication
-		publication.setThumb(fileServer.getFileName());
-		publication.setPathThumb(fileServer.getPathRelative());
+		
+		fileServer.setPath("storage\\thumb");
+		fileServer.setExtension(jpegConverter.getExtension());
+
+		publication.setThumb(env.uuid);
+		publication.setPathThumb(fileServer.getPathRelative());		
+
 		publicationDAO.create(publication);
 	}
 
@@ -215,6 +167,8 @@ public class PublicationController extends HttpServlet {
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
 		fileServer.deleteFile(fileServer.getPathWithFileName());
+		
+		fileServer.setExtension("jpeg");
 		fileServer.setPath("storage\\thumb");
 		fileServer.deleteFile(fileServer.getPathWithFileName());
 		publicationDAO.deleteForFileName(fileServer.getFileName());
@@ -228,6 +182,10 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("id"));
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
+	}
+	public static void main(String[] args) {
+		JpegConverter jpegConverter = new JpegConverter();
+		System.out.println(jpegConverter.getName());
 	}
 
 }
