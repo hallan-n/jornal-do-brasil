@@ -108,12 +108,11 @@ public class PublicationController extends HttpServlet {
 		JpegConverter jpegConverter = new JpegConverter();
 		jpegConverter.saveImage(request, response, env.uuid, "thumb");
 
-		
 		fileServer.setPath("storage\\thumb");
 		fileServer.setExtension(jpegConverter.getExtension());
-
 		publication.setThumb(env.uuid);
 		publication.setPathThumb(fileServer.getPathRelative());		
+
 
 		publicationDAO.create(publication);
 	}
@@ -161,16 +160,21 @@ public class PublicationController extends HttpServlet {
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String[] extensions = new String[] {"apng","gif","ico","cur","jpg","jpeg","jfif","pjpeg","pjp","png","svg"};
 		FileServer fileServer = new FileServer();
+
+		// Delete publication
 		fileServer.setFileName(request.getParameter("filename"));
 		fileServer.setExtension("html");
 		fileServer.setPath("storage\\publications");
 		fileServer.deleteFile(fileServer.getPathWithFileName());
-		
-		fileServer.setExtension("jpeg");
+
+		// Delete thumb
 		fileServer.setPath("storage\\thumb");
-		fileServer.deleteFile(fileServer.getPathWithFileName());
+		for (int i = 0; i < extensions.length; i++) {
+			fileServer.setExtension(extensions[i]);
+			fileServer.deleteFile(fileServer.getPathWithFileName());			
+		}
 		publicationDAO.deleteForFileName(fileServer.getFileName());
 	}
 
@@ -183,9 +187,4 @@ public class PublicationController extends HttpServlet {
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
 	}
-	public static void main(String[] args) {
-		JpegConverter jpegConverter = new JpegConverter();
-		System.out.println(jpegConverter.getName());
-	}
-
 }
