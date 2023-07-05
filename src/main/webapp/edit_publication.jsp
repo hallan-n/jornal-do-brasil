@@ -115,13 +115,13 @@
 
 
 
-            <form action="publication" method="POST" class="mt-3">
+            <form action="publication" method="POST"  enctype="multipart/form-data" class="mt-3">
                 <input type="hidden" value="edit" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
                         <label class="form-label m-0" for="txtTitleT">Título</label>
                         <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" />
-                        <input type="hidden" value="${uuid}" name="uuidTitle" id="teste">
+
                     </div>
                     <div class="col">
                         <label class="form-label m-0" for="txtDescriptionT">Descrição</label>
@@ -153,9 +153,8 @@
                     
                 </div>
 
-                <label class="form-label m-0" for="editor">Conteúdo</label>
-
-                <input type="text" name="txtTextAreaT" id="txtTextAreaT" value=" " hidden></input>
+                <label class="form-label m-0" for="editorT">Conteúdo</label>
+                <textarea name="txtTextAreaT" id="txtTextAreaT" hidden></textarea>
                 <input type="text" name="txtID" id="txtID" value="${publicationEdit.idPubli}" hidden></input>
                 <div id="editorT" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
@@ -192,16 +191,6 @@
         </div>
     </div>
     <script src="assets/js/edit.js"></script>
-    <script>
-        const txtTextAreaT = document.getElementById('txtTextAreaT');
-        const publicarT = document.getElementById('publicarT');
-        const editorT = document.getElementById("editorT")
-
-        publicarT.addEventListener('click', () => {
-            txtTextAreaT.value = editorT.innerHTML.trim();
-            console.log(txtTextAreaT.value);
-        })
-    </script>
 </body>
 
 </html>

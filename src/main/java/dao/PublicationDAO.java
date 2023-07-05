@@ -36,9 +36,9 @@ public class PublicationDAO {
             statement.setString(8, publication.getPathThumb());
             statement.setInt(9, publication.getAuthor());
             Date d = new Date(publication.getDate().getTime());
-            statement.setDate(10, d);            
+            statement.setDate(10, d);
             statement.executeUpdate();
-            reponse = true;          
+            reponse = true;
         } catch (SQLException e) {
             System.out.println("Erro ao tentar criar publicação: " + e.getMessage());
         } finally {
@@ -68,7 +68,7 @@ public class PublicationDAO {
                 publication.setPathThumb(resultSet.getString("pathThumb"));
                 publication.setAuthor(resultSet.getInt("author"));
                 publication.setDate(resultSet.getDate("date"));
-                
+
                 publications.add(publication);
             }
 
@@ -115,62 +115,71 @@ public class PublicationDAO {
 
         return publications;
     }
-    
-    // public Publication listForName(String fileName) {
 
-    //     connection = MyConnection.getConnection();
-    //     String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '"+ fileName+ "';";
+    public Publication listForName(String fileName) {
 
-    //     Publication publication = new Publication();
-    //     try {
-    //         statement = connection.prepareStatement(querySelectPublication);
-    //         resultSet = statement.executeQuery();
-    //         while (resultSet.next()) {
-    //             publication.setIdPubli(resultSet.getInt("idPubli"));
-    //             publication.setTitle(resultSet.getString("title"));
-    //             publication.setCategory(resultSet.getString("category"));
-    //             publication.setFileName(resultSet.getString("fileName"));
-    //             publication.setDescription(resultSet.getString("description"));
-    //             publication.setPath(resultSet.getString("path"));
-    //             publication.setAuthor(resultSet.getInt("author"));
-    //             publication.setDate(resultSet.getDate("date"));
-    //         }
+        connection = MyConnection.getConnection();
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '" + fileName + "';";
 
-    //     } catch (SQLException e) {
-    //         System.out.println("Opss... Erro ao selecionar Alunos!..." + e);
-    //     } finally {
-    //         MyConnection.closeConnection(connection, statement, resultSet);
-    //     }
-    //     return publication;
-    // }
+        Publication publication = new Publication();
+        try {
+            statement = connection.prepareStatement(querySelectPublication);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                publication.setIdPubli(resultSet.getInt("idPubli"));
+                publication.setTitle(resultSet.getString("title"));
+                publication.setCategory(resultSet.getString("category"));
+                publication.setDescription(resultSet.getString("description"));
+                publication.setFileName(resultSet.getString("fileName"));
+                publication.setExtension(resultSet.getString("extension"));
+                publication.setPathFileName(resultSet.getString("pathFileName"));
+                publication.setThumb(resultSet.getString("thumb"));
+                publication.setPathThumb(resultSet.getString("pathThumb"));
+                publication.setAuthor(resultSet.getInt("author"));
+                // Date d = new Date(publication.getDate().getTime());
+                publication.setDate(resultSet.getDate("date"));
+                statement.executeUpdate();
+            }
 
-    // public boolean update(Publication publication) {
-    //     boolean reponse = false;
-    //     connection = MyConnection.getConnection();
-    //     String queryUpdatePublication = "update publication set title=?, category=?, description=?, path=?, author=?, date=? where idPubli=?;";
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar Alunos!..." + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+        return publication;
+    }
 
-    //     try {
-    //         statement = connection.prepareStatement(queryUpdatePublication);
+    public boolean update(Publication publication) {
+        boolean reponse = false;
+        connection = MyConnection.getConnection();
+        String queryUpdatePublication = "update publication set title=?, category=?, description=?, fileName=?, extension=?, pathFileName=?, thumb=?, pathThumb=?, author=?, date=? where idPubli=?;";
+        try {
+            statement = connection.prepareStatement(queryUpdatePublication);
 
-    //         statement.setString(1, publication.getTitle());
-    //         statement.setString(2, publication.getCategory());
-    //         statement.setString(3, publication.getDescription());
-    //         statement.setString(4, publication.getPath());
-    //         statement.setInt(5, publication.getAuthor());
-    //         Date d = new Date(publication.getDate().getTime());
-    //         statement.setDate(6, d);
-    //         statement.setInt(7, publication.getIdPubli());
-    //         statement.executeUpdate();
-    //         reponse = true;
+            statement.setString(1, publication.getTitle());
+            statement.setString(2, publication.getCategory());
+            statement.setString(3, publication.getDescription());
+            statement.setString(4, publication.getFileName());
+            statement.setString(5, publication.getExtension());
+            statement.setString(6, publication.getPathFileName());
+            statement.setString(7, publication.getThumb());
+            statement.setString(8, publication.getPathThumb());
+            statement.setInt(9, publication.getAuthor());
+            Date d = new Date(publication.getDate().getTime());
+            statement.setDate(10, d);
+            statement.setInt(11, publication.getIdPubli());
 
-    //     } catch (SQLException e) {
-    //         System.out.println("Opss.. Erro ao atualizar Aluno" + e);
-    //     } finally {
-    //         MyConnection.closeConnection(connection, statement);
-    //     }
+            statement.executeUpdate();
+            reponse = true;
 
-    //     return reponse;
-    // }
+        } catch (SQLException e) {
+            System.out.println("Opss.. Erro ao atualizar Aluno" + e);
+        } finally {
+            MyConnection.closeConnection(connection, statement);
+        }
+
+        return reponse;
+    }
 
     public boolean deleteForFileName(String fileName) {
         boolean response = false;
