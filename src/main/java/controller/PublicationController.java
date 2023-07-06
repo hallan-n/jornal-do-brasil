@@ -148,12 +148,15 @@ public class PublicationController extends HttpServlet {
 
 		openView = "edit_publication.jsp";
 		FileServer fileServer = new FileServer();
+		JpegConverter jpegConverter = new JpegConverter();
+
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
 		
 		request.setAttribute("publicationEdit", publicationDAO.listForName(request.getParameter("id")));
 		request.setAttribute("contentPubli", fileServer.readFile(fileServer.getPathWithFileName()));
+		request.setAttribute("thumbValue", jpegConverter.readFile(fileServer.getPathWithFileName()));
 	}
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
@@ -185,28 +188,5 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("id"));
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
-	}
-
-	public static void main(String[] args) {
-
-		Publication p = new Publication();
-		PublicationDAO dao = new PublicationDAO();
-		// p.setAuthor(1);
-		// p.setCategory("Política");
-		// Date d = new Date();
-		// p.setDate(d);
-		// p.setDescription("asd");
-		// p.setExtension("asd");
-		// p.setFileName("asd");
-		// p.setPathFileName("asd");
-		// p.setPathThumb("asd");
-		// p.setThumb("asd");
-		// p.setTitle("asd");
-		// p.setIdPubli(1);
-
-		// dao.update(p);
-		System.out.println(dao.listForName("d8daba8a-58f7-41da-9686-0d9e5b4694c3").getTitle());
-		// 
-
 	}
 }

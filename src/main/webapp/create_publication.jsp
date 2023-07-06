@@ -150,7 +150,7 @@
                         </label>
 
                         <!-- Thumb -->
-                        <input type="file" name="thumb" id="thumb" hidden>
+                        <input type="file" name="thumb" id="thumb" accept="image/*" hidden>
                         <%-- <textarea name="thumbValue" id="thumbValue" hidden></textarea> --%>
 
 

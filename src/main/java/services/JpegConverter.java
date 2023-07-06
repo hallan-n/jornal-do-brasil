@@ -1,10 +1,12 @@
 package services;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,6 +81,43 @@ public class JpegConverter {
         Matcher matcher = regex.matcher(this.output);
         String output = matcher.replaceAll(replacement);
         return output;
+    }
+
+
+
+
+
+
+
+
+    public String readFile(String path){
+        try {
+            // Lê o arquivo da imagem em bytes
+            byte[] imageBytes = readImageBytes(path);
+
+            // Converte os bytes para Base64
+            String base64Image = convertToBase64(imageBytes);
+
+            // Imprime o resultado
+            return base64Image;
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
+    private static byte[] readImageBytes(String imagePath) throws IOException {
+        File imageFile = new File(imagePath);
+        byte[] buffer = new byte[(int) imageFile.length()];
+
+        FileInputStream fileInputStream = new FileInputStream(imageFile);
+        fileInputStream.read(buffer);
+        fileInputStream.close();
+
+        return buffer;
+    }
+
+    private static String convertToBase64(byte[] imageBytes) {
+        return Base64.getEncoder().encodeToString(imageBytes);
     }
 
 }

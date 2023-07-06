@@ -143,12 +143,12 @@
                         </select>
                     </div>
 
-                    <div class="col-1 d-flex flex-column ">
+                    <div class="col-1 d-flex flex-column">
                         <label class="form-label m-0" for="txt">Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
-                        <input type="file" name="thumb" id="thumb" hidden>
+                        <input type="file" name="thumb" id="thumb" hidden value="${thumbValue}">
                     </div>
                     
                 </div>
@@ -182,7 +182,7 @@
             </form>
 
 
-            <input type="file" id="upload" hidden />
+            <input type="file" id="upload" accept="image/*" hidden />
             <div class="d-flex justify-content-end mt-4">
                 <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicarT">
                     Publicar

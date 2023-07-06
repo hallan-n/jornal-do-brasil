@@ -136,7 +136,6 @@ public class PublicationDAO {
                 publication.setThumb(resultSet.getString("thumb"));
                 publication.setPathThumb(resultSet.getString("pathThumb"));
                 publication.setAuthor(resultSet.getInt("author"));
-                // Date d = new Date(publication.getDate().getTime());
                 publication.setDate(resultSet.getDate("date"));
                 statement.executeUpdate();
             }
