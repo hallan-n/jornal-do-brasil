@@ -8,9 +8,10 @@
 </head>
 
 <body>
-    <input type="file" id="input" accept="image/*" />
+    <button  >rodar</button>
+    <input type="file" id="input" accept="image/*"  />
     <script>
-
+        const base64Data = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFYAJ1usAl4QAAAABJRU5ErkJggg==';
         // base64 da imagem e nome da imagem
         function setFileInputValue(base64, filename) {
             const formData = new FormData();
@@ -18,8 +19,10 @@
             const input = document.getElementById('input');
             input.files = formData;
         }
-
-        setFileInputValue(base64Data);
+        function t(){
+            
+            setFileInputValue(base64Data, "teste");
+        }
 
 
 
