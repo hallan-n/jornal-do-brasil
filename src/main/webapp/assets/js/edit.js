@@ -5,8 +5,11 @@ const backColor = document.querySelector("#backColor")
 const upload = document.querySelector("#upload")
 const imageSize = document.getElementById('inputImageSize')
 const publicar = document.getElementById('publicarT');
-
+const thumb = document.getElementById('thumb')
 const txtTextArea = document.getElementById('txtTextAreaT');
+const thumbValue = document.getElementById('thumbValue');
+
+
 
 publicar.addEventListener('click', () => {
     txtTextArea.value = editor.innerHTML.trim();

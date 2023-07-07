@@ -119,16 +119,16 @@
                 <input type="hidden" value="edit" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
-                        <label class="form-label m-0" for="txtTitleT">Título</label>
+                        <label class="form-label m-0" for="txtTitleT"><span class="text-danger"><strong>* </strong></span>Título</label>
                         <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" />
 
                     </div>
                     <div class="col">
-                        <label class="form-label m-0" for="txtDescriptionT">Descrição</label>
+                        <label class="form-label m-0" for="txtDescriptionT"><span class="text-danger"><strong>* </strong></span>Descrição</label>
                         <input required value="${publicationEdit.description}" name="txtDescriptionT" id="txtDescriptionT" class="form-control w-100" type="text" maxlength="100"/>
                     </div>
                     <div class="col-2">
-                        <label class="form-label m-0" for="txtCategoryT">Categoria</label>
+                        <label class="form-label m-0" for="txtCategoryT"><span class="text-danger"><strong>* </strong></span>Categoria</label>
                         <select required name="txtCategoryT" id="txtCategoryT" class="form-select form-select-md">
                             <option selected disabled>Selecione...</option>
                             <option value="0">Política</option>
@@ -142,13 +142,13 @@
                             <option value="8">Gastronomia</option>
                         </select>
                     </div>
-
+                    <p id="thumbValue" hidden>"${thumbValue}"</p>
                     <div class="col-1 d-flex flex-column">
-                        <label class="form-label m-0" for="txt">Thumb</label>
+                        <label class="form-label m-0" for="txt"><span class="text-danger"><strong>* </strong></span>Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
-                        <input type="file" name="thumb" id="thumb" hidden value="${thumbValue}">
+                        <input type="file" name="thumb" accept="image/*" id="thumb" required hidden>
                     </div>
                     
                 </div>

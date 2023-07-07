@@ -40,8 +40,7 @@ public class UserDAO {
             MyConnection.closeConnection(connection, statement);
         }
         return reponse;
-    }
-    
+    }   
     public List<User> read() {
         List users = new ArrayList();
         connection = MyConnection.getConnection();

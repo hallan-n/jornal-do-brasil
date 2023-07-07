@@ -119,5 +119,5 @@ public class JpegConverter {
     private static String convertToBase64(byte[] imageBytes) {
         return Base64.getEncoder().encodeToString(imageBytes);
     }
-
+    
 }

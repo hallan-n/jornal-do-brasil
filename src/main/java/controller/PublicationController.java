@@ -189,4 +189,14 @@ public class PublicationController extends HttpServlet {
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
 	}
+
+	public static void main(String[] args) {
+		FileServer fileServer = new FileServer();
+		fileServer.setPath("storage\\publications");
+		fileServer.setExtension("jpg");
+		fileServer.setFileName("66562677-2d3c-4a79-97f3-7e91815ac8a6");
+		JpegConverter jpegConverter = new JpegConverter();
+        System.out.println(fileServer.getPathWithFileName());
+        // System.out.println(jpegConverter.readFile("E:\\jornal-do-brasil\\src\\main\\webapp\\storage\\thumb\\66562677-2d3c-4a79-97f3-7e91815ac8a6.jpg"));
+    }
 }

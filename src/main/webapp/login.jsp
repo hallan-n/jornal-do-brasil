@@ -1,21 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%
-    HttpSession sessao = request.getSession();
+<% 
+    HttpSession sessao=request.getSession();
     if (sessao.getAttribute("user") == null) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
 %>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<title>Insert title here</title>
-<%@include file="head.jsp"%>
+    <title>Insert title here</title>
+    <%@include file="head.jsp" %>
 </head>
+
 <body style="background: black;">
-    <%@include file="../shared/header.jsp" %>
+
+    <div class="bg-dark p-4 pb-3">
+        <%@include file="header.jsp" %>
+    </div>
+    <div class="container" style="max-width: 500px;">
+        <div class="max-width-login mx-auto">
+            <div class="d-flex max-width-login border border-3 rounded-2 row align-items-center mt-5 p-4 mx-auto">
+
+                <h3 class="p-0 mb-4 text-center">Login Jornal do Brasil</h3>
+
+                <label class="form-label p-0">Usuário</label>
+
+                <input type="text" class="form-control p-2  shadow-sm border border-1" placeholder="Email">
+
+                <label class="form-label p-0 mt-3">Senha</label>
+                <input type="password" class="form-control p-2  shadow-sm border border-1" placeholder="Senha">
+
+                <div class="d-flex mt-4 align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center">
+                        <input class="form-check-input p-2 me-2 shadow-sm" type="checkbox" name="" id="">
+                        <p class="m-0">Lembre de mim</p>
+                    </div>
+                    <a href="#" class="text-decoration-none">Esqueceu a senha?</a>
+                </div>
+                <div></div>
+                <button class="btn btn-primary mt-4 px-5">Entrar</button>
+                <div></div>
+                <p class="text-center m-0 mt-3">Não tem uma conta?&nbsp;&nbsp;<a href="criar_login.html" class="text-decoration-none">Inscreva-se</a></p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

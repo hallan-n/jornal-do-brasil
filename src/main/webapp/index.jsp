@@ -85,7 +85,7 @@
 
                     <%-- Carrossel --%>
                         <div>
-                            <div id="carouselExampleCaptions" class="carousel slide">
+                            <%-- <div id="carouselExampleCaptions" class="carousel slide">
                                 <div class="carousel-indicators">
                                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -123,7 +123,7 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
-                            </div>
+                            </div> --%>
 
                             <%-- Carrossel --%>
 
@@ -135,7 +135,7 @@
                 <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
 
-                    <div class="col p-0 me-3">
+                    <div class="col p-0">
                         <div class="card">
                         <img class="card-img-top" src="${pub.pathThumb}" alt="Card image cap">
 
@@ -156,11 +156,5 @@
             </div>
         </div>
     </div>
-    <script>   
-        function render(fileName) {
-            console.log(fileName);         
-        }                   
-    </script>
 </body>
-
 </html>

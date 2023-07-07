@@ -79,7 +79,7 @@
                     <span class="material-symbols-outlined pt-1">redo</span>
                 </button>
                 <div class="d-flex border rounded my-1">
-                    <input type="file" id="upload" hidden />
+                    <input type="file" id="upload" accept="image/*" hidden />
                     <label for="upload" class="btn">
                         <span class=" material-symbols-outlined pt-1">image</span>
                     </label>
@@ -120,15 +120,15 @@
                 <input type="hidden" value="create" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
-                        <label class="form-label m-0" for="txtTitle">Título</label>
+                        <label class="form-label m-0" for="txtTitle"><span class="text-danger"><strong>* </strong></span>Título</label>
                         <input required name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
                     </div>
                     <div class="col">
-                        <label class="form-label m-0" for="txtDescription">Descrição</label>
+                        <label class="form-label m-0" for="txtDescription"><span class="text-danger"><strong>* </strong></span>Descrição</label>
                         <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100" />
                     </div>
                     <div class="col-2">
-                        <label class="form-label m-0" for="txtCategory">Categoria</label>
+                        <label class="form-label m-0" for="txtCategory"><span class="text-danger"><strong>* </strong></span>Categoria</label>
                         <select required name="txtCategory" id="txtCategory" class="form-select form-select-md">
                             <option selected disabled>Selecione...</option>
                             <option value="0">Política</option>
@@ -144,13 +144,13 @@
                     </div>
 
                     <div class="col-1 d-flex flex-column ">
-                        <label class="form-label m-0" for="thumb">Thumb</label>
+                        <label class="form-label m-0" for="thumb"><span class="text-danger"><strong>* </strong></span> Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
 
                         <!-- Thumb -->
-                        <input type="file" name="thumb" id="thumb" accept="image/*" hidden>
+                        <input type="file" name="thumb" id="thumb" accept="image/*" required hidden>
                         <%-- <textarea name="thumbValue" id="thumbValue" hidden></textarea> --%>
 
 
@@ -194,7 +194,7 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/thumb.js"></script>
+
     <script src="assets/js/editor.js"></script>
 </body>
 
