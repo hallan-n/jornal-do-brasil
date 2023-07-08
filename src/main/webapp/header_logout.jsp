@@ -9,7 +9,7 @@
             </div>
             <div class="col d-flex justify-content-end p-0" >
                 <input id="inputQuery" class="form-control py-0 me-2 form-cabecalho-1 form-cabecalho-display" type="search" placeholder="Pesquisar..." aria-label="Search" />
-                <a href="" id="anchorQuery" class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display" type="submit">
+                <a href=" " id="anchorQuery" class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display" type="submit">
                     <span class="material-symbols-outlined fs-3">search</span>
                 </a>
                 <a href="login.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">

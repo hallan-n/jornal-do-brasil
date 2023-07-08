@@ -33,17 +33,11 @@ public class PublicationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
-		HttpSession session = request.getSession();
-		UserDAO userDAO =  new UserDAO();
-		String user = session.getAttribute("email").toString();
-		int id = userDAO.listForLogin(user).getIdUser();
-
-
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 		String contain = request.getParameter("contain");
 		HttpSession sessao = request.getSession();
+		UserDAO userDAO =  new UserDAO();
 
 		if (action.equals("list") && category == null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
@@ -52,7 +46,7 @@ public class PublicationController extends HttpServlet {
 				openView = "index.jsp";
 			}
 			request.setAttribute("publications", publicationDAO.listAll());
-			request.setAttribute("id", id);
+			request.setAttribute("id", userDAO.listForLogin((String) sessao.getAttribute("email")).getIdUser());
 		} else if (action.equals("list") && category != null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -61,7 +55,7 @@ public class PublicationController extends HttpServlet {
 			}
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
-			request.setAttribute("id", id);
+			request.setAttribute("id", userDAO.listForLogin((String) sessao.getAttribute("email")).getIdUser());
 		} else if (action.equals("list") && contain != null && category == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -69,7 +63,7 @@ public class PublicationController extends HttpServlet {
 				openView = "index.jsp";
 			}
 			request.setAttribute("publications", publicationDAO.listIfContain(contain));
-			request.setAttribute("id", id);
+			request.setAttribute("id", userDAO.listForLogin((String) sessao.getAttribute("email")).getIdUser());
 
 		} else if (action.equals("delete")) {
 			if (sessao.getAttribute("email") == null) {
@@ -93,8 +87,8 @@ public class PublicationController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+				
 		String action = request.getParameter("action");
-
 		if (action.equals("create")) {
 			createPublication(request, response);
 		} else if (action.equals("edit")) {
@@ -231,15 +225,5 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("id"));
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
-	}
-
-	public static void main(String[] args) {
-		PublicationDAO dao = new PublicationDAO();
-
-	
-
-		for (Publication p : dao.listIfContain("piriquita")) {
-			System.out.println(p.getTitle());
-		}
 	}
 }
