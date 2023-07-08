@@ -143,10 +143,17 @@
                             </div>
                         </div>
                     </div>
-
+                    <a id="inputQuery" href=""></a>
                 </c:forEach>
             </div>
         </div>
     </div>
+    <script>
+        const anchorQuery = document.getElementById('anchorQuery');
+        const inputQuery = document.getElementById('inputQuery');
+        inputQuery.addEventListener('change', (e)=>{
+            anchorQuery.setAttribute('href', 'http:\/\/localhost:8080/jornal_do_brasil/publication?action=list&contain=' + e.target.value)
+        })
+    </script>
 </body>
 </html>

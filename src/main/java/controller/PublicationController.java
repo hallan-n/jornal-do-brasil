@@ -32,16 +32,17 @@ public class PublicationController extends HttpServlet {
 			throws ServletException, IOException {
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
+		String contain = request.getParameter("contain");
 		HttpSession sessao = request.getSession();
 
-		if (action.equals("list") && category == null) {
+		if (action.equals("list") && category == null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
 			} else {
 				openView = "index.jsp";
 			}
 			request.setAttribute("publications", publicationDAO.listAll());
-		} else if (action.equals("list") && category != null) {
+		} else if (action.equals("list") && category != null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
 			} else {
@@ -49,6 +50,14 @@ public class PublicationController extends HttpServlet {
 			}
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+		} else if (action.equals("list") && contain != null && category == null) {
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				openView = "index.jsp";
+			}
+			request.setAttribute("publications", publicationDAO.listIfContain(contain));
+
 		} else if (action.equals("delete")) {
 			deletePublication(request, response);
 		} else if (action.equals("open")) {
@@ -198,12 +207,12 @@ public class PublicationController extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-		FileServer fileServer = new FileServer();
-		fileServer.setPath("storage\\publications");
-		fileServer.setExtension("jpg");
-		fileServer.setFileName("66562677-2d3c-4a79-97f3-7e91815ac8a6");
-		JpegConverter jpegConverter = new JpegConverter();
-		System.out.println(fileServer.getPathWithFileName());
-		// System.out.println(jpegConverter.readFile("E:\\jornal-do-brasil\\src\\main\\webapp\\storage\\thumb\\66562677-2d3c-4a79-97f3-7e91815ac8a6.jpg"));
+		PublicationDAO dao = new PublicationDAO();
+
+	
+
+		for (Publication p : dao.listIfContain("piriquita")) {
+			System.out.println(p.getTitle());
+		}
 	}
 }

@@ -119,7 +119,8 @@ public class PublicationDAO {
     public Publication listForName(String fileName) {
 
         connection = MyConnection.getConnection();
-        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '" + fileName + "';";
+        String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '" + fileName
+                + "';";
         Publication publication = new Publication();
         try {
             statement = connection.prepareStatement(querySelectPublication);
@@ -199,4 +200,40 @@ public class PublicationDAO {
         return response;
     }
 
+    public List<Publication> listIfContain(String term) {
+        List publications = new ArrayList();
+        connection = MyConnection.getConnection();
+        String querySelectPublication = "SELECT * FROM publication " + "WHERE title LIKE '%" + term + "%' " + "OR category LIKE '%" + term + "%' " + "OR description LIKE '%" + term + "%';";
+
+        try {
+            statement = connection.prepareStatement(querySelectPublication);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Publication publication = new Publication();
+                publication.setIdPubli(resultSet.getInt("idPubli"));
+                publication.setTitle(resultSet.getString("title"));
+                publication.setCategory(resultSet.getString("category"));
+                publication.setDescription(resultSet.getString("description"));
+                publication.setFileName(resultSet.getString("fileName"));
+                publication.setExtension(resultSet.getString("extension"));
+                publication.setPathFileName(resultSet.getString("pathFileName"));
+                publication.setThumb(resultSet.getString("thumb"));
+                publication.setPathThumb(resultSet.getString("pathThumb"));
+                publication.setAuthor(resultSet.getInt("author"));
+                publication.setDate(resultSet.getDate("date"));
+
+                publications.add(publication);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar publicações!..." + e.getMessage());
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+
+        return publications;
+    }
 }
+
+// SELECT * FROM publication WHERE title LIKE '%termo%' OR category LIKE
+// '%termo%' OR description LIKE '%termo%';

@@ -18,22 +18,23 @@ import model.User;
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
     private String openView;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");    
+        String action = request.getParameter("action");
         if (action.equals("logout")) {
             logoutUser(request, response);
         }
         RequestDispatcher view = request.getRequestDispatcher(openView);
         view.forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        String action = request.getParameter("action");    
-        
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+
         if (action.equals("create")) {
             createUser(request, response);
         } else if (action.equals("login")) {
@@ -52,13 +53,12 @@ public class UserController extends HttpServlet {
         session.setAttribute("email", null);
         openView = "index.jsp";
 
-        
     }
 
     // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         User user = new User();
         boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
@@ -74,31 +74,30 @@ public class UserController extends HttpServlet {
             request.setAttribute("msg", "Login criado com sucesso!");
             request.setAttribute("css", "text-success");
             openView = "login.jsp";
-        }else{
-            request.setAttribute("msg", "Email já cadastrado!");            
+        } else {
+            request.setAttribute("msg", "Email já cadastrado!");
             openView = "create_account.jsp";
         }
-        
+
     }
-  
+
     private void userLogin(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        
+            throws ServletException, IOException {
+
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
         User user = userDAO.listForLogin(email);
         try {
             if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
-            openView = "index.jsp";
-            HttpSession session = request.getSession();
-            session.setAttribute("email", user.getEmail());
-        }
+                openView = "index.jsp";
+                HttpSession session = request.getSession();
+                session.setAttribute("email", user.getEmail());
+            }
         } catch (Exception e) {
             openView = "login.jsp";
             request.setAttribute("msg", "Login ou senha incorretos");
             request.setAttribute("css", "text-danger");
         }
-         
 
     }
 }

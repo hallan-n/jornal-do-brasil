@@ -80,10 +80,10 @@
                 </a>
             </div>
             <div class="col d-flex justify-content-end p-0" >
-                <input class="form-control py-0 me-2 form-cabecalho-1 form-cabecalho-display" type="search" placeholder="Pesquisar..." aria-label="Search" />
-                <button class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display" type="submit">
-                    <span class="material-symbols-outlined fs-3">search</span>
-                </button>
+                <input id="inputQuery" class="form-control py-0 me-2 form-cabecalho-1 form-cabecalho-display" type="search" placeholder="Pesquisar..." aria-label="Search" />
+                <a id="anchorQuery" href="" class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display">
+                    <span class="material-symbols-outlined fs-3">search</span>                   
+                </a>
                 <a href="settings.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">settings</span>
                 </a>
