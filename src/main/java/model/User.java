@@ -12,7 +12,6 @@ public class User {
     private String profilePhoto;
     private String extension;
     private String pathProfilePhoto;
-    private int address;
     private int configuration;
 
     public User() {
@@ -33,7 +32,6 @@ public class User {
         this.profilePhoto = profilePhoto;
         this.extension = extension;
         this.pathProfilePhoto = pathProfilePhoto;
-        this.address = address;
         this.configuration = configuration;
     }
 
@@ -123,14 +121,6 @@ public class User {
 
     public void setPathProfilePhoto(String pathProfilePhoto) {
         this.pathProfilePhoto = pathProfilePhoto;
-    }
-
-    public int getAddress() {
-        return address;
-    }
-
-    public void setAddress(int address) {
-        this.address = address;
     }
 
     public int getConfiguration() {

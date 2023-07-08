@@ -120,7 +120,6 @@ public class PublicationDAO {
 
         connection = MyConnection.getConnection();
         String querySelectPublication = "SELECT * FROM db_jornal_do_brasil.publication where fileName = '" + fileName + "';";
-
         Publication publication = new Publication();
         try {
             statement = connection.prepareStatement(querySelectPublication);
