@@ -15,6 +15,7 @@ import javax.servlet.RequestDispatcher;
 
 import config.Env;
 import model.Publication;
+import model.User;
 import services.FileServer;
 import services.JpegConverter;
 import dao.PublicationDAO;
@@ -31,6 +32,14 @@ public class PublicationController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
+		HttpSession session = request.getSession();
+		UserDAO userDAO =  new UserDAO();
+		String user = session.getAttribute("email").toString();
+		int id = userDAO.listForLogin(user).getIdUser();
+
+
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 		String contain = request.getParameter("contain");
@@ -43,6 +52,7 @@ public class PublicationController extends HttpServlet {
 				openView = "index.jsp";
 			}
 			request.setAttribute("publications", publicationDAO.listAll());
+			request.setAttribute("id", id);
 		} else if (action.equals("list") && category != null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -51,6 +61,7 @@ public class PublicationController extends HttpServlet {
 			}
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
+			request.setAttribute("id", id);
 		} else if (action.equals("list") && contain != null && category == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -58,13 +69,22 @@ public class PublicationController extends HttpServlet {
 				openView = "index.jsp";
 			}
 			request.setAttribute("publications", publicationDAO.listIfContain(contain));
+			request.setAttribute("id", id);
 
 		} else if (action.equals("delete")) {
-			deletePublication(request, response);
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				deletePublication(request, response);
+			}
 		} else if (action.equals("open")) {
 			openPublication(request, response);
 		} else if (action.equals("edit")) {
-			editPublication(request, response);
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				editPublication(request, response);
+			}
 		}
 		RequestDispatcher view = request.getRequestDispatcher(openView);
 		view.forward(request, response);

@@ -85,11 +85,18 @@
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
-
+                                
                                 <div>
                                     <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
-                                    <a href="publication?action=edit&id=${pub.fileName}" class="btn btn-warning">Editar</a>
-                                    <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
+
+                                    <c:set var="id" value="${id}"/>
+                                    <c:choose> 
+                                        <c:when test="${id == pub.author}">
+                                            <a href="publication?action=edit&id=${pub.fileName}" class="btn btn-warning">Editar</a>
+                                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
+                                        </c:when>
+                                    </c:choose>
+                                    
                                 </div>
                             </div>
                         </div>
