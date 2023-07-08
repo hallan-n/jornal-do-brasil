@@ -5,7 +5,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Insert title here</title>
+    <title>JDB - Login</title>
     <%@include file="head.jsp" %>
 </head>
 
@@ -49,6 +49,8 @@
 
         </div>
     </div>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/verify.js"></script>
     <script>
         let msg = document.getElementById("msg");
         if (msg.textContent.length > 6) {

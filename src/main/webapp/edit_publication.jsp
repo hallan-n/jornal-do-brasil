@@ -12,7 +12,7 @@
 
 <head>
     <%@include file="head.jsp" %>
-    <title>Home</title>
+    <title>JDB - Editar publicação</title>
 </head>
 
 
@@ -197,7 +197,11 @@
             </div>
         </div>
     </div>
+
     <script src="assets/js/edit.js"></script>
+    <script src="assets/js/verify.js"></script>
+    <script src="assets/js/search.js"></script>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 
 <head>
     <%@include file="head.jsp" %>
-    <title>Document</title>
+    <title>JDB - Criar conta</title>
     <meta charset="UTF-8" />
 </head>
 
@@ -52,21 +52,9 @@
             </div>
         </div>
     </div>
-    <script>
-        let msg = document.getElementById("msg");
-        if (msg.textContent.length > 6) {
-            msg.style.display = "block";
-        }
-        function passvalidate() {
-            let pass = document.getElementById("txtPassword2").value;
-            let copass = document.getElementById("txtPassword").value;            
-            if (pass !== copass) {
-                alert("As senhas não correspondem!");
-                return false;
-            }            
-            return true;
-        }
-    </script>
+
+    <script src="assets/js/verify.js"></script>
+    <script src="assets/js/search.js"></script>
 </body>
 
 </html>

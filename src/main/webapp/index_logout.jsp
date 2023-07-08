@@ -5,7 +5,7 @@
 
 <head>
     <%@include file="head.jsp" %>
-        <title>Home</title>
+        <title>JDB - Início</title>
         <style>
             hr {
                 border: solid white 1px;
@@ -138,5 +138,7 @@
             </div>
         </div>
     </div>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/verify.js"></script>
 </body>
 </html>

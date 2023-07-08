@@ -12,7 +12,7 @@
 
 <head>
     <%@include file="head.jsp" %>
-        <title>Home</title>
+        <title>JDB - Criar conta</title>
 </head>
 
 
@@ -201,8 +201,12 @@
             </div>
         </div>
     </div>
-
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/editor.js"></script>
+    <script src="assets/js/verify.js"></script>
+    <script src="assets/js/search.js"></script>
+
+    
 </body>
 
 </html>
