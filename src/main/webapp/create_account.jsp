@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <%@include file="head.jsp" %>
     <title>Document</title>
+    <meta charset="UTF-8" />
 </head>
 
 <body>
@@ -20,7 +22,6 @@
 
                         <div class="d-flex justify-content-center form-cabecalho-1">
                             <img src="assets/images/ilustração-formulario.jpg" class="w-75 form-cabecalho-1 mt-5">
-                            </img>
                         </div>
                     </div>
 
@@ -30,6 +31,7 @@
                             <div class="d-flex flex-column">
                                 <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome">
                                 <input id="txtSurname" name="txtSurname" required type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome">
+                                <p id="msg" class="text-danger mt-2 m-0" style="display: none;">${msg}</p>
                                 <input id="txtEmail" name="txtEmail" required type="email" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Email">
                                 <input id="txtPhone" name="txtPhone" required type="tel" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Telefone">
                                 <input id="txtPassword" name="txtPassword" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha">
@@ -51,6 +53,10 @@
         </div>
     </div>
     <script>
+        let msg = document.getElementById("msg");
+        if (msg.textContent.length > 6) {
+            msg.style.display = "block";
+        }
         function passvalidate() {
             let pass = document.getElementById("txtPassword2").value;
             let copass = document.getElementById("txtPassword").value;            

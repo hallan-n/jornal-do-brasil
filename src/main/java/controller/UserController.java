@@ -46,9 +46,8 @@ public class UserController extends HttpServlet {
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        openView = "index.jsp";
-        User user = new User();
-        boolean acceptTerms = false;
+                User user = new User();
+                boolean acceptTerms = false;
 
         user.setName(request.getParameter("txtName"));
         user.setSurname(request.getParameter("txtSurname"));
@@ -59,43 +58,33 @@ public class UserController extends HttpServlet {
             acceptTerms = true;
         }
         user.setAcceptTerms(acceptTerms);
-        userDAO.create(user);
+        if (userDAO.create(user)) {
+            request.setAttribute("msg", "Login criado com sucesso!");
+            request.setAttribute("css", "text-success");
+            openView = "login.jsp";
+        }else{
+            request.setAttribute("msg", "Email já cadastrado!");            
+            openView = "create_account.jsp";
+        }
+        
     }
 
-    // private void updateUser(HttpServletRequest request, HttpServletResponse
-    // response)
-    // throws ServletException, IOException {
-    // }
-
-    // private void listAllUser(HttpServletRequest request, HttpServletResponse
-    // response)
-    // throws ServletException, IOException {
-    // }
-
-    // private void listUserForId(HttpServletRequest request, HttpServletResponse
-    // response)
-    // throws ServletException, IOException {
-    // }
-
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
+    
     private void userLogin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    throws ServletException, IOException {
+        
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
-
         User user = userDAO.listForLogin(email);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
             HttpSession session = request.getSession();
             session.setAttribute("email", user.getEmail());
             openView = "index.jsp";
         } else {
-            request.setAttribute("msg", "Erro ao tentar fazer login");
-            openView = "settings.jsp";
+            request.setAttribute("msg", "Login ou senha incorretos");
+            request.setAttribute("css", "text-danger");
+            openView = "login.jsp";
         }
 
     }
@@ -114,8 +103,9 @@ public class UserController extends HttpServlet {
         u.setExtension("asd");
         u.setPathProfilePhoto("asd");
         u.setConfiguration(0);
-
         dao.create(u);
+        
+        
 
     }
 

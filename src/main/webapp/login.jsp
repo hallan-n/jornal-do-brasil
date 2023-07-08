@@ -17,10 +17,10 @@
     <div class="container" style="max-width: 500px;">
         <div class="max-width-login mx-auto">
 
-            <p>Erro ao fazer login</p>
+            <p id="msg" class="mt-3 fs-3 ${css} text-center" style="display: none;">${msg}</p>
 
             <form action="user" method="post">
-                <input type="hidden" name="action" value="create">
+                <input type="hidden" name="action" value="login">
                 <div class="d-flex max-width-login border border-3 rounded-2 row align-items-center mt-5 p-4 mx-auto">
     
                     <h3 class="p-0 mb-4 text-center">Login Jornal do Brasil</h3>
@@ -34,8 +34,8 @@
     
                     <div class="d-flex mt-4 align-items-center justify-content-between flex-wrap">
                         <div class="d-flex align-items-center">
-                            <input required name="txtAcceptTerms" id="txtAcceptTerms" class="form-check-input p-2 me-2 my-0 shadow-sm" type="checkbox">
-                            <label class="form-label p-0 m-0" for="txtAcceptTerms">Lembre de mim</label>
+                            <input name="txtRemember" id="txtRemember" class="form-check-input p-2 me-2 my-0 shadow-sm" type="checkbox">
+                            <label class="form-label p-0 m-0" for="txtRemember">Lembre de mim</label>
                         </div>
                         <a href="#" class="text-decoration-none">Esqueceu a senha?</a>
                     </div>
@@ -49,6 +49,12 @@
 
         </div>
     </div>
+    <script>
+        let msg = document.getElementById("msg");
+        if (msg.textContent.length > 6) {
+            msg.style.display = "block";
+        }
+    </script>
 </body>
 
 </html>
