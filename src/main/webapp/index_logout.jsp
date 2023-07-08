@@ -121,7 +121,7 @@
 
                     <div class="col p-0">
                         <div class="card">
-                        <img class="card-img-top" src="${pub.pathThumb}" alt="Card image cap">
+                        <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap">
 
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
