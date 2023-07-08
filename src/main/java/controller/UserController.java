@@ -87,16 +87,18 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
         User user = userDAO.listForLogin(email);
-
-        if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
+        try {
+            if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
+            openView = "index.jsp";
             HttpSession session = request.getSession();
             session.setAttribute("email", user.getEmail());
-            openView = "index.jsp";
-        } else {
+        }
+        } catch (Exception e) {
+            openView = "login.jsp";
             request.setAttribute("msg", "Login ou senha incorretos");
             request.setAttribute("css", "text-danger");
-            openView = "login.jsp";
         }
+         
 
     }
 }

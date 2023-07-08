@@ -1,7 +1,6 @@
 
 package controller;
 
-
 import java.io.IOException;
 import java.util.Date;
 
@@ -11,8 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
 import config.Env;
@@ -34,12 +32,21 @@ public class PublicationController extends HttpServlet {
 			throws ServletException, IOException {
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
+		HttpSession sessao = request.getSession();
 
 		if (action.equals("list") && category == null) {
-			openView = "index.jsp";
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				openView = "index.jsp";
+			}
 			request.setAttribute("publications", publicationDAO.listAll());
 		} else if (action.equals("list") && category != null) {
-			openView = "index.jsp";
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				openView = "index.jsp";
+			}
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 		} else if (action.equals("delete")) {
@@ -153,7 +160,7 @@ public class PublicationController extends HttpServlet {
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
 		fileServer.setFileName(request.getParameter("id"));
-		
+
 		request.setAttribute("publicationEdit", publicationDAO.listForName(request.getParameter("id")));
 		request.setAttribute("contentPubli", fileServer.readFile(fileServer.getPathWithFileName()));
 		request.setAttribute("thumbValue", jpegConverter.readFile(fileServer.getPathWithFileName()));
@@ -196,7 +203,7 @@ public class PublicationController extends HttpServlet {
 		fileServer.setExtension("jpg");
 		fileServer.setFileName("66562677-2d3c-4a79-97f3-7e91815ac8a6");
 		JpegConverter jpegConverter = new JpegConverter();
-        System.out.println(fileServer.getPathWithFileName());
-        // System.out.println(jpegConverter.readFile("E:\\jornal-do-brasil\\src\\main\\webapp\\storage\\thumb\\66562677-2d3c-4a79-97f3-7e91815ac8a6.jpg"));
-    }
+		System.out.println(fileServer.getPathWithFileName());
+		// System.out.println(jpegConverter.readFile("E:\\jornal-do-brasil\\src\\main\\webapp\\storage\\thumb\\66562677-2d3c-4a79-97f3-7e91815ac8a6.jpg"));
+	}
 }
