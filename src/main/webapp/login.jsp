@@ -12,7 +12,7 @@
 <body>
 
     <div class="bg-dark p-4 pb-3">
-        <%@include file="header.jsp" %>
+        <%@include file="header_logout.jsp" %>
     </div>
     <div class="container" style="max-width: 500px;">
         <div class="max-width-login mx-auto">

@@ -22,6 +22,9 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");    
+        if (action.equals("logout")) {
+            logoutUser(request, response);
+        }
         RequestDispatcher view = request.getRequestDispatcher(openView);
         view.forward(request, response);
     }
@@ -41,14 +44,23 @@ public class UserController extends HttpServlet {
 
     }
 
-    // POST
     // GET
+    private void logoutUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("email", null);
+        openView = "index.jsp";
+
+        
+    }
+
+    // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-                User user = new User();
-                boolean acceptTerms = false;
-
+        User user = new User();
+        boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
         user.setSurname(request.getParameter("txtSurname"));
         user.setEmail(request.getParameter("txtEmail"));
@@ -68,8 +80,7 @@ public class UserController extends HttpServlet {
         }
         
     }
-
-    
+  
     private void userLogin(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
@@ -88,25 +99,4 @@ public class UserController extends HttpServlet {
         }
 
     }
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        User u = new User();
-
-        u.setName("Hállan");
-        u.setSurname("Neves");
-        u.setEmail("hallan@neves.com");
-        u.setPhone("123456789");
-        u.setPassword("12qwaszx");
-        u.setAcceptTerms(true);
-        u.setDescription("asd");
-        u.setProfilePhoto("asd");
-        u.setExtension("asd");
-        u.setPathProfilePhoto("asd");
-        u.setConfiguration(0);
-        dao.create(u);
-        
-        
-
-    }
-
 }

@@ -1,7 +1,6 @@
 package dao;
 
 import model.User;
-import sistema_login.Usuario;
 import connection.MyConnection;
 
 import java.sql.Connection;
@@ -193,7 +192,6 @@ public class UserDAO {
         return response;
     }
 
- 
     public User logar(User user) {
         User userLogin = new User();
         String querySelectUser = "select * from user where email=? and password=?;";
