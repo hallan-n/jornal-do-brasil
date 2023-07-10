@@ -15,7 +15,6 @@ import javax.servlet.RequestDispatcher;
 
 import config.Env;
 import model.Publication;
-import model.User;
 import services.FileServer;
 import services.JpegConverter;
 import dao.PublicationDAO;
@@ -104,6 +103,7 @@ public class PublicationController extends HttpServlet {
 	private void createPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		openView = "index.jsp";
+		request.setAttribute("publications", publicationDAO.listAll());
 
 		// env
 		Env env = new Env();
@@ -148,6 +148,7 @@ public class PublicationController extends HttpServlet {
 	private void editPublicationPost(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		openView = "index.jsp";
+		request.setAttribute("publications", publicationDAO.listAll());
 
 		// file server publication
 		FileServer fileServer = new FileServer();
@@ -180,7 +181,8 @@ public class PublicationController extends HttpServlet {
 		publicationDAO.update(publication);
 	}
 
-	// // GET
+	// GET
+		
 	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
 
 		openView = "edit_publication.jsp";
@@ -215,6 +217,8 @@ public class PublicationController extends HttpServlet {
 			fileServer.deleteFile(fileServer.getPathWithFileName());
 		}
 		publicationDAO.deleteForFileName(fileServer.getFileName());
+		openView = "index.jsp";
+		request.setAttribute("publications", publicationDAO.listAll());
 	}
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)

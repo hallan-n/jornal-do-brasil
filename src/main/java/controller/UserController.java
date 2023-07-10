@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.PublicationDAO;
 import dao.UserDAO;
 import model.User;
 
@@ -18,6 +18,7 @@ import model.User;
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
     private String openView;
+    PublicationDAO publicationDAO = new PublicationDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +53,7 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("email", null);
         openView = "index.jsp";
-
+        request.setAttribute("publications", publicationDAO.listAll());	
     }
 
     // POST
@@ -78,6 +79,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("msg", "Email já cadastrado!");
             openView = "create_account.jsp";
         }
+        request.setAttribute("publications", publicationDAO.listAll());
 
     }
 
@@ -98,6 +100,6 @@ public class UserController extends HttpServlet {
             request.setAttribute("msg", "Login ou senha incorretos");
             request.setAttribute("css", "text-danger");
         }
-
+        request.setAttribute("publications", publicationDAO.listAll());
     }
 }
