@@ -37,7 +37,7 @@ public class PublicationController extends HttpServlet {
 		String contain = request.getParameter("contain");
 		HttpSession sessao = request.getSession();
 		UserDAO userDAO =  new UserDAO();
-
+		request.setAttribute("user", userDAO.listForLogin((String) sessao.getAttribute("email")));
 		if (action.equals("list") && category == null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";

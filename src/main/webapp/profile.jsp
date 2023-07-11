@@ -13,11 +13,26 @@
 
 <head>
     <%@include file="head.jsp" %>
+    
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/header.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
     <title>JDB - Perfil</title>
 </head>
 
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <div class="bg-dark p-4 pb-3">
         <header id="header">
@@ -39,19 +54,19 @@
                 <div class="col-8 ms-5">
                     <div>
                         <div>
-                            <p class="p-0 m-0"><span><strong>Nome: &nbsp;</strong></span>Hállan Guilherme Santos das Neves</p>
+                            <p class="p-0 m-0"><span><strong>Nome: &nbsp;</strong></span>${user.name}</p>
                         </div>
                         <hr class="my-2">
                         <div>
-                            <p class="p-0 m-0"><span><strong>Email: &nbsp;</strong></span>hallanneves01@gmail.com</p>
+                            <p class="p-0 m-0"><span><strong>Email: &nbsp;</strong></span>${user.email}</p>
                         </div>
                         <hr class="my-2">
                         <div>
-                            <p class="p-0 m-0"><span><strong>Telefone: &nbsp;</strong></span>27 98822-3839</p>
+                            <p class="p-0 m-0"><span><strong>Telefone: &nbsp;</strong></span>${user.phone}</p>
                         </div>
                         <hr class="my-2">
                         <div>
-                            <p class="p-0 m-0"><span><strong>Descrição: &nbsp;</strong></span>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to mak</p>
+                            <p class="p-0 m-0"><span><strong>Descrição: &nbsp;</strong></span>${user.description}</p>
                         </div>
                     </div>
                 </div>

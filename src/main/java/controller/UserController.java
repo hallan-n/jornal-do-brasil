@@ -26,6 +26,10 @@ public class UserController extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("logout")) {
             logoutUser(request, response);
+        } else if (action.equals("profile")) {
+            openView = "profile.jsp";
+            HttpSession session = request.getSession();
+            request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
         }
         RequestDispatcher view = request.getRequestDispatcher(openView);
         view.forward(request, response);
@@ -53,7 +57,7 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("email", null);
         openView = "index.jsp";
-        request.setAttribute("publications", publicationDAO.listAll());	
+        request.setAttribute("publications", publicationDAO.listAll());
     }
 
     // POST
@@ -94,6 +98,7 @@ public class UserController extends HttpServlet {
                 openView = "index.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("email", user.getEmail());
+                request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
             }
         } catch (Exception e) {
             openView = "login.jsp";

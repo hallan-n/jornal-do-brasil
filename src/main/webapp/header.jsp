@@ -1,5 +1,3 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div>
     <div>
         <div class="offcanvas offcanvas-start bg-dark text-light" id="offcanvasExample"
@@ -16,8 +14,9 @@
                             <img class="rounded-circle" src="./assets/images/perfil.jpg" width="50%">
                         </div>
                         <div class="text-center">
-                            <h5 class="m-0">Hállan Neves</h5>
-                            <p class="m-0">Serra-ES</p>
+                            <c:set var="user" value="${user}"/>
+                            <h5 class="m-0">${user.name} ${user.surname}</h5>
+                            <p class="m-0">${user.phone}</p>
                         </div>
                     </div>
                     <hr class="my-5">
@@ -87,7 +86,7 @@
                 <a href="settings.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">settings</span>
                 </a>
-                <a href="profile.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
+                <a href="user?action=profile" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">person</span>
                 </a>
             </div>
