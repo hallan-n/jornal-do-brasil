@@ -168,7 +168,12 @@ public class PublicationController extends HttpServlet {
 		publication.setPathFileName(fileServer.getPathRelative());
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
-		publication.setAuthor(1);
+
+		// Author
+		HttpSession sessao = request.getSession();
+		UserDAO userDAO =  new UserDAO();
+		String user = sessao.getAttribute("email").toString();
+		publication.setAuthor(userDAO.listForLogin(user).getIdUser());
 
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();

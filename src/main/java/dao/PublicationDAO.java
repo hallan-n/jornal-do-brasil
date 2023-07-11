@@ -234,6 +234,3 @@ public class PublicationDAO {
         return publications;
     }
 }
-
-// SELECT * FROM publication WHERE title LIKE '%termo%' OR category LIKE
-// '%termo%' OR description LIKE '%termo%';
