@@ -22,14 +22,14 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
+        
         String action = request.getParameter("action");
         if (action.equals("logout")) {
             logoutUser(request, response);
         } else if (action.equals("profile")) {
             openView = "profile.jsp";
-            HttpSession session = request.getSession();
-            request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
+            setUserData(request, response);
         }
         RequestDispatcher view = request.getRequestDispatcher(openView);
         view.forward(request, response);
@@ -38,6 +38,8 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
         String action = request.getParameter("action");
 
         if (action.equals("create")) {
@@ -58,12 +60,13 @@ public class UserController extends HttpServlet {
         session.setAttribute("email", null);
         openView = "index.jsp";
         request.setAttribute("publications", publicationDAO.listAll());
+        getUserData(request, response);
     }
-
+    
     // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+                
         User user = new User();
         boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
@@ -84,21 +87,19 @@ public class UserController extends HttpServlet {
             openView = "create_account.jsp";
         }
         request.setAttribute("publications", publicationDAO.listAll());
-
+        
     }
-
+    
     private void userLogin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    throws ServletException, IOException {
+        
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
         User user = userDAO.listForLogin(email);
         try {
             if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
                 openView = "index.jsp";
-                HttpSession session = request.getSession();
-                session.setAttribute("email", user.getEmail());
-                request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
+                setAuth(request, response, user);
             }
         } catch (Exception e) {
             openView = "login.jsp";
@@ -106,5 +107,37 @@ public class UserController extends HttpServlet {
             request.setAttribute("css", "text-danger");
         }
         request.setAttribute("publications", publicationDAO.listAll());
+        setUserData(request, response);
+    }
+    
+    private void setUserData(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
+    }
+    
+    private User getUserData(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        return userDAO.listForLogin((String) session.getAttribute("email"));
+    }
+
+    private void setAuth(HttpServletRequest request, HttpServletResponse response, User user) {
+        HttpSession session = request.getSession();
+        session.setAttribute("email", user.getEmail());
+    }
+    public static void main(String[] args) {
+        User u = new User();
+        u.setAcceptTerms(true);
+        u.setConfiguration(0);
+        u.setDescription("asd");
+        u.setEmail("asd");
+        u.setExtension("asd");
+        u.setName("Hállan");
+        u.setPassword("asdasd");
+        u.setPathProfilePhoto("asd");
+        u.setPhone("123");
+        u.setProfilePhoto("asd");
+        u.setSurname("Tásds");
+        UserDAO dao = new UserDAO();
+        dao.create(u);
     }
 }

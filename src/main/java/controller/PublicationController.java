@@ -15,6 +15,7 @@ import javax.servlet.RequestDispatcher;
 
 import config.Env;
 import model.Publication;
+import services.Authenticator;
 import services.FileServer;
 import services.JpegConverter;
 import dao.PublicationDAO;
@@ -23,6 +24,7 @@ import dao.UserDAO;
 @MultipartConfig
 @WebServlet(urlPatterns = { "/publication" })
 public class PublicationController extends HttpServlet {
+	Authenticator auth = new Authenticator();
 	private String openView;
 	private PublicationDAO publicationDAO = new PublicationDAO();
 	private String[] categories = new String[] { "Política", "Business", "Internacional", "Esportes", "Saúde",
@@ -32,11 +34,14 @@ public class PublicationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 		String contain = request.getParameter("contain");
 		HttpSession sessao = request.getSession();
 		UserDAO userDAO =  new UserDAO();
+
 		request.setAttribute("user", userDAO.listForLogin((String) sessao.getAttribute("email")));
 		if (action.equals("list") && category == null && contain == null) {
 			if (sessao.getAttribute("email") == null) {
@@ -77,6 +82,13 @@ public class PublicationController extends HttpServlet {
 				openView = "index_logout.jsp";
 			} else {
 				editPublication(request, response);
+			}
+		} else if (action.equals("create")) {
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				openView = "create_publication.jsp";
+				auth.setUserData(request, response);
 			}
 		}
 		RequestDispatcher view = request.getRequestDispatcher(openView);
@@ -143,6 +155,7 @@ public class PublicationController extends HttpServlet {
 		publication.setPathThumb(fileServer.getPathRelative());
 
 		publicationDAO.create(publication);
+		auth.setUserData(request, response);
 	}
 
 	private void editPublicationPost(HttpServletRequest request,
@@ -184,6 +197,7 @@ public class PublicationController extends HttpServlet {
 		publication.setThumb(request.getParameter("txtID"));
 		publication.setPathThumb(fileServer.getPathRelative());
 		publicationDAO.update(publication);
+		auth.setUserData(request, response);
 	}
 
 	// GET
@@ -201,6 +215,7 @@ public class PublicationController extends HttpServlet {
 		request.setAttribute("publicationEdit", publicationDAO.listForName(request.getParameter("id")));
 		request.setAttribute("contentPubli", fileServer.readFile(fileServer.getPathWithFileName()));
 		request.setAttribute("thumbValue", jpegConverter.readFile(fileServer.getPathWithFileName()));
+		auth.setUserData(request, response);
 	}
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
@@ -224,6 +239,7 @@ public class PublicationController extends HttpServlet {
 		publicationDAO.deleteForFileName(fileServer.getFileName());
 		openView = "index.jsp";
 		request.setAttribute("publications", publicationDAO.listAll());
+		auth.setUserData(request, response);
 	}
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
@@ -234,5 +250,6 @@ public class PublicationController extends HttpServlet {
 		fileServer.setFileName(request.getParameter("id"));
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
+		auth.setUserData(request, response);
 	}
 }

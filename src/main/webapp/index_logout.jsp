@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> --%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -121,7 +122,7 @@
 
                     <div class="col p-0">
                         <div class="card">
-                        <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap">
+                        <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="aspect-ratio: 3/2;">
 
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>

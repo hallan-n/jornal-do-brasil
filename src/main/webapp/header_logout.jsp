@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> --%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div>
     <div id="header" class="container max-width-container">
         <div class="row d-flex justify-content-between ">
