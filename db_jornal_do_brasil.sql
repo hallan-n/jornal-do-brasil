@@ -25,7 +25,7 @@ CREATE TABLE user (
 	extension VARCHAR(5),
 	pathProfilePhoto VARCHAR(45),
 	configuration INT NOT NULL,
-	FOREIGN KEY (configuration) REFERENCES configuration(idConfig),
+	FOREIGN KEY (configuration) REFERENCES configuration(idConfig)
 );
 
  CREATE TABLE publication(

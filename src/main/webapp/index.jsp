@@ -71,17 +71,19 @@
     </div>
 
     <div class="bg-secondary" style="height: 100vw;">
-        <div class="container bg-light px-4 max-width-container" style="height: 100vw;">
+        <div class="container bg-light px-4 max-width-container justify-content-center" style="height: 100vw;">
             <div class="row">
                 <div class="col p-0" style="width: 1300px;">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="ms-4 mt-3 d-flex flex-wrap" style="max-width: 1300px;">
                 <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
-                    <div class="col p-0">
+                    <div class="p-0">
                         <div class="card">
-                        <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap">
+                            <div style="overflow: hidden; width: 100%; height: 200px;">
+                                <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="object-fit: cover;max-width: 300px; height: 200px;">                            
+                            </div>
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
