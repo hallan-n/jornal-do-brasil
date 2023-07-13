@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%-- <%@ page contentType="text/html; charset=UTF-8" %> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -26,16 +28,16 @@
                     </div>
 
                     <div class="col-md-6 p-4 ps-md-0">
-                        <form action="user" method="post" onsubmit="return passvalidate()" accept-charset="UTF-8">
+                        <form action="user" method="post" onsubmit="return passvalidate()">
                             <input type="hidden" name="action" value="create">
                             <div class="d-flex flex-column">
-                                <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome" maxlength="45" charset="UTF-8">
-                                <input id="txtSurname" name="txtSurname" required type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome" maxlength="45" charset="UTF-8">
+                                <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome" maxlength="45" >
+                                <input id="txtSurname" name="txtSurname" required type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome" maxlength="45" >
                                 <p id="msg" class="text-danger mt-2 m-0" style="display: none;">${msg}</p>
-                                <input id="txtEmail" name="txtEmail" required type="email" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Email" maxlength="100" charset="UTF-8">
-                                <input id="txtPhone" name="txtPhone" required type="tel" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Telefone" maxlength="11" charset="UTF-8">
-                                <input id="txtPassword" name="txtPassword" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha" maxlength="45" charset="UTF-8">
-                                <input id="txtPassword2" name="txtPassword2" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha" maxlength="45" charset="UTF-8">
+                                <input id="txtEmail" name="txtEmail" required type="email" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Email" maxlength="100" >
+                                <input id="txtPhone" name="txtPhone" required type="tel" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Telefone" maxlength="11" >
+                                <input id="txtPassword" name="txtPassword" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha" maxlength="45" >
+                                <input id="txtPassword2" name="txtPassword2" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha" maxlength="45">
 
                                 <button type="submit" class="btn btn-primary px-4 mt-2">Registrar</button>
                                 <div class="d-flex justify-content-between mt-4 flex-wrap">

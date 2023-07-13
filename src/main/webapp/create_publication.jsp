@@ -5,26 +5,22 @@
         response.sendRedirect("login.jsp");
     }
 %>
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> --%>
-<%@ page contentType="text/html; charset=UTF-8" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <%@include file="head.jsp" %>
-        <title>JDB - Criar conta</title>
+    <title>JDB - Criar conta</title>
 </head>
-
-
-
 
 <body>
     <div class="bg-dark p-4 pb-0">
         <%@include file="header.jsp" %>
             <hr class="my-4" />
     </div>
-
 
     <div id="parentEditor" class="d-flex justify-content-center mt-5">
 
@@ -159,7 +155,6 @@
 
                         <!-- Thumb -->
                         <input type="file" name="thumb" id="thumb" accept="image/*" required hidden>
-                        <%-- <textarea name="thumbValue" id="thumbValue" hidden></textarea> --%>
 
 
                     </div>

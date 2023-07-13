@@ -23,7 +23,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action.equals("logout")) {
             logoutUser(request, response);
@@ -38,7 +38,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+                request.setCharacterEncoding("UTF-8");
 
         String action = request.getParameter("action");
 
