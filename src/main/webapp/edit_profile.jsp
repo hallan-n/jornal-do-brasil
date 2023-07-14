@@ -36,7 +36,6 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="border border-3 align-items-center p-5 rounded-3 d-flex flex-wrap gap-5 justify-content-center mt-5" style="max-width: 900px;">
-            <input type="file" name="profile" id="profile" hidden accept="image/*">
             <div>
                 <label for="profile">
 
@@ -46,7 +45,8 @@
                     </a>
                 </label>
             </div>
-            <form action="user" method="post" onsubmit="return passvalidate()">
+            <form action="user" method="post" onsubmit="return passvalidate()" enctype="multipart/form-data">
+            <input type="file" name="profile" id="profile" hidden accept="image/*">
                 <input type="hidden" name="action" value="edit">
                 <div class="d-flex gap-3 flex-wrap justify-content-center">
                     <div>

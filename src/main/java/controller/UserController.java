@@ -23,7 +23,7 @@ import services.JpegConverter;
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
     private String openView;
-    
+
     PublicationDAO publicationDAO = new PublicationDAO();
 
     @Override
@@ -79,10 +79,9 @@ public class UserController extends HttpServlet {
     // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+
         Env env = new Env();
 
-        
         User user = new User();
         boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
@@ -93,18 +92,18 @@ public class UserController extends HttpServlet {
         if (request.getParameter("txtAcceptTerms").equals("on")) {
             acceptTerms = true;
         }
-        user.setAcceptTerms(acceptTerms);			
+        user.setAcceptTerms(acceptTerms);
 
         user.setProfilePhoto(env.uuid);
         // file server thumb
         JpegConverter jpegConverter = new JpegConverter();
-        jpegConverter.saveImage(request, response, env.uuid, "profile","storage\\profile");
-        
+        jpegConverter.saveImage(request, response, env.uuid, "profile", "storage\\profile");
+
         // file server publication
         FileServer fileServer = new FileServer();
         fileServer.setFileName(env.uuid);
         fileServer.setPath("storage\\profile");
-		fileServer.setExtension(jpegConverter.getExtension());
+        fileServer.setExtension(jpegConverter.getExtension());
 
         user.setExtension(jpegConverter.getExtension());
         user.setPathProfilePhoto(fileServer.getPathRelative());
@@ -133,7 +132,7 @@ public class UserController extends HttpServlet {
 
         if (!user.getEmail().equals(request.getParameter("txtEmail"))) {
             openView = "login.jsp";
-        }else{
+        } else {
             openView = "profile.jsp";
         }
         user.setEmail(request.getParameter("txtEmail"));
@@ -142,23 +141,22 @@ public class UserController extends HttpServlet {
         user.setDescription(request.getParameter("txtDescription"));
 
         // file server thumb
-		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb","storage\\profile");
-
-
-        user.setProfilePhoto("");
-        user.setExtension("");
-        user.setPathProfilePhoto("");
-
-
-
-
-
-
-
-
-
-
+        try {
+            JpegConverter jpegConverter = new JpegConverter();
+            jpegConverter.saveImage(request, response, getUserData(request, response).getProfilePhoto(), "profile",
+                    "storage\\profile");
+            user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
+            user.setExtension(jpegConverter.getExtension());
+            FileServer fileServer = new FileServer();
+            fileServer.setPath("storage\\profile");
+            fileServer.setFileName(getUserData(request, response).getProfilePhoto());
+            fileServer.setExtension(jpegConverter.getExtension());
+            user.setPathProfilePhoto(fileServer.getPathRelative());
+        } catch (Exception e) {
+            user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
+            user.setExtension(getUserData(request, response).getExtension());
+            user.setPathProfilePhoto(getUserData(request, response).getPathProfilePhoto());
+        }
 
         if (userDAO.update(user)) {
             request.setAttribute("msg", "Dados atualizados com sucesso!");
@@ -219,7 +217,7 @@ public class UserController extends HttpServlet {
         // u.setPathProfilePhoto("asd");
         // u.setConfiguration(0);
         UserDAO dao = new UserDAO();
-       System.out.println(dao.listForLogin("hallan@neves.com").getEmail());
-        
+        System.out.println(dao.listForLogin("hallan@neves.com").getEmail());
+
     }
 }
