@@ -9,9 +9,11 @@ public class User {
     private String password;
     private boolean acceptTerms;
     private String description;
+
     private String profilePhoto;
     private String extension;
     private String pathProfilePhoto;
+    
     private int configuration;
 
     public User() {

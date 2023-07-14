@@ -13,22 +13,29 @@ import javax.servlet.http.HttpSession;
 import dao.PublicationDAO;
 import dao.UserDAO;
 import model.User;
+import services.FileServer;
+import services.JpegConverter;
 
 @WebServlet(urlPatterns = { "/user" })
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
     private String openView;
+    FileServer fileServer = new FileServer();
     PublicationDAO publicationDAO = new PublicationDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action.equals("logout")) {
             logoutUser(request, response);
         } else if (action.equals("profile")) {
             openView = "profile.jsp";
+            setUserData(request, response);
+        } else if (action.equals("edit")) {
+            openView = "edit_profile.jsp";
             setUserData(request, response);
         }
         RequestDispatcher view = request.getRequestDispatcher(openView);
@@ -38,7 +45,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         String action = request.getParameter("action");
 
@@ -46,6 +53,9 @@ public class UserController extends HttpServlet {
             createUser(request, response);
         } else if (action.equals("login")) {
             userLogin(request, response);
+        } else if (action.equals("edit")) {
+            openView = "edit_profile.jsp";
+            updateUser(request, response);
         }
         RequestDispatcher view = request.getRequestDispatcher(openView);
         view.forward(request, response);
@@ -62,11 +72,11 @@ public class UserController extends HttpServlet {
         request.setAttribute("publications", publicationDAO.listAll());
         getUserData(request, response);
     }
-    
+
     // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+
         User user = new User();
         boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
@@ -87,12 +97,60 @@ public class UserController extends HttpServlet {
             openView = "create_account.jsp";
         }
         request.setAttribute("publications", publicationDAO.listAll());
-        
+
     }
-    
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        User user = getUserData(request, response);
+        user.setName(request.getParameter("txtName"));
+        user.setSurname(request.getParameter("txtSurname"));
+
+        if (!user.getEmail().equals(request.getParameter("txtEmail"))) {
+            openView = "login.jsp";
+        }else{
+            openView = "profile.jsp";
+        }
+        user.setEmail(request.getParameter("txtEmail"));
+        user.setPhone(request.getParameter("txtPhone"));
+        user.setPassword(request.getParameter("txtPassword"));
+        user.setDescription(request.getParameter("txtDescription"));
+
+        // file server thumb
+		JpegConverter jpegConverter = new JpegConverter();
+		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb");
+
+		fileServer.setPath("storage\\profile");
+		fileServer.setExtension(jpegConverter.getExtension());
+
+        user.setProfilePhoto("");
+        user.setExtension("");
+        user.setPathProfilePhoto("");
+
+
+
+
+
+
+
+
+
+
+
+        if (userDAO.update(user)) {
+            request.setAttribute("msg", "Dados atualizados com sucesso!");
+            setUserData(request, response);
+        } else {
+            request.setAttribute("msg", "Email já cadastrado!");
+        }
+        request.setAttribute("publications", publicationDAO.listAll());
+
+    }
+
     private void userLogin(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        
+            throws ServletException, IOException {
+
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
         User user = userDAO.listForLogin(email);
@@ -109,12 +167,12 @@ public class UserController extends HttpServlet {
         request.setAttribute("publications", publicationDAO.listAll());
         setUserData(request, response);
     }
-    
+
     private void setUserData(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         request.setAttribute("user", userDAO.listForLogin((String) session.getAttribute("email")));
     }
-    
+
     private User getUserData(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         return userDAO.listForLogin((String) session.getAttribute("email"));
@@ -124,6 +182,7 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("email", user.getEmail());
     }
+
     public static void main(String[] args) {
         User u = new User();
         u.setAcceptTerms(true);

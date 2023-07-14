@@ -20,7 +20,7 @@ CREATE TABLE user (
 	phone VARCHAR(11) NOT NULL,
 	password VARCHAR(45) NOT NULL,
 	acceptTerms BOOL NOT NULL,
-	description VARCHAR(45),
+	description VARCHAR(200),
 	profilePhoto VARCHAR(45),
 	extension VARCHAR(5),
 	pathProfilePhoto VARCHAR(45),
