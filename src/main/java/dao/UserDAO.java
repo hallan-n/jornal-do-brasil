@@ -127,8 +127,8 @@ public class UserDAO {
                 user.setAcceptTerms(resultSet.getBoolean("acceptTerms"));
                 user.setDescription(resultSet.getString("description"));
                 user.setProfilePhoto(resultSet.getString("profilePhoto"));
-                user.setProfilePhoto(resultSet.getString("extension"));
-                user.setProfilePhoto(resultSet.getString("pathProfilePhoto"));
+                user.setExtension(resultSet.getString("extension"));
+                user.setPathProfilePhoto(resultSet.getString("pathProfilePhoto"));
                 user.setConfiguration(resultSet.getInt("configuration"));
                 statement.executeUpdate();
             }

@@ -13,10 +13,9 @@
                 <div>
                     <div>
                         <div class="d-flex justify-content-center mb-2">
-                            <img class="rounded-circle" src="./assets/images/perfil.jpg" width="50%">
+                            <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="profile" width="50%">
                         </div>
                         <div class="text-center">
-                            <c:set var="user" value="${user}"/>
                             <h5 class="m-0">${user.name} ${user.surname}</h5>
                             <p class="m-0">${user.phone}</p>
                         </div>

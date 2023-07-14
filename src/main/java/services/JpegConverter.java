@@ -20,9 +20,9 @@ import config.Env;
 public class JpegConverter {
     private String output;
 
-    public void saveImage(HttpServletRequest request, HttpServletResponse response, String name, String input)
+    public void saveImage(HttpServletRequest request, HttpServletResponse response, String name, String input, String path)
             throws IOException, ServletException {
-        String PATH = Env.PATH_BASE + "\\src\\main\\webapp\\storage\\thumb";
+        String PATH = Env.PATH_BASE + "\\src\\main\\webapp\\" + path;
 
         if (request.getParts().isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Nenhum arquivo enviado");

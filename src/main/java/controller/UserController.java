@@ -4,23 +4,26 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import config.Env;
 import dao.PublicationDAO;
 import dao.UserDAO;
 import model.User;
 import services.FileServer;
 import services.JpegConverter;
 
+@MultipartConfig
 @WebServlet(urlPatterns = { "/user" })
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
     private String openView;
-    FileServer fileServer = new FileServer();
+    
     PublicationDAO publicationDAO = new PublicationDAO();
 
     @Override
@@ -76,7 +79,10 @@ public class UserController extends HttpServlet {
     // POST
     private void createUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
+        Env env = new Env();
 
+        
         User user = new User();
         boolean acceptTerms = false;
         user.setName(request.getParameter("txtName"));
@@ -87,8 +93,25 @@ public class UserController extends HttpServlet {
         if (request.getParameter("txtAcceptTerms").equals("on")) {
             acceptTerms = true;
         }
-        user.setAcceptTerms(acceptTerms);
+        user.setAcceptTerms(acceptTerms);			
+
+        user.setProfilePhoto(env.uuid);
+        // file server thumb
+        JpegConverter jpegConverter = new JpegConverter();
+        jpegConverter.saveImage(request, response, env.uuid, "profile","storage\\profile");
+        
+        // file server publication
+        FileServer fileServer = new FileServer();
+        fileServer.setFileName(env.uuid);
+        fileServer.setPath("storage\\profile");
+		fileServer.setExtension(jpegConverter.getExtension());
+
+        user.setExtension(jpegConverter.getExtension());
+        user.setPathProfilePhoto(fileServer.getPathRelative());
+        user.setConfiguration(0);
+
         if (userDAO.create(user)) {
+            setUserData(request, response);
             request.setAttribute("msg", "Login criado com sucesso!");
             request.setAttribute("css", "text-success");
             openView = "login.jsp";
@@ -100,6 +123,7 @@ public class UserController extends HttpServlet {
 
     }
 
+    // FALTA FAZER
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -119,10 +143,8 @@ public class UserController extends HttpServlet {
 
         // file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb");
+		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb","storage\\profile");
 
-		fileServer.setPath("storage\\profile");
-		fileServer.setExtension(jpegConverter.getExtension());
 
         user.setProfilePhoto("");
         user.setExtension("");
@@ -185,18 +207,19 @@ public class UserController extends HttpServlet {
 
     public static void main(String[] args) {
         User u = new User();
-        u.setAcceptTerms(true);
-        u.setConfiguration(0);
-        u.setDescription("asd");
-        u.setEmail("asd");
-        u.setExtension("asd");
-        u.setName("Hállan");
-        u.setPassword("asdasd");
-        u.setPathProfilePhoto("asd");
-        u.setPhone("123");
-        u.setProfilePhoto("asd");
-        u.setSurname("Tásds");
+        // u.setName("Hállan");
+        // u.setSurname("Tásds");
+        // u.setEmail("asd");
+        // u.setPhone("123");
+        // u.setPassword("asdasd");
+        // u.setAcceptTerms(true);
+        // u.setDescription("asd");
+        // u.setProfilePhoto("asd");
+        // u.setExtension("asd");
+        // u.setPathProfilePhoto("asd");
+        // u.setConfiguration(0);
         UserDAO dao = new UserDAO();
-        dao.create(u);
+       System.out.println(dao.listForLogin("hallan@neves.com").getEmail());
+        
     }
 }

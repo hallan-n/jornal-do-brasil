@@ -8,6 +8,17 @@
 <head>
     <%@include file="head.jsp" %>
     <title>JDB - Criar conta</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/header.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 </head>
 
 <body>
@@ -28,10 +39,18 @@
                     </div>
 
                     <div class="col-md-6 p-4 ps-md-0">
-                        <form action="user" method="post" onsubmit="return passvalidate()">
+                        <form action="user" method="post" onsubmit="return passvalidate()" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="create">
                             <div class="d-flex flex-column">
-                                <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome" maxlength="45" >
+                                <div class="d-flex gap-3">
+                                    <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome" maxlength="45">
+                                    
+                                    <label class="d-flex align-items-center btn border p-0 m-0 px-3" for="profile" style="white-space: nowrap;">
+                                        <span><b class="text-danger">*&nbsp;</b></span>Foto de perfil&nbsp;
+                                        <span class="material-symbols-outlined fs-4">person</span>
+                                    </label>
+                                    <input required type="file" name="profile" id="profile" accept="image/*" hidden>
+                                </div>
                                 <input id="txtSurname" name="txtSurname" required type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome" maxlength="45" >
                                 <p id="msg" class="text-danger mt-2 m-0" style="display: none;">${msg}</p>
                                 <input id="txtEmail" name="txtEmail" required type="email" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Email" maxlength="100" >

@@ -21,9 +21,9 @@ CREATE TABLE user (
 	password VARCHAR(45) NOT NULL,
 	acceptTerms BOOL NOT NULL,
 	description VARCHAR(200),
-	profilePhoto VARCHAR(45),
+	profilePhoto VARCHAR(100),
 	extension VARCHAR(5),
-	pathProfilePhoto VARCHAR(45),
+	pathProfilePhoto VARCHAR(200),
 	configuration INT NOT NULL,
 	FOREIGN KEY (configuration) REFERENCES configuration(idConfig)
 );

@@ -149,7 +149,7 @@ public class PublicationController extends HttpServlet {
 
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, env.uuid, "thumb");
+		jpegConverter.saveImage(request, response, env.uuid, "thumb","storage\\thumb");
 
 		fileServer.setPath("storage\\thumb");
 		fileServer.setExtension(jpegConverter.getExtension());
@@ -192,7 +192,7 @@ public class PublicationController extends HttpServlet {
 
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb");
+		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb","storage\\thumb");
 
 		fileServer.setPath("storage\\thumb");
 		fileServer.setExtension(jpegConverter.getExtension());
