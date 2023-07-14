@@ -80,6 +80,7 @@
                 <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
                     <div class="p-0">
+                    
                         <div class="card">
                             <div style="overflow: hidden; width: 100%; height: 200px;">
                                 <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="object-fit: cover;max-width: 300px; height: 200px;">                            

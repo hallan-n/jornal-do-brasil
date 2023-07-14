@@ -115,26 +115,25 @@
                         </div>
                 </div>
             </div>
-            <div class="row mt-3">
-
+            <div class="ms-4 mt-3 d-flex flex-wrap" style="max-width: 1300px;">
                 <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
-
-                    <div class="col p-0">
+                    <div class="p-0">
+                    
                         <div class="card">
-                        <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="aspect-ratio: 3/2;">
-
+                            <div style="overflow: hidden; width: 100%; height: 200px;">
+                                <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="object-fit: cover;max-width: 300px; height: 200px;">                            
+                            </div>
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
-
+                                
                                 <div>
-                                    <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
+                                    <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>     
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
             </div>
         </div>
