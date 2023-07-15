@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import config.Env;
 import dao.PublicationDAO;
@@ -141,21 +143,30 @@ public class UserController extends HttpServlet {
         user.setDescription(request.getParameter("txtDescription"));
 
         // file server thumb
-        try {
+
+        if (request.getPart("profile").getSize() <= 0) {
+            user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
+            user.setExtension(getUserData(request, response).getExtension());
+            user.setPathProfilePhoto(getUserData(request, response).getPathProfilePhoto());           
+
+        } else {
+            System.out.println(request.getPart("profile").getSize());
+            // Delete old profile photo
+            FileServer fileServer = new FileServer();
+            fileServer.setPath("storage\\profile");
+            fileServer.setFileName(getUserData(request, response).getProfilePhoto());
+            fileServer.setExtension(getUserData(request, response).getExtension());
+            fileServer.deleteFile(fileServer.getPathWithFileName());
+
             JpegConverter jpegConverter = new JpegConverter();
             jpegConverter.saveImage(request, response, getUserData(request, response).getProfilePhoto(), "profile",
                     "storage\\profile");
             user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
             user.setExtension(jpegConverter.getExtension());
-            FileServer fileServer = new FileServer();
             fileServer.setPath("storage\\profile");
             fileServer.setFileName(getUserData(request, response).getProfilePhoto());
             fileServer.setExtension(jpegConverter.getExtension());
             user.setPathProfilePhoto(fileServer.getPathRelative());
-        } catch (Exception e) {
-            user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
-            user.setExtension(getUserData(request, response).getExtension());
-            user.setPathProfilePhoto(getUserData(request, response).getPathProfilePhoto());
         }
 
         if (userDAO.update(user)) {

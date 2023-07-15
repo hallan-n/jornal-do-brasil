@@ -36,17 +36,17 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="border border-3 align-items-center p-5 rounded-3 d-flex flex-wrap gap-5 justify-content-center mt-5" style="max-width: 900px;">
-            <div>
+            <div style="min-height: 100px">
                 <label for="profile">
 
                     <a class="position-relative" role="button">
-                        <img class="rounded-circle" src="assets/images/perfil.jpg" alt="..." width="300px" style="filter: brightness(50%);">
+                        <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
                         <span class="material-symbols-outlined position-absolute fs-1 top-0 start-50 translate-middle text-light">edit_square</span>
                     </a>
                 </label>
             </div>
             <form action="user" method="post" onsubmit="return passvalidate()" enctype="multipart/form-data">
-            <input type="file" name="profile" id="profile" hidden accept="image/*">
+                <input type="file" name="profile" id="profile" hidden accept="image/*">
                 <input type="hidden" name="action" value="edit">
                 <div class="d-flex gap-3 flex-wrap justify-content-center">
                     <div>
@@ -62,7 +62,7 @@
                         <input value="${user.password}" id="txtPassword" name="txtPassword" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha" maxlength="45">
                         <input value="${user.password}" id="txtPassword2" name="txtPassword2" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha"
                         maxlength="45">
-                        <input value="${user.description}" id="txtDescription" name="txtDescription" type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Descrição" maxlength="200">
+                        <input value="${user.description}" id="txtDescription" name="txtDescription" type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Descrição" maxlength="150">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-4">

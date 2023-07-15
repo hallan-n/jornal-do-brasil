@@ -189,7 +189,11 @@ public class PublicationController extends HttpServlet {
 		UserDAO userDAO =  new UserDAO();
 		String user = sessao.getAttribute("email").toString();
 		publication.setAuthor(userDAO.listForLogin(user).getIdUser());
-
+		try {
+			
+		} catch (Exception e) {
+		
+		}
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
 		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb","storage\\thumb");

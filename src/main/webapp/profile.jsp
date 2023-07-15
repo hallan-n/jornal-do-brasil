@@ -29,9 +29,9 @@
         <div class="mx-auto mt-5 p-5" style="max-width: 800px;">
             <p id="msg" class="mt-3 fs-3 text-success text-center" style="display: none;">${msg}</p>
             <div class="border border-3 align-items-center p-5 rounded-3 d-flex flex-wrap gap-5 justify-content-center">
-                <div>
+                <div style="min-height: 100px">
                     <a class="position-relative" href="user?action=edit" role="button">
-                        <img class="rounded-circle" src="assets/images/perfil.jpg" alt="..." width="200px" style="filter: brightness(50%);">
+                        <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
                         <span class="material-symbols-outlined position-absolute fs-3 top-0 start-50 translate-middle text-light">edit_square</span>
                     </a>
                 </div>

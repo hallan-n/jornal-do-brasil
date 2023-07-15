@@ -13,7 +13,7 @@
                 <div>
                     <div>
                         <div class="d-flex justify-content-center mb-2">
-                            <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="profile" width="50%">
+                            <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="profile" width="170px" height="170px" >
                         </div>
                         <div class="text-center">
                             <h5 class="m-0">${user.name} ${user.surname}</h5>
@@ -24,7 +24,7 @@
                     <div>
                         <div class="d-grid gap-2">
                             <a class="btn btn-outline-secondary text-light text-start d-flex align-self-center p-2 rounded-3"
-                                href="#">
+                                href="user?action=profile">
                                 <span class="ms-2 material-symbols-outlined">
                                     person
                                 </span>
