@@ -127,7 +127,8 @@ public class UserController extends HttpServlet {
     // FALTA FAZER
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        Env env = new Env();
         User user = getUserData(request, response);
         user.setName(request.getParameter("txtName"));
         user.setSurname(request.getParameter("txtSurname"));
@@ -135,7 +136,7 @@ public class UserController extends HttpServlet {
         if (!user.getEmail().equals(request.getParameter("txtEmail"))) {
             openView = "login.jsp";
         } else {
-            openView = "profile.jsp";
+                openView = "profile.jsp";
         }
         user.setEmail(request.getParameter("txtEmail"));
         user.setPhone(request.getParameter("txtPhone"));
@@ -159,20 +160,37 @@ public class UserController extends HttpServlet {
             fileServer.deleteFile(fileServer.getPathWithFileName());
 
             JpegConverter jpegConverter = new JpegConverter();
-            jpegConverter.saveImage(request, response, getUserData(request, response).getProfilePhoto(), "profile",
-                    "storage\\profile");
-            user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
-            user.setExtension(jpegConverter.getExtension());
-            fileServer.setPath("storage\\profile");
-            fileServer.setFileName(getUserData(request, response).getProfilePhoto());
-            fileServer.setExtension(jpegConverter.getExtension());
-            user.setPathProfilePhoto(fileServer.getPathRelative());
+            if(getUserData(request, response).getProfilePhoto() == null){
+                jpegConverter.saveImage(request, response, env.uuid, "profile", "storage\\profile");
+
+                user.setProfilePhoto(env.uuid);
+                user.setExtension(jpegConverter.getExtension());
+
+                fileServer.setPath("storage\\profile");
+                fileServer.setFileName(env.uuid);
+                fileServer.setExtension(jpegConverter.getExtension());
+                user.setPathProfilePhoto(fileServer.getPathRelative());
+            }else{
+                jpegConverter.saveImage(request, response, getUserData(request, response).getProfilePhoto(), "profile", "storage\\profile");                
+                user.setProfilePhoto(getUserData(request, response).getProfilePhoto());
+                user.setExtension(jpegConverter.getExtension());
+
+                fileServer.setPath("storage\\profile");
+                fileServer.setFileName(getUserData(request, response).getProfilePhoto());
+                fileServer.setExtension(jpegConverter.getExtension());
+                user.setPathProfilePhoto(fileServer.getPathRelative());
+            }
+
+            
         }
 
         if (userDAO.update(user)) {
+            request.setAttribute("css", "text-success");
             request.setAttribute("msg", "Dados atualizados com sucesso!");
             setUserData(request, response);
         } else {
+            setUserData(request, response);
+            request.setAttribute("css", "text-danger");
             request.setAttribute("msg", "Email já cadastrado!");
         }
         request.setAttribute("publications", publicationDAO.listAll());
