@@ -40,7 +40,7 @@
                 <label for="profile">
 
                     <a class="position-relative" role="button">
-                        <img class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
+                        <img id="profileDefault" class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
                         <span class="material-symbols-outlined position-absolute fs-1 top-0 start-50 translate-middle text-light">edit_square</span>
                     </a>
                 </label>
@@ -62,7 +62,7 @@
                         <input value="${user.password}" id="txtPassword" name="txtPassword" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Senha" maxlength="45">
                         <input value="${user.password}" id="txtPassword2" name="txtPassword2" required type="password" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Repetir senha"
                         maxlength="45">
-                        <input value="${user.description}" id="txtDescription" name="txtDescription" type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Descrição" maxlength="150">
+                        <input value="${user.description}" id="txtDescription" name="txtDescription" type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Descrição" maxlength="200">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-4">
@@ -107,12 +107,7 @@
 
     <script src="assets/js/search.js"></script>
     <script src="assets/js/verify.js"></script>
-    <script>
-        let msg = document.getElementById("msg");
-        if (msg.textContent.length > 6) {
-            msg.style.display = "block";
-        }
-    </script>
+
 </body>
 
 </html>

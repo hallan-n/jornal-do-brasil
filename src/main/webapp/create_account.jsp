@@ -46,10 +46,10 @@
                                     <input id="txtName" name="txtName" required type="text" class="form-control p-2 mt-2 shadow-sm border border-1" placeholder="Nome" maxlength="45">
                                     
                                     <label class="d-flex align-items-center btn border p-0 m-0 px-3" for="profile" style="white-space: nowrap;">
-                                        <span><b class="text-danger">*&nbsp;</b></span>Foto de perfil&nbsp;
+                                        <span></span>Foto de perfil&nbsp;
                                         <span class="material-symbols-outlined fs-4">person</span>
                                     </label>
-                                    <input required type="file" name="profile" id="profile" accept="image/*" hidden>
+                                    <input type="file" name="profile" id="profile" accept="image/*" hidden>
                                 </div>
                                 <input id="txtSurname" name="txtSurname" required type="text" class="form-control p-2  mt-2 shadow-sm border border-1" placeholder="Sobrenome" maxlength="45" >
                                 <p id="msg" class="text-danger mt-2 m-0" style="display: none;">${msg}</p>

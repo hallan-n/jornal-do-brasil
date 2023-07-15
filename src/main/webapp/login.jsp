@@ -52,12 +52,6 @@
     </div>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/verify.js"></script>
-    <script>
-        let msg = document.getElementById("msg");
-        if (msg.textContent.length > 6) {
-            msg.style.display = "block";
-        }
-    </script>
 </body>
 
 </html>

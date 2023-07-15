@@ -95,22 +95,22 @@ public class UserController extends HttpServlet {
             acceptTerms = true;
         }
         user.setAcceptTerms(acceptTerms);
-
-        user.setProfilePhoto(env.uuid);
         // file server thumb
-        JpegConverter jpegConverter = new JpegConverter();
-        jpegConverter.saveImage(request, response, env.uuid, "profile", "storage\\profile");
+        if (request.getPart("profile").getSize() > 0) {
+            JpegConverter jpegConverter = new JpegConverter();
+            jpegConverter.saveImage(request, response, env.uuid, "profile", "storage\\profile");            
+            // file server publication
+            FileServer fileServer = new FileServer();
+            fileServer.setFileName(env.uuid);
+            fileServer.setPath("storage\\profile");
+            fileServer.setExtension(jpegConverter.getExtension());    
+            user.setProfilePhoto(env.uuid);
+            user.setExtension(jpegConverter.getExtension());
+            user.setPathProfilePhoto(fileServer.getPathRelative());
+        }
 
-        // file server publication
-        FileServer fileServer = new FileServer();
-        fileServer.setFileName(env.uuid);
-        fileServer.setPath("storage\\profile");
-        fileServer.setExtension(jpegConverter.getExtension());
-
-        user.setExtension(jpegConverter.getExtension());
-        user.setPathProfilePhoto(fileServer.getPathRelative());
         user.setConfiguration(0);
-
+         // file server thumb   
         if (userDAO.create(user)) {
             setUserData(request, response);
             request.setAttribute("msg", "Login criado com sucesso!");
