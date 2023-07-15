@@ -31,7 +31,7 @@
             <div class="border border-3 align-items-center p-5 rounded-3 d-flex flex-wrap gap-5 justify-content-center">
                 <div>
                     <a class="position-relative" href="user?action=edit" role="button">
-                        <img id="profileDefault" class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
+                        <img class="profileDefault rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
                         <span class="material-symbols-outlined position-absolute fs-3 top-0 start-50 translate-middle text-light">edit_square</span>
                     </a>
                 </div>
@@ -68,6 +68,7 @@
 
 
 
+    <script src="assets/js/search.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/verify.js"></script>
 </body>

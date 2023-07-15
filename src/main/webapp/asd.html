@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificar e definir atributo src da tag &lt;img&gt;</title>
+</head>
+<body>
+    <img class="image">
+    <img class="image">
+    <img class="image">
+    
+    <script>
+        function checkAndSetImageSrc() {
+            const profile = document.getElementsByClassName('profileDefauld');
+            console.log(profile);
+            for (let i = 0; i < profile.length; i++) {
+                const img = profile[i];
+                if (!img.getAttribute('src')) {
+                    img.setAttribute('src', 'storage/profile/profile.jpg'); // Definir o valor padrão aqui
+                }
+            }
+        }
+        window.addEventListener('load', checkAndSetImageSrc);
+    </script>
+</body>
+</html>

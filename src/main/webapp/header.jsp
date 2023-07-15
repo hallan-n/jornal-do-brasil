@@ -13,7 +13,7 @@
                 <div>
                     <div>
                         <div class="d-flex justify-content-center mb-2">
-                            <img id="profileDefault" class="rounded-circle" src="${user.pathProfilePhoto}" alt="profile" width="170px" height="170px" >
+                            <img class="profileDefault rounded-circle" src="${user.pathProfilePhoto}" alt="profile" width="170px" height="170px" >
                         </div>
                         <div class="text-center">
                             <h5 class="m-0">${user.name} ${user.surname}</h5>

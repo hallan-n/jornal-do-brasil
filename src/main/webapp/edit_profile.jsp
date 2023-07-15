@@ -40,7 +40,7 @@
                 <label for="profile">
 
                     <a class="position-relative" role="button">
-                        <img id="profileDefault" class="rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
+                        <img class="profileDefault rounded-circle" src="${user.pathProfilePhoto}" alt="..." width="300px" height="300px" style="filter: brightness(50%);">
                         <span class="material-symbols-outlined position-absolute fs-1 top-0 start-50 translate-middle text-light">edit_square</span>
                     </a>
                 </label>

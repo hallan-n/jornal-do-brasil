@@ -1,7 +1,14 @@
-const profile = document.getElementById("profileDefault");
-if (profile.getAttribute('src') == "") {
-    profile.setAttribute('src', 'storage/profile/profile.jpg')
+
+function checkAndSetImageSrc(){
+    const profile = document.getElementsByClassName('profileDefault');
+    for (let i = 0; i < profile.length; i++) {
+        const img = profile[i];
+        if (!img.getAttribute('src')) {
+            img.setAttribute('src', 'storage/profile/profile.jpg');
+        }
+    }
 }
+window.addEventListener('load', checkAndSetImageSrc);
 
 let msg = document.getElementById("msg");
 if (msg.textContent.length > 6) {
