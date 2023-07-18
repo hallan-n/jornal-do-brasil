@@ -36,7 +36,7 @@
     </div>
     <div class="container">
         <div class="mx-auto mt-5 p-5" style="max-width: 1000px;">
-            <input class="form-control" type="text" id="input">
+            <input class="form-control" type="text" id="input" placeholder="Pesquisar...">
         <table id="table" class="table">
             <thead>
                 <tr>

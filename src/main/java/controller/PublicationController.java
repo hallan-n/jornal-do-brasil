@@ -255,6 +255,8 @@ public class PublicationController extends HttpServlet {
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		openView = "index.jsp";
 		FileServer fileServer = new FileServer();
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
