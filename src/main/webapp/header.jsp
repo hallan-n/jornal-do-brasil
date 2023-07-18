@@ -31,7 +31,7 @@
                                 <p class="ms-2 m-0">Seu perfil</p>
                             </a>
                             <a class="btn btn-outline-secondary text-light text-start d-flex align-self-center p-2 rounded-3"
-                                href="#">
+                                href="publication?action=listall">
                                 <span class="ms-2 material-symbols-outlined">
                                     newspaper
                                 </span>

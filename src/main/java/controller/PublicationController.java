@@ -35,13 +35,12 @@ public class PublicationController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		
-		
+		Authenticator auth = new Authenticator();
 		String category = request.getParameter("category");
 		String action = request.getParameter("action");
 		String contain = request.getParameter("contain");
 		HttpSession sessao = request.getSession();
-		UserDAO userDAO =  new UserDAO();
+		UserDAO userDAO = new UserDAO();
 
 		request.setAttribute("user", userDAO.listForLogin((String) sessao.getAttribute("email")));
 		if (action.equals("list") && category == null && contain == null) {
@@ -61,6 +60,13 @@ public class PublicationController extends HttpServlet {
 			request.setAttribute("publications",
 					publicationDAO.listForCategory(categories[Integer.parseInt(category)]));
 			request.setAttribute("id", userDAO.listForLogin((String) sessao.getAttribute("email")).getIdUser());
+		} else if (action.equals("listall")) {
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+			} else {
+				openView = "all_publications.jsp";
+			}
+			request.setAttribute("publications", publicationDAO.listForAuthor(auth.getUserData(request, response).getIdUser()));
 		} else if (action.equals("list") && contain != null && category == null) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -100,7 +106,7 @@ public class PublicationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-				
+
 		String action = request.getParameter("action");
 		if (action.equals("create")) {
 			createPublication(request, response);
@@ -142,14 +148,13 @@ public class PublicationController extends HttpServlet {
 
 		// Author
 		HttpSession sessao = request.getSession();
-		UserDAO userDAO =  new UserDAO();
+		UserDAO userDAO = new UserDAO();
 		String user = sessao.getAttribute("email").toString();
 		publication.setAuthor(userDAO.listForLogin(user).getIdUser());
-		
 
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, env.uuid, "thumb","storage\\thumb");
+		jpegConverter.saveImage(request, response, env.uuid, "thumb", "storage\\thumb");
 
 		fileServer.setPath("storage\\thumb");
 		fileServer.setExtension(jpegConverter.getExtension());
@@ -186,17 +191,17 @@ public class PublicationController extends HttpServlet {
 
 		// Author
 		HttpSession sessao = request.getSession();
-		UserDAO userDAO =  new UserDAO();
+		UserDAO userDAO = new UserDAO();
 		String user = sessao.getAttribute("email").toString();
 		publication.setAuthor(userDAO.listForLogin(user).getIdUser());
 		try {
-			
+
 		} catch (Exception e) {
-		
+
 		}
 		// file server thumb
 		JpegConverter jpegConverter = new JpegConverter();
-		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb","storage\\thumb");
+		jpegConverter.saveImage(request, response, request.getParameter("txtID"), "thumb", "storage\\thumb");
 
 		fileServer.setPath("storage\\thumb");
 		fileServer.setExtension(jpegConverter.getExtension());
@@ -207,7 +212,7 @@ public class PublicationController extends HttpServlet {
 	}
 
 	// GET
-		
+
 	private void editPublication(HttpServletRequest request, HttpServletResponse response) {
 
 		openView = "edit_publication.jsp";
@@ -257,5 +262,15 @@ public class PublicationController extends HttpServlet {
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
 		auth.setUserData(request, response);
+	}
+	public static void main(String[] args) {
+		PublicationDAO dao = new PublicationDAO();
+		System.out.println();
+		for (Publication p : dao.listForAuthor(23)) {
+			System.out.println(p.getCategory());
+			System.out.println(p.getDescription());
+			System.out.println(p.getTitle());
+		}
+		
 	}
 }
