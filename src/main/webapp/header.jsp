@@ -38,13 +38,6 @@
                                 <p class="ms-2 m-0">Sua publicações</p>
                             </a>
                             <a class="btn btn-outline-secondary text-light text-start d-flex align-self-center p-2 rounded-3"
-                                href="#">
-                                <span class="ms-2 material-symbols-outlined">
-                                    tune
-                                </span>
-                                <p class="ms-2 m-0">Ajustes</p>
-                            </a>
-                            <a class="btn btn-outline-secondary text-light text-start d-flex align-self-center p-2 rounded-3"
                                 href="user?action=logout">
                                 <span class="ms-2 material-symbols-outlined">
                                     logout
@@ -83,9 +76,6 @@
                 <input id="inputQuery" class="form-control py-0 me-2 form-cabecalho-1 form-cabecalho-display" type="search" placeholder="Pesquisar..." aria-label="Search" />
                 <a id="anchorQuery" href=" " class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display">
                     <span class="material-symbols-outlined fs-3">search</span>                   
-                </a>
-                <a href="settings.jsp" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
-                    <span class="material-symbols-outlined fs-2">settings</span>
                 </a>
                 <a href="user?action=profile" class="btn link-primary d-flex align-items-center text-light text-decoration-none">
                     <span class="material-symbols-outlined fs-2">person</span>
