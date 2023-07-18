@@ -19,6 +19,11 @@
                 border: solid white 1px;
                 margin: 0;
             }
+            @media(max-width: 1200px){
+                #publications{
+                    justify-content: center;
+                }
+            }
         </style>
 </head>
 
@@ -71,12 +76,12 @@
     </div>
 
     <div class="bg-secondary" style="height: 100vw;">
-        <div class="container bg-light px-4 max-width-container justify-content-center" style="height: 100vw;">
+        <div class="container bg-light ps-5 px-4 max-width-container justify-content-center" style="height: 100vw;">
             <div class="row">
                 <div class="col p-0" style="width: 1300px;">
                 </div>
             </div>
-            <div class="ms-4 mt-3 d-flex flex-wrap" style="max-width: 1300px;">
+            <div class="mt-3 d-flex flex-wrap gap-1" style="max-width: 1230px;" id="publications">
                 <div>${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
                     <div class="p-0">
