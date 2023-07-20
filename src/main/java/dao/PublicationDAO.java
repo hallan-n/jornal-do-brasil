@@ -268,6 +268,37 @@ public class PublicationDAO {
 
         return publications;
     }
+    
+     public Publication getForAuthor(int id) {
+        connection = MyConnection.getConnection();
+        String querySelectPublication = "SELECT * FROM publication where author = "+ id + ";";
+
+        Publication publication = new Publication();
+        try {
+            statement = connection.prepareStatement(querySelectPublication);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                publication.setIdPubli(resultSet.getInt("idPubli"));
+                publication.setTitle(resultSet.getString("title"));
+                publication.setCategory(resultSet.getString("category"));
+                publication.setDescription(resultSet.getString("description"));
+                publication.setFileName(resultSet.getString("fileName"));
+                publication.setExtension(resultSet.getString("extension"));
+                publication.setPathFileName(resultSet.getString("pathFileName"));
+                publication.setThumb(resultSet.getString("thumb"));
+                publication.setPathThumb(resultSet.getString("pathThumb"));
+                publication.setAuthor(resultSet.getInt("author"));
+                publication.setDate(resultSet.getDate("date"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Opss... Erro ao selecionar publicações!..." + e.getMessage());
+        } finally {
+            MyConnection.closeConnection(connection, statement, resultSet);
+        }
+
+        return publication;
+    }
 
    
 

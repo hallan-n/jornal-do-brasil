@@ -124,7 +124,6 @@ public class UserController extends HttpServlet {
 
     }
 
-    // FALTA FAZER
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -136,7 +135,7 @@ public class UserController extends HttpServlet {
         if (!user.getEmail().equals(request.getParameter("txtEmail"))) {
             openView = "login.jsp";
         } else {
-                openView = "profile.jsp";
+            openView = "profile.jsp";
         }
         user.setEmail(request.getParameter("txtEmail"));
         user.setPhone(request.getParameter("txtPhone"));
@@ -151,7 +150,6 @@ public class UserController extends HttpServlet {
             user.setPathProfilePhoto(getUserData(request, response).getPathProfilePhoto());           
 
         } else {
-            System.out.println(request.getPart("profile").getSize());
             // Delete old profile photo
             FileServer fileServer = new FileServer();
             fileServer.setPath("storage\\profile");

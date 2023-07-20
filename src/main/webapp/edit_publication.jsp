@@ -156,7 +156,7 @@
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
-                        <input type="file" name="thumb" accept="image/*" id="thumb" required hidden>
+                        <input type="file" name="thumb" accept="image/*" id="thumb" hidden>
                     </div>
                     
                 </div>
