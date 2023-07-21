@@ -166,86 +166,76 @@ public class PublicationController extends HttpServlet {
 		publicationDAO.create(publication);
 		auth.setUserData(request, response);
 	}
-
+	
 	private void editPublicationPost(HttpServletRequest request,
-			HttpServletResponse response) throws IOException, ServletException {
-		// openView = "index.jsp";
-		// request.setAttribute("publications", publicationDAO.listAll());
-
-		// // file server publication
-		// FileServer fileServer = new FileServer();
-		// fileServer.setFileName(request.getParameter("txtID"));
-		// fileServer.setExtension("html");
-		// fileServer.setPath("storage\\publications");
-		// fileServer.writeFile(request.getParameter("txtTextAreaT"));
-
-		// // publication
-		// Publication publication = new Publication();
-		// publication.setIdPubli(Integer.parseInt(request.getParameter("txtID")));
-		// publication.setTitle(request.getParameter("txtTitleT"));
-		// publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategoryT"))]);
-		// publication.setDescription(request.getParameter("txtDescriptionT"));
-		// publication.setFileName(fileServer.getFileName());
-		// publication.setExtension(fileServer.getExtension());
-		// publication.setPathFileName(fileServer.getPathRelative());
-		// Date datePublication = new Date();
-		// publication.setDate(datePublication);
-
-		// // Author
-		// HttpSession sessao = request.getSession();
-		// UserDAO userDAO = new UserDAO();
-		// String user = sessao.getAttribute("email").toString();
-		// publication.setAuthor(userDAO.listForLogin(user).getIdUser());
-
-		// // file server thumb
-		// JpegConverter jpegConverter = new JpegConverter();
-		// jpegConverter.saveImage(request, response, request.getParameter("txtID"),
-		// "thumb", "storage\\thumb");
-
-		// fileServer.setPath("storage\\thumb");
-		// fileServer.setExtension(jpegConverter.getExtension());
-		// publication.setThumb(request.getParameter("txtID"));
-		// publication.setPathThumb(fileServer.getPathRelative());
-		// publicationDAO.update(publication);
-		// auth.setUserData(request, response);
-
-
-
-
-		// FALTA IMPLEMENTAR
+	HttpServletResponse response) throws IOException, ServletException {
+		
 		openView = "index.jsp";
 		request.setAttribute("publications", publicationDAO.listAll());
-
+		Publication publicationAuth = publicationDAO.listForName(request.getParameter("txtFileName"));
+		
 		// file server publication
 		FileServer fileServer = new FileServer();
+		fileServer.setFileName(publicationAuth.getFileName());
+		fileServer.setExtension("html");
+		fileServer.setPath("storage\\publications");
+		fileServer.writeFile(request.getParameter("txtTextAreaT"));
+		
+		// Publication sets
 		Publication publication = new Publication();
-		publication.setIdPubli(1);
-		publication.setTitle(openView);
-		publication.setCategory(openView);
-		publication.setDescription(openView);
-		publication.setFileName(openView);
-		publication.setExtension(openView);
-		publication.setPathFileName(openView);
-		publication.setThumb(openView);
-		publication.setPathThumb(openView);
-		publication.setAuthor(0);
+		publication.setIdPubli(Integer.parseInt(request.getParameter("txtID")));
+		publication.setTitle(request.getParameter("txtTitleT"));
+		publication.setCategory(categories[Integer.parseInt(request.getParameter("txtCategoryT"))]);
+		publication.setDescription(request.getParameter("txtDescriptionT"));
 		Date datePublication = new Date();
 		publication.setDate(datePublication);
-
+		
+		// Author
+		HttpSession session = request.getSession();
+		UserDAO userDAO = new UserDAO();
+		String user = session.getAttribute("email").toString();
+		publication.setAuthor(userDAO.listForLogin(user).getIdUser());
+		publication.setFileName(request.getParameter("txtFileName"));
+		
 		if (request.getPart("thumb").getSize() <= 0) {
-			// file server thumb
-			request.getParameter("txtID");
-			publication
-					.setThumb(publicationDAO.getForAuthor(Integer.parseInt(request.getParameter("txtID"))).getThumb());
-			publication.setPathThumb(
-					publicationDAO.getForAuthor(Integer.parseInt(request.getParameter("txtID"))).getPathThumb());
+			// Publication sets
+			publication.setExtension(publicationAuth.getExtension());
+			publication.setPathFileName(publicationAuth.getPathFileName());
+			publication.setThumb(publicationAuth.getThumb());
+			publication.setPathThumb(publicationAuth.getPathThumb());
 		} else {
-			// file server thumb
-			JpegConverter jpegConverter = new JpegConverter();
-			jpegConverter.saveImage(request, response, "env.uuid", "thumb", "storage\\thumb");
+			// Delete old thumb
+			fileServer.setPath("storage\\thumb");
+			fileServer.setFileName(publicationAuth.getFileName());
+			String[] extensions = new String[] { "apng", "gif", "ico", "cur", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png",
+				"svg" };
+				
+				for (String st : extensions) {
+					fileServer.setExtension(st);
+					fileServer.deleteFile(fileServer.getPathWithFileName());
+				}        
+				// file server thumb
+				JpegConverter jpegConverter = new JpegConverter();
+				jpegConverter.saveImage(request, response, request.getParameter("txtFileName"), "thumb", "storage\\thumb");
+				
+				// File HTML
+				fileServer.setExtension("html");
+				fileServer.setPath("storage\\thumb");
+				fileServer.setFileName(publicationAuth.getFileName());
+				
+			publication.setPathFileName(fileServer.getPathRelative());
+			publication.setExtension(fileServer.getExtension());
+			
+			// File image
+			fileServer.setExtension(jpegConverter.getExtension());
+			fileServer.setPath("storage\\thumb");
+			fileServer.setFileName(publicationAuth.getFileName());			
+			// Publication sets
+			publication.setThumb(fileServer.getFileName());
+			publication.setPathThumb(fileServer.getPathRelative());
 		}
 		publicationDAO.update(publication);
-
+		auth.setUserData(request, response);
 	}
 
 	// GET
@@ -254,7 +244,6 @@ public class PublicationController extends HttpServlet {
 
 		openView = "edit_publication.jsp";
 		FileServer fileServer = new FileServer();
-		JpegConverter jpegConverter = new JpegConverter();
 
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");
@@ -262,8 +251,6 @@ public class PublicationController extends HttpServlet {
 
 		request.setAttribute("publicationEdit", publicationDAO.listForName(request.getParameter("id")));
 		request.setAttribute("contentPubli", fileServer.readFile(fileServer.getPathWithFileName()));
-		request.setAttribute("thumbValue", jpegConverter.readFile(fileServer.getPathWithFileName()));
-		auth.setUserData(request, response);
 	}
 
 	private void deletePublication(HttpServletRequest request, HttpServletResponse response)
@@ -305,8 +292,6 @@ public class PublicationController extends HttpServlet {
 
 	public static void main(String[] args) {
 		PublicationDAO dao = new PublicationDAO();
-		Publication p = dao.getForAuthor(28);
-		System.out.println(p.getFileName());
-
+		
 	}
 }

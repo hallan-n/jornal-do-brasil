@@ -150,7 +150,6 @@
                             <option value="8">Gastronomia</option>
                         </select>
                     </div>
-                    <p id="thumbValue" hidden>"${thumbValue}"</p>
                     <div class="col-1 d-flex flex-column">
                         <label class="form-label m-0" for="txt"><span class="text-danger"><strong>* </strong></span>Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
@@ -164,6 +163,7 @@
                 <label class="form-label m-0" for="editorT">Conteúdo</label>
                 <textarea name="txtTextAreaT" id="txtTextAreaT" hidden></textarea>
                 <input type="text" name="txtID" id="txtID" value="${publicationEdit.idPubli}" hidden></input>
+                <input type="text" name="txtFileName" id="txtFileName" value="${publicationEdit.fileName}" hidden></input>
                 <div id="editorT" contenteditable="true" class="form-control" style="min-height:300px;">
                     ${contentPubli}
                 </div>
