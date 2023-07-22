@@ -151,7 +151,7 @@
                         </select>
                     </div>
                     <div class="col-1 d-flex flex-column">
-                        <label class="form-label m-0" for="txt"><span class="text-danger"><strong>* </strong></span>Thumb</label>
+                        <label class="form-label m-0" for="txt">Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>

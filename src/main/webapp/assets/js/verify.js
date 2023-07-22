@@ -1,5 +1,36 @@
+const editor = document.getElementById('editor');
+const count = document.getElementById('count');
+const caracterLimit = 10000;
+const imagesLimit = 4;
 
-function checkAndSetImageSrc(){
+editor.addEventListener('input', () => {
+    const texto = editor.textContent;
+    if (texto.length > caracterLimit) {
+        editor.textContent = texto.slice(0, caracterLimit);
+    }
+    const imagens = editor.querySelectorAll('img');
+    if (imagens.length > imagesLimit) {
+        for (let i = imagesLimit; i < imagens.length; i++) {
+            imagens[i].parentNode.removeChild(imagens[i]);
+        }
+    }
+
+    const numCaracteres = editor.textContent.length;
+    count.textContent = `${numCaracteres}/3000`;
+});
+editor.addEventListener('DOMNodeInserted', (event) => {
+    if (event.target.tagName === 'IMG') {
+        const imagens = editor.querySelectorAll('img');
+        if (imagens.length > imagesLimit) {
+            event.target.parentNode.removeChild(event.target);
+        }
+    }
+});
+
+
+
+
+function checkAndSetImageSrc() {
     const profile = document.getElementsByClassName('profileDefault');
     for (let i = 0; i < profile.length; i++) {
         const img = profile[i];
