@@ -75,8 +75,8 @@
             </div>
     </div>
 
-    <div class="bg-secondary" style="height: 100vw;">
-        <div class="container bg-light ps-5 px-4 max-width-container justify-content-center" style="height: 100vw;">
+    <div class="bg-secondary" style="height: 100%;">
+        <div class="container bg-light ps-5 px-4 max-width-container justify-content-center" style="height: 100%;min-height:100vw;">
             <div class="row">
                 <div class="col p-0" style="width: 1300px;">
                 </div>

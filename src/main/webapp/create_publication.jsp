@@ -1,30 +1,20 @@
+<% HttpSession sessao=request.getSession(); if (sessao.getAttribute("email")==null) { response.sendRedirect("login.jsp"); } %>
 
-<%
-    HttpSession sessao = request.getSession();
-    if (sessao.getAttribute("email") == null) {
-        response.sendRedirect("login.jsp");
-    }
-%>
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> --%>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <%@include file="head.jsp" %>
-    <title>JDB - Editar publicação</title>
+    <title>JDB - Criar conta</title>
 </head>
-
-
-
 
 <body>
     <div class="bg-dark p-4 pb-0">
         <%@include file="header.jsp" %>
             <hr class="my-4" />
     </div>
-
 
     <div id="parentEditor" class="d-flex justify-content-center mt-5">
 
@@ -87,6 +77,7 @@
                     <span class="material-symbols-outlined pt-1">redo</span>
                 </button>
                 <div class="d-flex border rounded my-1">
+                    <input type="file" id="upload" accept="image/*" hidden />
                     <label for="upload" class="btn">
                         <span class=" material-symbols-outlined pt-1">image</span>
                     </label>
@@ -122,21 +113,20 @@
 
 
 
-            <form action="publication" method="POST"  enctype="multipart/form-data" class="mt-3">
-                <input type="hidden" value="edit" name="action">
+            <form action="publication" method="POST" enctype="multipart/form-data" class="mt-3">
+                <input type="hidden" value="create" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
-                        <label class="form-label m-0" for="txtTitleT"><span class="text-danger"><strong>* </strong></span>Título</label>
-                        <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" />
-
+                        <label class="form-label m-0" for="txtTitle"><span class="text-danger"><strong>* </strong></span>Título</label>
+                        <input required name="txtTitle" id="txtTitle" class="form-control w-100" type="text" />
                     </div>
                     <div class="col">
-                        <label class="form-label m-0" for="txtDescriptionT"><span class="text-danger"><strong>* </strong></span>Descrição</label>
-                        <input required value="${publicationEdit.description}" name="txtDescriptionT" id="txtDescriptionT" class="form-control w-100" type="text" maxlength="100"/>
+                        <label class="form-label m-0" for="txtDescription"><span class="text-danger"><strong>* </strong></span>Descrição</label>
+                        <input required name="txtDescription" id="txtDescription" class="form-control w-100" type="text" maxlength="100" />
                     </div>
                     <div class="col-2">
-                        <label class="form-label m-0" for="txtCategoryT"><span class="text-danger"><strong>* </strong></span>Categoria</label>
-                        <select required name="txtCategoryT" id="txtCategoryT" class="form-select form-select-md">
+                        <label class="form-label m-0" for="txtCategory"><span class="text-danger"><strong>* </strong></span>Categoria</label>
+                        <select required name="txtCategory" id="txtCategory" class="form-select form-select-md">
                             <option selected disabled>Selecione...</option>
                             <option value="0">Política</option>
                             <option value="1">Business</option>
@@ -149,24 +139,29 @@
                             <option value="8">Gastronomia</option>
                         </select>
                     </div>
-                    <div class="col-1 d-flex flex-column">
-                        <label class="form-label m-0" for="txt">Thumb</label>
+
+                    <div class="col-1 d-flex flex-column ">
+                        <label class="form-label m-0" for="thumb"><span class="text-danger"><strong>* </strong></span> Thumb</label>
                         <label for="thumb" class="btn bg-body-secondary p-0">
                             <span class=" material-symbols-outlined fs-1">burst_mode</span>
                         </label>
-                        <input type="file" name="thumb" accept="image/*" id="thumb" hidden>
+
+                        <!-- Thumb -->
+                        <input type="file" name="thumb" id="thumb" accept="image/*" required hidden>
+
+
                     </div>
-                    
+
                 </div>
 
-                <label class="form-label m-0" for="editorT">Conteúdo</label>
-                <textarea name="txtTextAreaT" id="txtTextAreaT" hidden></textarea>
-                <input type="text" name="txtID" id="txtID" value="${publicationEdit.idPubli}" hidden></input>
-                <input type="text" name="txtFileName" id="txtFileName" value="${publicationEdit.fileName}" hidden></input>
-                <div id="editorT" contenteditable="true" class="form-control" style="min-height:300px;">
-                    ${contentPubli}
-                </div>
                 
+                <label class="form-label m-0" for="editor">Conteúdo</label>
+                <input type="text" name="txtTextArea" id="txtTextArea" value=" " hidden></input>
+                <div id="editor" contenteditable="true" class="form-control" style="min-height:300px;max-height: 500px;max-width: 1200px; overflow: auto;" rows="70" cols="144">
+                    <p>&nbsp;</p>
+                </div>
+
+
                 <!-- modal -->
                 <div class="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-toggle="dimiss" data-bs-backdrop="static" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
@@ -189,8 +184,7 @@
             </form>
 
 
-            <input type="file" id="upload" accept="image/*" hidden />
-            <div class="d-flex justify-content-between mt-4">
+            <div class="d-flex justify-content-between align-items-center mt-4">
                 <div class="d-flex gap-4">
                     <div class="d-flex align-items-center gap-3">
                         <span class="material-symbols-outlined">match_case</span>
@@ -201,17 +195,14 @@
                         <Strong id="countImage">0/4</Strong>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicarT">
+                <button type="button" class="btn btn-primary  px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" id="publicar">
                     Publicar
                 </button>
             </div>
         </div>
     </div>
-
-    <script src="assets/js/edit.js"></script>
-    <script src="assets/js/verify.js"></script>
     <script src="assets/js/search.js"></script>
-
+    <script src="assets/js/editor.js"></script>
 </body>
 
 </html>

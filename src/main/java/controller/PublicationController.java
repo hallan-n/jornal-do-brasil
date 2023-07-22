@@ -85,7 +85,13 @@ public class PublicationController extends HttpServlet {
 				deletePublication(request, response);
 			}
 		} else if (action.equals("open")) {
-			openPublication(request, response);
+			if (sessao.getAttribute("email") == null) {
+				openView = "index_logout.jsp";
+				openPublication(request, response);
+			} else {
+				openView = "index.jsp";
+				openPublication(request, response);
+			}
 		} else if (action.equals("edit")) {
 			if (sessao.getAttribute("email") == null) {
 				openView = "index_logout.jsp";
@@ -279,8 +285,6 @@ public class PublicationController extends HttpServlet {
 
 	private void openPublication(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		openView = "index_logout.jsp";
 		FileServer fileServer = new FileServer();
 		fileServer.setPath("storage\\publications");
 		fileServer.setExtension("html");

@@ -17,7 +17,7 @@
                         </div>
                         <div class="text-center">
                             <h5 class="m-0">${user.name} ${user.surname}</h5>
-                            <p class="m-0">${user.phone}</p>
+                            <p class="m-0">${user.email}</p>
                         </div>
                     </div>
                     <hr class="my-5">

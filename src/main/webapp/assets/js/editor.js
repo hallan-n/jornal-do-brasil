@@ -5,24 +5,53 @@ const backColor = document.querySelector("#backColor")
 const upload = document.querySelector("#upload")
 const imageSize = document.getElementById('inputImageSize')
 const publicar = document.getElementById('publicar');
-
 const txtTextArea = document.getElementById('txtTextArea');
+const count = document.getElementById('count');
+
+const caracterLimit = 10000;
+const imagesLimit = 4;
+
+editor.addEventListener('input', () => {
+
+    const texto = editor.textContent;
+    if (texto.length > caracterLimit) {
+        editor.textContent = texto.slice(0, caracterLimit);
+    }
+    const imagens = editor.querySelectorAll('img');
+    document.getElementById("countImage").textContent = `${imagens.length}/4`
+    if (imagens.length > imagesLimit) {
+        for (let i = imagesLimit; i < imagens.length; i++) {
+            imagens[i].parentNode.removeChild(imagens[i]);
+        }
+    }
+    const numCaracteres = editor.textContent.length;
+    count.textContent = `${numCaracteres}/10000`;
+});
+editor.addEventListener('DOMNodeInserted', (event) => {
+    if (event.target.tagName === 'IMG') {
+        const imagens = editor.querySelectorAll('img');
+        if (imagens.length > imagesLimit) {
+            event.target.parentNode.removeChild(event.target);
+        }else{
+            document.getElementById("countImage").textContent = `${imagens.length}/${imagesLimit}`
+        }
+    }
+});
+
 
 publicar.addEventListener('click', () => {
     txtTextArea.value = editor.innerHTML.trim();
     console.log(txtTextArea.value);
 })
 
-
-
-let valor;
+let valor = 200;
 imageSize.addEventListener("change", e => {
-    valor = Number(e.srcElement.value);
+    valor = Number(e.srcElement.value)
 })
 upload.addEventListener("change", e => {
     let file = e.currentTarget.files[0]
     let reader = new FileReader()
-    let img = new Image(valor)
+    let img = new Image(valor)        
     reader.onloadend = () => {
         img.src = reader.result
         editor.appendChild(img)
