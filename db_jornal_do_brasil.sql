@@ -1,17 +1,6 @@
 create database db_jornal_do_brasil;
 use db_jornal_do_brasil;
 
-CREATE TABLE configuration (
-	idConfig INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
-	notification BOOL NOT NULL,
-	sound BOOL NOT NULL,
-	showProfilePhoto BOOL NOT NULL,
-	showdescription BOOL NOT NULL,
-	showNumber BOOL NOT NULL,
-	showEmail BOOL NOT NULL,
-	theme ENUM("Dark","White") NOT NULL
-);
-
 CREATE TABLE user (
 	idUser INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	name VARCHAR(45) NOT NULL,
@@ -25,7 +14,6 @@ CREATE TABLE user (
 	extension VARCHAR(5),
 	pathProfilePhoto VARCHAR(200),
 	configuration INT NOT NULL,
-	FOREIGN KEY (configuration) REFERENCES configuration(idConfig)
 );
 
  CREATE TABLE publication(

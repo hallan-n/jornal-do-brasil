@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -292,10 +293,5 @@ public class PublicationController extends HttpServlet {
 		String open = fileServer.readFile(fileServer.getPathWithFileName());
 		request.setAttribute("openPubli", open);
 		auth.setUserData(request, response);
-	}
-
-	public static void main(String[] args) {
-		PublicationDAO dao = new PublicationDAO();
-		
 	}
 }
