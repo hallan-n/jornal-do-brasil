@@ -61,9 +61,25 @@
                             <a href="publication?action=edit&id=${pub.fileName}" class="btn btn-warning">
                                 <span class="material-symbols-outlined pt-1">edit</span>
                             </a>
-                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal${pub.idPubli}">
                                 <span class="material-symbols-outlined pt-1">delete</span>
-                            </a>
+                            </button>
+                            <div class="modal fade" id="modal${pub.idPubli}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Deseja apagar a publicação?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            Atenção! Ao apagar uma publicação não é possível recuperar os dados da mesma.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Sim</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>                                
                     </tr>
                 </c:forEach>
