@@ -93,24 +93,42 @@
                             <div class="card-body">
                                 <h6 class="card-title">${pub.title}</h6>
                                 <p class="card-text">${pub.description}</p>
-                                
                                 <div>
                                     <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
-
                                     <c:set var="id" value="${id}"/>
                                     <c:choose> 
                                         <c:when test="${id == pub.author}">
                                             <a href="publication?action=edit&id=${pub.fileName}" class="btn btn-warning">Editar</a>
-                                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Apagar</a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal${pub.idPubli}">Apagar</button>
+
+                                            <div class="modal fade" id="modal${pub.idPubli}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Deseja apagar a publicação?</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Atenção! Ao apagar uma publicação não é possível recuperar os dados da mesma.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                            <a href="publication?action=delete&filename=${pub.fileName}" class="btn btn-danger">Sim</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </c:when>
-                                    </c:choose>
-                                    
+                                    </c:choose>   
                                 </div>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
             </div>
+
+
+            
+
         </div>
     </div>
     <script src="assets/js/search.js"></script>
