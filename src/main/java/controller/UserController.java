@@ -72,8 +72,8 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        session.setAttribute("email", null);
-        openView = "index.jsp";
+        session.invalidate();
+        openView = "index_logout.jsp";
         request.setAttribute("publications", publicationDAO.listAll());
         getUserData(request, response);
     }
