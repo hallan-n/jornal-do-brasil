@@ -8,7 +8,7 @@ const publicar = document.getElementById('publicar');
 const txtTextArea = document.getElementById('txtTextArea');
 const count = document.getElementById('count');
 
-const caracterLimit = 10000;
+const caracterLimit = 4000;
 const imagesLimit = 4;
 
 editor.addEventListener('input', () => {
@@ -25,7 +25,7 @@ editor.addEventListener('input', () => {
         }
     }
     const numCaracteres = editor.textContent.length;
-    count.textContent = `${numCaracteres}/10000`;
+    count.textContent = `${numCaracteres}/4000`;
 });
 editor.addEventListener('DOMNodeInserted', (event) => {
     if (event.target.tagName === 'IMG') {

@@ -89,6 +89,7 @@
                         <option value="400" class="text-center">400px</option>
                         <option value="500" class="text-center">500px</option>
                         <option value="600" class="text-center">600px</option>
+                        <option value="1000" class="text-center">1000px</option>
                     </select>
                 </div>
                 <button id="fontColor" class="btn">
@@ -113,7 +114,7 @@
 
 
 
-            <form action="publication" method="POST" enctype="multipart/form-data" class="mt-3">
+            <form action="publication" onsubmit="return categoryValidate()" method="POST" enctype="multipart/form-data" class="mt-3">
                 <input type="hidden" value="create" name="action">
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
@@ -188,7 +189,7 @@
                 <div class="d-flex gap-4">
                     <div class="d-flex align-items-center gap-3">
                         <span class="material-symbols-outlined">match_case</span>
-                        <Strong id="count">0/10000</Strong>
+                        <Strong id="count">0/4000</Strong>
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <span class="material-symbols-outlined">photo</span>
@@ -203,6 +204,7 @@
     </div>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/editor.js"></script>
+    <script src="assets/js/verify.js"></script>
 </body>
 
 </html>

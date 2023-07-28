@@ -35,7 +35,7 @@ function categoryValidate() {
     const txtDescription = document.getElementById('txtDescription');
     const txtCategory = document.getElementById('txtCategory');
     const thumb = document.getElementById('thumb');
-    if (txtCategory.selectedIndex !== "" && thumb.files.length > 0 && txtDescription.textContent.length > 0 && txtTitle.textContent.length > 0) {
+    if (txtCategory.selectedIndex != "" && thumb.files.length > 0 && txtDescription.value.length > 0 && txtTitle.value.length > 0) {
         return true;
     } else {
         alert("Preencha todos os campos corretamente!");
@@ -47,7 +47,7 @@ function categoryValidateT() {
     const txtDescription = document.getElementById('txtDescriptionT');
     const txtCategory = document.getElementById('txtCategoryT');
     const thumb = document.getElementById('thumb');
-    if (txtCategory.selectedIndex !== "" && thumb.files.length > 0 && txtDescription.textContent.length > 0 && txtTitle.textContent.length > 0) {
+    if (txtCategory.selectedIndex != "" && txtDescription.value.length > 0 && txtTitle.value.length > 0) {
         return true;
     } else {
         alert("Preencha todos os campos corretamente!");

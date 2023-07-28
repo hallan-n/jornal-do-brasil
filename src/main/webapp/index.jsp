@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="mt-3 d-flex flex-wrap gap-1" style="max-width: 1230px;" id="publications">
-                <div>${openPubli}</div>
+                <div style="word-wrap: break-word;max-width: 100%;">${openPubli}</div>
                 <c:forEach items="${publications}" var="pub">
                     <div class="p-0">
                     
@@ -90,9 +90,9 @@
                             <div style="overflow: hidden; width: 100%; height: 200px;">
                                 <img class="card-img-top img-fluid" src="${pub.pathThumb}" alt="Card image cap" style="object-fit: cover;max-width: 300px; height: 200px;">                            
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="width: 280px; overflow: hidden;">
                                 <h6 class="card-title">${pub.title}</h6>
-                                <p class="card-text">${pub.description}</p>
+                                <p class="card-text" style="white-space: nowrap;">${pub.description}</p>
                                 <div>
                                     <a href="publication?action=open&id=${pub.fileName}" class="btn btn-primary">Abrir</a>
                                     <c:set var="id" value="${id}"/>
