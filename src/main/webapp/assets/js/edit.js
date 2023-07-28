@@ -1,4 +1,4 @@
-const editor = document.querySelector("#editorT")
+const editor = document.querySelector("#editor")
 const paleta = document.querySelector("#paleta")
 const fontColor = document.querySelector("#fontColor")
 const backColor = document.querySelector("#backColor")
