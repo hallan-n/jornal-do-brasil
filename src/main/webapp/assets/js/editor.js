@@ -24,7 +24,7 @@ editor.addEventListener('input', () => {
             imagens[i].parentNode.removeChild(imagens[i]);
         }
     }
-    const numCaracteres = editor.textContent.length;
+    const numCaracteres = editor.innerText.length;
     count.textContent = `${numCaracteres}/4000`;
 });
 editor.addEventListener('DOMNodeInserted', (event) => {
