@@ -60,7 +60,7 @@
         </div>
     </div>
     <div id="header" class="container max-width-container">
-        <div class="row d-flex justify-content-between ">
+        <div class="row d-flex justify-content-between align-items-center">
             <div class="col-4 d-flex align-items-center p-0">
                 <a href="#" class="btn link-primary d-flex align-items-center text-light text-decoration-none"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -69,10 +69,10 @@
                 </a>
 
                 <a href="publication?action=list" class="btn link-primary d-flex align-items-center">
-                    <span><img src="assets/images/logo_bostil.svg" alt="logo_bostil"></span>
+                    <span><img src="assets/images/brazil.png" alt="logo_brazil" width="50px"></span>
                 </a>
             </div>
-            <div class="col d-flex justify-content-end p-0" >
+            <div class="col d-flex justify-content-end p-0" style="max-height: 50px;">
                 <input id="inputQuery" class="form-control py-0 me-2 form-cabecalho-1 form-cabecalho-display" type="search" placeholder="Pesquisar..." aria-label="Search" />
                 <a id="anchorQuery" href=" " class="btn btn-primary form-cabecalho-1 me-3 form-cabecalho-display">
                     <span class="material-symbols-outlined fs-3">search</span>                   
