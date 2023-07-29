@@ -31,7 +31,7 @@
             <div>
                 <div class="row g-0 pt-3 mt-5 border border-3 rounded-2">
                     <div class="col-md-6 mb-md-0 p-md-4">
-                        <h3 class="text-center w-75 mx-auto">Criar conta no Jornal do Bostil</h3>
+                        <h3 class="text-center w-75 mx-auto">Criar conta no Jornal do Brasil</h3>
 
                         <div class="d-flex justify-content-center form-cabecalho-1">
                             <img src="assets/images/ilustração-formulario.jpg" class="w-75 form-cabecalho-1 mt-5">
