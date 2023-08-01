@@ -128,7 +128,7 @@
                 <div class="d-grid gap-4 d-flex align-items-center justify-content-between">
                     <div class="col">
                         <label class="form-label m-0" for="txtTitleT"><span class="text-danger"><strong>* </strong></span>Título</label>
-                        <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" />
+                        <input required value="${publicationEdit.title}" name="txtTitleT" id="txtTitleT" class="form-control w-100" type="text" maxlength="45"/>
 
                     </div>
                     <div class="col">
